@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerseCraft Design Co - Creative Design Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Language Switch -->
+    <div class="language-switch">
+        <button class="language-btn active" id="enBtn">EN</button>
+        <button class="language-btn" id="frBtn">FR</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">VerseCraft<span> Design Co</span></div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
+                    <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+                    <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+                    <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
+                    <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 data-en="Creative Design Solutions" data-fr="Solutions de Design Créatif">Creative Design Solutions</h1>
+            <p data-en="Transforming your ideas into visually stunning realities with our comprehensive design services." 
+               data-fr="Transformez vos idées en réalités visuellement époustouflantes avec nos services de design complets.">
+                Transforming your ideas into visually stunning realities with our comprehensive design services.
+            </p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn" data-en="Our Services" data-fr="Nos Services">Our Services</a>
+                <a href="#contact" class="btn btn-outline" data-en="Get in Touch" data-fr="Contactez-nous">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="About VerseCraft" data-fr="À propos de VerseCraft">About VerseCraft</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 data-en="We Craft Visual Stories That Inspire" data-fr="Nous Créons des Histoires Visuelles Inspirantes">We Craft Visual Stories That Inspire</h3>
+                    <p data-en="VerseCraft Design Co is a creative agency specializing in transforming complex ideas into beautiful, engaging visual formats. Our team of talented designers and data visualization experts work together to create meaningful designs that communicate your message effectively." 
+                       data-fr="VerseCraft Design Co est une agence créative spécialisée dans la transformation d'idées complexes en formats visuels beaux et engageants. Notre équipe de designers talentueux et d'experts en visualisation de données travaille ensemble pour créer des designs significatifs qui communiquent efficacement votre message.">
+                        VerseCraft Design Co is a creative agency specializing in transforming complex ideas into beautiful, engaging visual formats.
+                    </p>
+                    <p data-en="Founded in 2015, we've helped hundreds of clients from startups to Fortune 500 companies enhance their visual communication and brand identity." 
+                       data-fr="Fondée en 2015, nous avons aidé des centaines de clients, des startups aux entreprises du Fortune 500, à améliorer leur communication visuelle et leur identité de marque.">
+                        Founded in 2015, we've helped hundreds of clients from startups to Fortune 500 companies enhance their visual communication and brand identity.
+                    </p>
+                    <p data-en="Our approach combines artistic creativity with strategic thinking to deliver designs that not only look great but also achieve your business objectives." 
+                       data-fr="Notre approche combine créativité artistique et réflexion stratégique pour fournir des designs qui non seulement sont magnifiques mais atteignent également vos objectifs commerciaux.">
+                        Our approach combines artistic creativity with strategic thinking to deliver designs that not only look great but also achieve your business objectives.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <img src="imgs/about.jpg" alt="Our Team Working">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Our Services" data-fr="Nos Services">Our Services</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Acrostic Art Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic Art</h3>
+                        <ul>
+                            <li data-en="Personalized Acrostic Art with photo" data-fr="Art acrostiche personnalisé avec photo">Personalized Acrostic Art with photo</li>
+                            <li data-en="Custom name poems" data-fr="Poèmes personnalisés sur les noms">Custom name poems</li>
+                            <li data-en="Gift-worthy designs" data-fr="Designs dignes de cadeaux">Gift-worthy designs</li>
+                            <li data-en="Wall art creations" data-fr="Créations d'art mural">Wall art creations</li>
+                        </ul>
+                        <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Data Visualization Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</h3>
+                        <ul>
+                            <li data-en="Transforming complex data sets into visual formats" data-fr="Transformation de jeux de données complexes en formats visuels">Transforming complex data sets into visual formats</li>
+                            <li data-en="Custom charts, graphs, and diagrams" data-fr="Graphiques, diagrammes personnalisés">Custom charts, graphs, and diagrams</li>
+                            <li data-en="Interactive dashboards" data-fr="Tableaux de bord interactifs">Interactive dashboards</li>
+                            <li data-en="Reports and analytics visuals" data-fr="Visuels pour rapports et analyses">Reports and analytics visuals</li>
+                        </ul>
+                        <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Infographic Resumes Service
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Infographic Resumes" data-fr="CV Infographiques">Infographic Resumes</h3>
+                        <ul>
+                            <li data-en="Visually designed resumes" data-fr="CV conçus visuellement">Visually designed resumes</li>
+                            <li data-en="Showcase skills and experience creatively" data-fr="Mettez en valeur vos compétences et expérience de manière créative">Showcase skills and experience creatively</li>
+                            <li data-en="Personal branding packages" data-fr="Packages de branding personnel">Personal branding packages</li>
+                            <li data-en="LinkedIn profile design" data-fr="Design de profil LinkedIn">LinkedIn profile design</li>
+                        </ul>
+                        <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
+                    </div>
+                </div> -->
+
+                <!-- Graphic & Print Design Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Graphic & Print Design" data-fr="Design Graphique & Imprimé">Graphic & Print Design</h3>
+                        <ul>
+                            <li data-en="Logo design and brand identity" data-fr="Design de logo et identité de marque">Logo design and brand identity</li>
+                            <li data-en="Marketing materials (brochures, flyers)" data-fr="Matériel marketing (brochures, dépliants)">Marketing materials (brochures, flyers)</li>
+                            <li data-en="Social media graphics" data-fr="Graphiques pour médias sociaux">Social media graphics</li>
+                            <li data-en="Business cards and stationery" data-fr="Cartes de visite et papeterie">Business cards and stationery</li>
+                            <li data-en="Packaging design" data-fr="Design d'emballage">Packaging design</li>
+                            <li data-en="Event signage and displays" data-fr="Signalétique et affichage d'événements">Event signage and displays</li>
+                        </ul>
+                        <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Our Portfolio" data-fr="Notre Portfolio">Our Portfolio</h2>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all" data-en="All" data-fr="Tous">All</button>
+                <button class="filter-btn" data-filter="acrostic" data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic Art</button>
+                <button class="filter-btn" data-filter="data" data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</button>
+                <button class="filter-btn" data-filter="resume" data-en="Infographic Resumes" data-fr="CV Infographiques">Infographic Resumes</button>
+                <button class="filter-btn" data-filter="graphic" data-en="Graphic Design" data-fr="Design Graphique">Graphic Design</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Portfolio Items -->
+                <div class="portfolio-item" data-category="acrostic">
+                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="Acrostic Art Example" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-en="Personalized Name Art" data-fr="Art de Nom Personnalisé">Personalized Name Art</h3>
+                        <p data-en="Custom acrostic poem artwork for a wedding gift" data-fr="Œuvre d'art poème acrostiche personnalisé pour un cadeau de mariage">Custom acrostic poem artwork for a wedding gift</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="data">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80" alt="Data Visualization Example" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-en="Annual Report Design" data-fr="Design de Rapport Annuel">Annual Report Design</h3>
+                        <p data-en="Data visualization for a corporate annual report" data-fr="Visualisation de données pour un rapport annuel d'entreprise">Data visualization for a corporate annual report</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="resume">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Infographic Resume Example" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-en="Creative Resume" data-fr="CV Créatif">Creative Resume</h3>
+                        <p data-en="Infographic resume for a marketing professional" data-fr="CV infographique pour un professionnel du marketing">Infographic resume for a marketing professional</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="graphic">
+                    <img src="https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Logo Design Example" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-en="Brand Identity" data-fr="Identité de Marque">Brand Identity</h3>
+                        <p data-en="Complete branding package for a tech startup" data-fr="Pack complet de branding pour une startup technologique">Complete branding package for a tech startup</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="acrostic">
+                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Acrostic Art Example" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-en="Family Name Art" data-fr="Art de Nom de Famille">Family Name Art</h3>
+                        <p data-en="Custom family name artwork with photo integration" data-fr="Œuvre d'art de nom de famille personnalisé avec intégration de photo">Custom family name artwork with photo integration</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="data">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Data Dashboard Example" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 data-en="Analytics Dashboard" data-fr="Tableau de Bord Analytique">Analytics Dashboard</h3>
+                        <p data-en="Interactive data dashboard for a SaaS company" data-fr="Tableau de bord de données interactif pour une entreprise SaaS">Interactive data dashboard for a SaaS company</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="What Our Clients Say" data-fr="Ce Que Disent Nos Clients">What Our Clients Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-content">
+                        <p data-en="VerseCraft transformed our boring annual report into a visually stunning document that our stakeholders actually want to read. The data visualization work was exceptional and helped communicate complex information clearly." 
+                           data-fr="VerseCraft a transformé notre rapport annuel ennuyeux en un document visuellement époustouflant que nos parties prenantes ont réellement envie de lire. Le travail de visualisation des données était exceptionnel et a aidé à communiquer des informations complexes clairement.">
+                            VerseCraft transformed our boring annual report into a visually stunning document that our stakeholders actually want to read.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">Sarah Johnson</div>
+                    <div class="testimonial-position" data-en="Marketing Director, TechCorp" data-fr="Directrice Marketing, TechCorp">Marketing Director, TechCorp</div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p data-en="The personalized acrostic art they created for my parents' anniversary brought tears to their eyes. It was the perfect gift - meaningful, beautiful, and completely unique. The attention to detail was remarkable." 
+                           data-fr="L'art acrostiche personnalisé qu'ils ont créé pour l'anniversaire de mes parents leur a tiré des larmes. C'était le cadeau parfait - significatif, beau et complètement unique. L'attention portée aux détails était remarquable.">
+                            The personalized acrostic art they created for my parents' anniversary brought tears to their eyes.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">Michael Chen</div>
+                    <div class="testimonial-position" data-en="Satisfied Customer" data-fr="Client Satisfait">Satisfied Customer</div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p data-en="Our new infographic resumes have helped our candidates stand out in a competitive job market. VerseCraft understood exactly how to showcase our employees' skills and experience in a creative, professional way." 
+                           data-fr="Nos nouveaux CV infographiques ont aidé nos candidats à se démarquer sur un marché du travail concurrentiel. VerseCraft a parfaitement compris comment mettre en valeur les compétences et l'expérience de nos employés de manière créative et professionnelle.">
+                            Our new infographic resumes have helped our candidates stand out in a competitive job market.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">Emily Rodriguez</div>
+                    <div class="testimonial-position" data-en="HR Manager, TalentFirst" data-fr="Responsable RH, TalentFirst">HR Manager, TalentFirst</div>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <div class="slider-dot active" data-slide="0"></div>
+                <div class="slider-dot" data-slide="1"></div>
+                <div class="slider-dot" data-slide="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Get In Touch" data-fr="Contactez-Nous">Get In Touch</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-en="Contact Information" data-fr="Informations de Contact">Contact Information</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 data-en="Location" data-fr="Adresse">Location</h4>
+                                <p>343, Haut-Congo, Binza Upn, Bumba/Ngaliema</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 data-en="Phone" data-fr="Téléphone">Phone</h4>
+                                <p><a href="tel:+18005551234">+243 894 235 656</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4 data-en="Email" data-fr="Email">Email</h4>
+                                <p><a href="mailto:info@versecraft.com">contact@versecraft.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 data-en="Follow Us" data-fr="Suivez-Nous">Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group floating-label-group">
+                            <input type="text" id="name" name="name" class="form-control" placeholder=" " required>
+                            <label class="floating-label" data-en="Your Name" data-fr="Votre Nom">Your Name</label>
+                        </div>
+                        <div class="form-group floating-label-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder=" " required>
+                            <label class="floating-label" data-en="Your Email" data-fr="Votre Email">Your Email</label>
+                        </div>
+                        <div class="form-group floating-label-group">
+                            <input type="text" id="subject" name="subject" class="form-control" placeholder=" " required>
+                            <label class="floating-label" data-en="Subject" data-fr="Sujet">Subject</label>
+                        </div>
+                        <div class="form-group floating-label-group">
+                            <textarea id="message" name="message" class="form-control" placeholder=" " required></textarea>
+                            <label class="floating-label" data-en="Your Message" data-fr="Votre Message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn" data-en="Send Message" data-fr="Envoyer le Message">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Verse<span>Craft</span></div>
+                <div class="footer-links">
+                    <a href="#home" data-en="Home" data-fr="Accueil">Home</a>
+                    <a href="#about" data-en="About" data-fr="À propos">About</a>
+                    <a href="#services" data-en="Services" data-fr="Services">Services</a>
+                    <a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a>
+                    <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+                    <a href="#" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a>
+                    <a href="#" data-en="Terms of Service" data-fr="Conditions d'Utilisation">Terms of Service</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; <span data-en="2023 VerseCraft Design Co. All Rights Reserved." 
+                            data-fr="2023 VerseCraft Design Co. Tous droits réservés.">
+                        2025 VerseCraft Design Co. All Rights Reserved.
+                      </span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Switching Functionality
+        const enBtn = document.getElementById('enBtn');
+        const frBtn = document.getElementById('frBtn');
+        let currentLanguage = 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update language buttons
+            enBtn.classList.toggle('active', lang === 'en');
+            frBtn.classList.toggle('active', lang === 'fr');
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en], [data-fr]').forEach(element => {
+                if (element.dataset[lang]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = element.dataset[lang];
+                    } else if (element.tagName === 'IMG') {
+                        element.alt = element.dataset[lang];
+                    } else {
+                        element.textContent = element.dataset[lang];
+                    }
+                }
+            });
+        }
+
+        enBtn.addEventListener('click', () => switchLanguage('en'));
+        frBtn.addEventListener('click', () => switchLanguage('fr'));
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Portfolio Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Filter portfolio items
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Testimonial Slider
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            testimonialSlides.forEach(slide => slide.classList.remove('active'));
+            sliderDots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonialSlides[index].classList.add('active');
+            sliderDots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        sliderDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.getAttribute('data-slide'));
+                showSlide(slideIndex);
+            });
+        });
+
+        // Auto-advance testimonials
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % testimonialSlides.length;
+            showSlide(nextSlide);
+        }, 5000);
+
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll show an alert in the current language
+            if (currentLanguage === 'en') {
+                alert(`Thank you, ${name}! Your message has been received. We'll contact you soon at ${email}.`);
+            } else {
+                alert(`Merci, ${name}! Votre message a bien été reçu. Nous vous contacterons bientôt à ${email}.`);
+            }
+            
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Scroll Reveal Animation
+        window.addEventListener('scroll', revealOnScroll);
+
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight - 100) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Initialize sections with hidden state
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Trigger initial reveal check
+        revealOnScroll();
+    </script>
+</body>
+</html>
