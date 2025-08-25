@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <!-- Language Switch -->
-    <div class="language-switch">
+    <!-- Language Switch (Desktop) -->
+    <div class="language-switch desktop-language-switch">
         <button class="language-btn active" id="enBtn">EN</button>
         <button class="language-btn" id="frBtn">FR</button>
     </div>
@@ -28,9 +28,20 @@
                     <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
                     <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
                     <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
+                    <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
                     <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
                 </ul>
+                
+                <!-- Language Switch (Mobile) -->
+                <div class="mobile-language-switch">
+                    <button class="language-btn active" id="mobileEnBtn">EN</button>
+                    <button class="language-btn" id="mobileFrBtn">FR</button>
+                </div>
             </nav>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
         </div>
     </header>
 
@@ -80,117 +91,145 @@
 
     <!-- Services Section -->
     <section class="section services" id="services">
-    <div class="container">
-        <div class="section-title">
-            <h2 data-en="Our Services" data-fr="Nos Services">Our Services</h2>
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Our Services" data-fr="Nos Services">Our Services</h2>
+            </div>
+            <div class="service-top-text">
+                <h3 data-en="Looking for a price for your project? The ones you see are our standard starting rates. Since every project is unique (size, details, urgency), the final price may vary. Let's talk! Our team is here to provide you with a no-obligation, tailored quote." 
+                       data-fr="Vous cherchez un prix pour votre projet ? Ceux que vous voyez sont nos tarifs de base. Comme chaque projet est unique (taille, détails, urgence), le prix final peut varier. Parlons-en ! Notre équipe est là pour vous proposer un devis sur mesure, sans engagement.">
+                        Looking for a price for your project? The ones you see are our standard starting rates. Since every project is unique (size, details, urgency), the final price may vary. Let's talk! Our team is here to provide you with a no-obligation, tailored quote.
+                </h3>
+            </div>
+            <div class="services-grid">
+                <!-- Acrostic Art Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic Art</h3>
+                        <ul>
+                            <li data-en="Personalized Acrostic Art with photo" data-fr="Art acrostiche personnalisé avec photo">Personalized Acrostic Art with photo</li>
+                            <li data-en="Custom name poems" data-fr="Poèmes personnalisés sur les noms">Custom name poems</li>
+                            <li data-en="Gift-worthy designs" data-fr="Designs dignes de cadeaux">Gift-worthy designs</li>
+                            <li data-en="Wall art creations" data-fr="Créations d'art mural">Wall art creations</li>
+                        </ul>
+                        <div class="service-price" data-en="$99" data-fr="99€">$99</div>
+                        <div class="service-actions">
+                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
+                            <button class="btn btn-sm buy-now-btn" data-service="Acrostic Art" data-price="99" data-en="Buy Now" data-fr="Souscrire">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Visualization Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</h3>
+                        <ul>
+                            <li data-en="Interactive dashboards" data-fr="Tableaux de bord interactifs">Interactive dashboards</li>
+                            <li data-en="Infographic design" data-fr="Design d'infographie">Infographic design</li>
+                            <li data-en="Data storytelling" data-fr="Narration de données">Data storytelling</li>
+                            <li data-en="Chart and graph creation" data-fr="Création de graphiques">Chart and graph creation</li>
+                        </ul>
+                        <div class="service-price" data-en="$249" data-fr="249€">$249</div>
+                        <div class="service-actions">
+                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
+                            <button class="btn btn-sm buy-now-btn" data-service="Data Visualization" data-price="249" data-en="Buy Now" data-fr="Acheter">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic & Print Design Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Graphic & Print Design" data-fr="Design Graphique & Imprimé">Graphic & Print Design</h3>
+                        <ul>
+                            <li data-en="Logo design and brand identity" data-fr="Design de logo et identité de marque">Logo design and brand identity</li>
+                            <li data-en="Marketing materials (brochures, flyers)" data-fr="Matériel marketing (brochures, dépliants)">Marketing materials (brochures, flyers)</li>
+                            <li data-en="Social media graphics" data-fr="Graphiques pour médias sociaux">Social media graphics</li>
+                            <li data-en="Business cards and stationery" data-fr="Cartes de visite et papeterie">Business cards and stationery</li>
+                        </ul>
+                        <div class="service-price" data-en="$199" data-fr="199€">$199</div>
+                        <div class="service-actions">
+                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
+                            <button class="btn btn-sm buy-now-btn" data-service="Graphic & Print Design" data-price="199" data-en="Buy Now" data-fr="Acheter">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Development Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Web Development" data-fr="Développement Web">Web Development</h3>
+                        <ul>
+                            <li data-en="Modern, responsive websites" data-fr="Sites web modernes et responsives">Modern, responsive websites</li>
+                            <li data-en="Built for performance and scalability" data-fr="Construits pour la performance et l'évolutivité">Built for performance and scalability</li>
+                            <li data-en="Strong visual impact" data-fr="Fort impact visuel">Strong visual impact</li>
+                            <li data-en="Optimized for all devices" data-fr="Optimisés pour tous les appareils">Optimized for all devices</li>
+                        </ul>
+                        <div class="service-price" data-en="$499" data-fr="499€">$499</div>
+                        <div class="service-actions">
+                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
+                            <button class="btn btn-sm buy-now-btn" data-service="Web Development" data-price="499" data-en="Buy Now" data-fr="Acheter">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Development Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Mobile Development" data-fr="Développement Mobile">Mobile Development</h3>
+                        <ul>
+                            <li data-en="iOS & Android apps" data-fr="Applications iOS et Android">iOS & Android apps</li>
+                            <li data-en="User-centered design" data-fr="Conception centrée sur l'utilisateur">User-centered design</li>
+                            <li data-en="From concept to code" data-fr="Du concept au code">From concept to code</li>
+                            <li data-en="Fluid, functional mobile solutions" data-fr="Solutions mobiles fluides et fonctionnelles">Fluid, functional mobile solutions</li>
+                        </ul>
+                        <div class="service-price" data-en="$699" data-fr="699€">$699</div>
+                        <div class="service-actions">
+                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
+                            <button class="btn btn-sm buy-now-btn" data-service="Mobile Development" data-price="699" data-en="Buy Now" data-fr="Acheter">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Analytics Service -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3 data-en="Data Analytics" data-fr="Analyse de Données">Data Analytics</h3>
+                        <ul>
+                            <li data-en="Turn data into decisions" data-fr="Transformez les données en décisions">Turn data into decisions</li>
+                            <li data-en="Custom dashboards and analytics tools" data-fr="Tableaux de bord et outils d'analyse personnalisés">Custom dashboards and analytics tools</li>
+                            <li data-en="See the story behind the numbers" data-fr="Découvrez l'histoire derrière les chiffres">See the story behind the numbers</li>
+                            <li data-en="Actionable insights for your business" data-fr="Informations exploitables pour votre entreprise">Actionable insights for your business</li>
+                        </ul>
+                        <div class="service-price" data-en="$349" data-fr="349€">$349</div>
+                        <div class="service-actions">
+                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
+                            <button class="btn btn-sm buy-now-btn" data-service="Data Analytics" data-price="349" data-en="Buy Now" data-fr="Acheter">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="services-grid">
-            <!-- Acrostic Art Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-pen-fancy"></i>
-                </div>
-                <div class="service-content">
-                    <h3 data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic Art</h3>
-                    <ul>
-                        <li data-en="Personalized Acrostic Art with photo" data-fr="Art acrostiche personnalisé avec photo">Personalized Acrostic Art with photo</li>
-                        <li data-en="Custom name poems" data-fr="Poèmes personnalisés sur les noms">Custom name poems</li>
-                        <li data-en="Gift-worthy designs" data-fr="Designs dignes de cadeaux">Gift-worthy designs</li>
-                        <li data-en="Wall art creations" data-fr="Créations d'art mural">Wall art creations</li>
-                    </ul>
-                    <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
-                </div>
-            </div>
-
-            <!-- Data Visualization Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-chart-bar"></i>
-                </div>
-                <div class="service-content">
-                    <h3 data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</h3>
-                    <ul>
-                        <li data-en="Transforming complex data sets into visual formats" data-fr="Transformation de jeux de données complexes en formats visuels">Transforming complex data sets into visual formats</li>
-                        <li data-en="Custom charts, graphs, and diagrams" data-fr="Graphiques, diagrammes personnalisés">Custom charts, graphs, and diagrams</li>
-                        <li data-en="Interactive dashboards" data-fr="Tableaux de bord interactifs">Interactive dashboards</li>
-                        <li data-en="Reports and analytics visuals" data-fr="Visuels pour rapports et analyses">Reports and analytics visuals</li>
-                    </ul>
-                    <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
-                </div>
-            </div>
-
-            <!-- Graphic & Print Design Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <div class="service-content">
-                    <h3 data-en="Graphic & Print Design" data-fr="Design Graphique & Imprimé">Graphic & Print Design</h3>
-                    <ul>
-                        <li data-en="Logo design and brand identity" data-fr="Design de logo et identité de marque">Logo design and brand identity</li>
-                        <li data-en="Marketing materials (brochures, flyers)" data-fr="Matériel marketing (brochures, dépliants)">Marketing materials (brochures, flyers)</li>
-                        <li data-en="Social media graphics" data-fr="Graphiques pour médias sociaux">Social media graphics</li>
-                        <li data-en="Business cards and stationery" data-fr="Cartes de visite et papeterie">Business cards and stationery</li>
-                        <li data-en="Packaging design" data-fr="Design d'emballage">Packaging design</li>
-                        <li data-en="Event signage and displays" data-fr="Signalétique et affichage d'événements">Event signage and displays</li>
-                    </ul>
-                    <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
-                </div>
-            </div>
-
-            <!-- Web Development Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="service-content">
-                    <h3 data-en="Web Development" data-fr="Développement Web">Web Development</h3>
-                    <ul>
-                        <li data-en="Modern, responsive websites" data-fr="Sites web modernes et responsives">Modern, responsive websites</li>
-                        <li data-en="Built for performance and scalability" data-fr="Construits pour la performance et l'évolutivité">Built for performance and scalability</li>
-                        <li data-en="Strong visual impact" data-fr="Fort impact visuel">Strong visual impact</li>
-                        <li data-en="Optimized for all devices" data-fr="Optimisés pour tous les appareils">Optimized for all devices</li>
-                    </ul>
-                    <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
-                </div>
-            </div>
-
-            <!-- Mobile Development Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="service-content">
-                    <h3 data-en="Mobile Development" data-fr="Développement Mobile">Mobile Development</h3>
-                    <ul>
-                        <li data-en="iOS & Android apps" data-fr="Applications iOS et Android">iOS & Android apps</li>
-                        <li data-en="User-centered design" data-fr="Conception centrée sur l'utilisateur">User-centered design</li>
-                        <li data-en="From concept to code" data-fr="Du concept au code">From concept to code</li>
-                        <li data-en="Fluid, functional mobile solutions" data-fr="Solutions mobiles fluides et fonctionnelles">Fluid, functional mobile solutions</li>
-                    </ul>
-                    <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
-                </div>
-            </div>
-
-            <!-- Data Analytics Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="service-content">
-                    <h3 data-en="Data Analytics" data-fr="Analyse de Données">Data Analytics</h3>
-                    <ul>
-                        <li data-en="Turn data into decisions" data-fr="Transformez les données en décisions">Turn data into decisions</li>
-                        <li data-en="Custom dashboards and analytics tools" data-fr="Tableaux de bord et outils d'analyse personnalisés">Custom dashboards and analytics tools</li>
-                        <li data-en="See the story behind the numbers" data-fr="Découvrez l'histoire derrière les chiffres">See the story behind the numbers</li>
-                        <li data-en="Actionable insights for your business" data-fr="Informations exploitables pour votre entreprise">Actionable insights for your business</li>
-                    </ul>
-                    <a href="#contact" class="btn" data-en="Inquire Now" data-fr="Demandez Maintenant">Inquire Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Portfolio Section -->
     <section class="section" id="portfolio">
@@ -208,7 +247,7 @@
             <div class="portfolio-grid">
                 <!-- Portfolio Items -->
                 <div class="portfolio-item" data-category="acrostic">
-                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="Acrostic Art Example" class="portfolio-img">
+                    <img src="imgs/01.jpg" alt="Acrostic Art Example" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3 data-en="Personalized Name Art" data-fr="Art de Nom Personnalisé">Personalized Name Art</h3>
                         <p data-en="Custom acrostic poem artwork for a wedding gift" data-fr="Œuvre d'art poème acrostiche personnalisé pour un cadeau de mariage">Custom acrostic poem artwork for a wedding gift</p>
@@ -222,14 +261,14 @@
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="resume">
-                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Infographic Resume Example" class="portfolio-img">
+                    <img src="imgs/03.jpg" alt="Infographic Resume Example" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3 data-en="Creative Resume" data-fr="CV Créatif">Creative Resume</h3>
                         <p data-en="Infographic resume for a marketing professional" data-fr="CV infographique pour un professionnel du marketing">Infographic resume for a marketing professional</p>
                     </div>
                 </div>
                 <div class="portfolio-item" data-category="graphic">
-                    <img src="https://images.unsplash.com/photo-1585336261022-680e295ce3fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Logo Design Example" class="portfolio-img">
+                    <img src="imgs/04.png" alt="Logo Design Example" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3 data-en="Brand Identity" data-fr="Identité de Marque">Brand Identity</h3>
                         <p data-en="Complete branding package for a tech startup" data-fr="Pack complet de branding pour une startup technologique">Complete branding package for a tech startup</p>
@@ -299,6 +338,65 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-en="Frequently Asked Questions" data-fr="Foire Aux Questions">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-en="How long does it take to complete a project?" data-fr="Combien de temps faut-il pour terminer un projet ?">How long does it take to complete a project?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="The timeline depends on the complexity of the project. Simple designs can be completed in 3-5 days, while more complex projects may take 2-3 weeks. We'll provide a detailed timeline after discussing your specific needs." 
+                           data-fr="Le délai dépend de la complexité du projet. Les designs simples peuvent être terminés en 3 à 5 jours, tandis que les projets plus complexes peuvent prendre 2 à 3 semaines. Nous vous fournirons un calendrier détaillé après avoir discuté de vos besoins spécifiques.">
+                            The timeline depends on the complexity of the project. Simple designs can be completed in 3-5 days, while more complex projects may take 2-3 weeks.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-en="Do you offer revisions after the design is completed?" data-fr="Proposez-vous des révisions après la fin du design ?">Do you offer revisions after the design is completed?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Yes, we offer up to 3 rounds of revisions for all our design projects to ensure you're completely satisfied with the final result." 
+                           data-fr="Oui, nous proposons jusqu'à 3 séries de révisions pour tous nos projets de design pour nous assurer que vous êtes entièrement satisfait du résultat final.">
+                            Yes, we offer up to 3 rounds of revisions for all our design projects to ensure you're completely satisfied with the final result.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-en="What payment methods do you accept?" data-fr="Quels modes de paiement acceptez-vous ?">What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="We accept credit cards, PayPal, mobile money, and bank transfers. Payment is typically split into two parts: 50% upfront and 50% upon completion." 
+                           data-fr="Nous acceptons les cartes de crédit, PayPal, mobile money et les virements bancaires. Le paiement est généralement divisé en deux parties : 50% d'avance et 50% à l'achèvement.">
+                            We accept credit cards, PayPal, mobile money, and bank transfers. Payment is typically split into two parts: 50% upfront and 50% upon completion.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-en="Can I request a custom service not listed here?" data-fr="Puis-je demander un service personnalisé non listé ici ?">Can I request a custom service not listed here?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-en="Absolutely! We love creative challenges. Contact us with your ideas, and we'll work with you to develop a custom solution that meets your specific needs." 
+                           data-fr="Absolument ! Nous adorons les défis créatifs. Contactez-nous avec vos idées et nous travaillerons avec vous pour développer une solution personnalisée qui répond à vos besoins spécifiques.">
+                            Absolutely! We love creative challenges. Contact us with your ideas, and we'll work with you to develop a custom solution that meets your specific needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <div class="container">
@@ -315,7 +413,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4 data-en="Location" data-fr="Adresse">Location</h4>
-                                <p>343, Haut-Congo, Binza Upn, Bumba/Ngaliema</p>
+                                <p>456 Main Street, Bloomington, IL 61701</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -324,7 +422,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4 data-en="Phone" data-fr="Téléphone">Phone</h4>
-                                <p><a href="tel:+18005551234">+243 894 235 656</a></p>
+                                <p><a href="tel:+243894235656">+1 (309) 445-7438 | +243 894 235 656</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -333,7 +431,7 @@
                             </div>
                             <div class="contact-text">
                                 <h4 data-en="Email" data-fr="Email">Email</h4>
-                                <p><a href="mailto:info@versecraft.com">contact@versecraft.com</a></p>
+                                <p><a href="mailto:contact@versecraft.com">contact@versecraft.com</a></p>
                             </div>
                         </div>
                     </div>
@@ -372,31 +470,211 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Verse<span>Craft</span></div>
-                <div class="footer-links">
-                    <a href="#home" data-en="Home" data-fr="Accueil">Home</a>
-                    <a href="#about" data-en="About" data-fr="À propos">About</a>
-                    <a href="#services" data-en="Services" data-fr="Services">Services</a>
-                    <a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a>
-                    <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
-                    <a href="#" data-en="Privacy Policy" data-fr="Politique de Confidentialité">Privacy Policy</a>
-                    <a href="#" data-en="Terms of Service" data-fr="Conditions d'Utilisation">Terms of Service</a>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3 data-en="VerseCraft Design Co" data-fr="VerseCraft Design Co">VerseCraft Design Co</h3>
+                    <p data-en="Transforming ideas into visually stunning realities with our comprehensive design services." 
+                       data-fr="Transformez vos idées en réalités visuellement époustouflantes avec nos services de design complets.">
+                        Transforming ideas into visually stunning realities with our comprehensive design services.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 data-en="Our Services" data-fr="Nos Services">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services" data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic Art</a></li>
+                        <li><a href="#services" data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</a></li>
+                        <li><a href="#services" data-en="Graphic & Print Design" data-fr="Design Graphique & Imprimé">Graphic & Print Design</a></li>
+                        <li><a href="#services" data-en="Web Development" data-fr="Développement Web">Web Development</a></li>
+                        <li><a href="#services" data-en="Mobile Development" data-fr="Développement Mobile">Mobile Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 data-en="Quick Links" data-fr="Liens Rapides">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
+                        <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+                        <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
+                        <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+                        <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 data-en="Newsletter" data-fr="Bulletin d'information">Newsletter</h3>
+                    <p data-en="Subscribe to our newsletter for the latest updates and offers." 
+                       data-fr="Abonnez-vous à notre newsletter pour les dernières mises à jour et offres.">
+                        Subscribe to our newsletter for the latest updates and offers.
+                    </p>
+                    <form class="footer-newsletter">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit" data-en="Subscribe" data-fr="S'abonner">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; <span data-en="2023 VerseCraft Design Co. All Rights Reserved." 
-                            data-fr="2023 VerseCraft Design Co. Tous droits réservés.">
-                        2025 VerseCraft Design Co. All Rights Reserved.
-                      </span>
+            <div class="footer-bottom">
+                <p>&copy; 2025 VerseCraft Design Co. <span data-en="All Rights Reserved." data-fr="Tous droits réservés.">All Rights Reserved.</span></p>
             </div>
         </div>
     </footer>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closePaymentModal">&times;</span>
+            <h2 data-en="Complete Your Purchase" data-fr="Finalisez Votre Achat">Complete Your Purchase</h2>
+            <p data-en="You're purchasing:" data-fr="Vous achetez :">You're purchasing:</p>
+            <div class="cart-items" id="paymentItems">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            <div class="cart-total">
+                <span data-en="Total:" data-fr="Total :">Total:</span>
+                <span id="paymentTotal">$0</span>
+            </div>
+            
+            <h3 data-en="Select Payment Method" data-fr="Sélectionnez le Mode de Paiement">Select Payment Method</h3>
+            <div class="payment-options">
+                <div class="payment-option">
+                    <input type="radio" id="mobileMoney" name="paymentMethod" value="mobileMoney">
+                    <label for="mobileMoney">
+                        <span class="payment-icon"><i class="fas fa-mobile-alt"></i></span>
+                        <span data-en="Mobile Money" data-fr="Mobile Money">Mobile Money</span>
+                    </label>
+                </div>
+                
+                <div class="payment-option">
+                    <input type="radio" id="card" name="paymentMethod" value="card">
+                    <label for="card">
+                        <span class="payment-icon"><i class="fas fa-credit-card"></i></span>
+                        <span data-en="Credit/Debit Card" data-fr="Carte de Crédit/Débit">Credit/Debit Card</span>
+                    </label>
+                </div>
+                
+                <div class="payment-option">
+                    <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+                    <label for="paypal">
+                        <span class="payment-icon"><i class="fab fa-paypal"></i></span>
+                        <span>PayPal</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- Mobile Money Form -->
+            <form class="payment-form" id="mobileMoneyForm">
+                <div class="form-group floating-label-group">
+                    <select class="form-control" id="mobileMoneyProvider" required>
+                        <option value="" disabled selected></option>
+                        <option value="mpesa">M-Pesa</option>
+                        <option value="orange">Orange Money</option>
+                        <option value="afri">Afri Money</option>
+                        <option value="airtel">Airtel Money</option>
+                    </select>
+                    <label class="floating-label" data-en="Select Provider" data-fr="Sélectionnez le fournisseur">Select Provider</label>
+                </div>
+                
+                <div class="form-group floating-label-group">
+                    <input type="tel" class="form-control" id="mobileNumber" placeholder=" " required>
+                    <label class="floating-label" data-en="Mobile Number" data-fr="Numéro de mobile">Mobile Number</label>
+                </div>
+                
+                <div class="form-group floating-label-group">
+                    <input type="text" class="form-control" id="mobileName" placeholder=" " required>
+                    <label class="floating-label" data-en="Full Name" data-fr="Nom complet">Full Name</label>
+                </div>
+                
+                <button type="submit" class="btn" data-en="Pay Now" data-fr="Payer Maintenant">Pay Now</button>
+            </form>
+            
+            <!-- Card Form -->
+            <form class="payment-form" id="cardForm">
+                <div class="form-group floating-label-group">
+                    <input type="text" class="form-control" id="cardNumber" placeholder=" " required>
+                    <label class="floating-label" data-en="Card Number" data-fr="Numéro de carte">Card Number</label>
+                </div>
+                
+                <div class="form-group floating-label-group">
+                    <input type="text" class="form-control" id="cardName" placeholder=" " required>
+                    <label class="floating-label" data-en="Name on Card" data-fr="Nom sur la carte">Name on Card</label>
+                </div>
+                
+                <div style="display: flex; gap: 1rem;">
+                    <div class="form-group floating-label-group" style="flex: 1;">
+                        <input type="text" class="form-control" id="expiryDate" placeholder=" " required>
+                        <label class="floating-label" data-en="Expiry Date" data-fr="Date d'expiration">Expiry Date</label>
+                    </div>
+                    
+                    <div class="form-group floating-label-group" style="flex: 1;">
+                        <input type="text" class="form-control" id="cvv" placeholder=" " required>
+                        <label class="floating-label" data-en="CVV" data-fr="CVV">CVV</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn" data-en="Pay Now" data-fr="Payer Maintenant">Pay Now</button>
+            </form>
+            
+            <!-- PayPal Form -->
+            <form class="payment-form" id="paypalForm">
+                <div class="form-group floating-label-group">
+                    <input type="email" class="form-control" id="paypalEmail" placeholder=" " required>
+                    <label class="floating-label" data-en="PayPal Email" data-fr="Email PayPal">PayPal Email</label>
+                </div>
+                
+                <div class="form-group floating-label-group">
+                    <input type="password" class="form-control" id="paypalPassword" placeholder=" " required>
+                    <label class="floating-label" data-en="PayPal Password" data-fr="Mot de passe PayPal">PayPal Password</label>
+                </div>
+                
+                <button type="submit" class="btn" data-en="Pay with PayPal" data-fr="Payer avec PayPal">Pay with PayPal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeCartModal">&times;</span>
+            <h2 data-en="Your Cart" data-fr="Votre Panier">Your Cart</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+                <div class="empty-cart-message" id="emptyCartMessage" data-en="Your cart is empty" data-fr="Votre panier est vide">Your cart is empty</div>
+            </div>
+            <div class="cart-total" id="cartTotalContainer">
+                <span data-en="Total:" data-fr="Total :">Total:</span>
+                <span id="cartTotal">$0</span>
+            </div>
+            <button class="btn" id="checkoutBtn" data-en="Proceed to Checkout" data-fr="Passer à la Caisse" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeConfirmationModal">&times;</span>
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 data-en="Thank You For Your Purchase!" data-fr="Merci Pour Votre Achat !">Thank You For Your Purchase!</h2>
+            <p data-en="Your order has been successfully placed. We will contact you shortly to discuss the details of your project." 
+               data-fr="Votre commande a été passée avec succès. Nous vous contacterons prochainement pour discuter des détails de votre projet.">
+                Your order has been successfully placed. We will contact you shortly to discuss the details of your project.
+            </p>
+            <p data-en="Order ID: #VC2023-001" data-fr="ID de commande : #VC2023-001">Order ID: #VC2023-001</p>
+            <button class="btn" id="confirmationBtn" data-en="Continue Browsing" data-fr="Continuer la Navigation">Continue Browsing</button>
+        </div>
+    </div>
 
     <script>
         // Language Switching Functionality
         const enBtn = document.getElementById('enBtn');
         const frBtn = document.getElementById('frBtn');
+        const mobileEnBtn = document.getElementById('mobileEnBtn');
+        const mobileFrBtn = document.getElementById('mobileFrBtn');
         let currentLanguage = 'en';
 
         function switchLanguage(lang) {
@@ -405,6 +683,8 @@
             // Update language buttons
             enBtn.classList.toggle('active', lang === 'en');
             frBtn.classList.toggle('active', lang === 'fr');
+            mobileEnBtn.classList.toggle('active', lang === 'en');
+            mobileFrBtn.classList.toggle('active', lang === 'fr');
             
             // Update all elements with data attributes
             document.querySelectorAll('[data-en], [data-fr]').forEach(element => {
@@ -422,6 +702,8 @@
 
         enBtn.addEventListener('click', () => switchLanguage('en'));
         frBtn.addEventListener('click', () => switchLanguage('fr'));
+        mobileEnBtn.addEventListener('click', () => switchLanguage('en'));
+        mobileFrBtn.addEventListener('click', () => switchLanguage('fr'));
 
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -557,6 +839,251 @@
 
         // Trigger initial reveal check
         revealOnScroll();
+
+        // FAQ Toggle
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                const icon = question.querySelector('i');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+
+        // Shopping Cart Functionality
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = document.getElementById('cartCount');
+        const cartModal = document.getElementById('cartModal');
+        const closeCartModal = document.getElementById('closeCartModal');
+        const cartItems = document.getElementById('cartItems');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartTotalContainer = document.getElementById('cartTotalContainer');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const buyNowButtons = document.querySelectorAll('.buy-now-btn');
+        
+        let cart = [];
+        
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            updateCartDisplay();
+            cartModal.classList.add('active');
+        });
+        
+        // Close cart modal
+        closeCartModal.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+        });
+        
+        // Add to cart functionality
+        buyNowButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const service = button.getAttribute('data-service');
+                const price = parseFloat(button.getAttribute('data-price'));
+                
+                // Check if item already in cart
+                const existingItemIndex = cart.findIndex(item => item.service === service);
+                
+                if (existingItemIndex >= 0) {
+                    cart[existingItemIndex].quantity += 1;
+                } else {
+                    cart.push({
+                        service: service,
+                        price: price,
+                        quantity: 1
+                    });
+                }
+                
+                updateCartCount();
+                
+                // Show confirmation
+                if (currentLanguage === 'en') {
+                    alert(`Added ${service} to your cart!`);
+                } else {
+                    alert(`${service} ajouté à votre panier !`);
+                }
+            });
+        });
+        
+        // Update cart count
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Enable or disable checkout button
+            checkoutBtn.disabled = totalItems === 0;
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            // Clear current items
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                cartTotalContainer.style.display = 'none';
+                return;
+            }
+            
+            emptyCartMessage.style.display = 'none';
+            cartTotalContainer.style.display = 'flex';
+            
+            // Add items to cart
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.service}</div>
+                        <div class="cart-item-quantity">Qty: ${item.quantity}</div>
+                    </div>
+                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                    <button class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></button>
+                `;
+                
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Update total
+            cartTotal.textContent = `$${total.toFixed(2)}`;
+            
+            // Add event listeners to remove buttons
+            const removeButtons = document.querySelectorAll('.remove-item');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.getAttribute('data-index'));
+                    cart.splice(index, 1);
+                    updateCartDisplay();
+                    updateCartCount();
+                });
+            });
+        }
+        
+        // Checkout button
+        checkoutBtn.addEventListener('click', () => {
+            cartModal.classList.remove('active');
+            showPaymentModal();
+        });
+        
+        // Payment Modal Functionality
+        const paymentModal = document.getElementById('paymentModal');
+        const closePaymentModal = document.getElementById('closePaymentModal');
+        const paymentItems = document.getElementById('paymentItems');
+        const paymentTotal = document.getElementById('paymentTotal');
+        const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
+        const paymentForms = document.querySelectorAll('.payment-form');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const closeConfirmationModal = document.getElementById('closeConfirmationModal');
+        const confirmationBtn = document.getElementById('confirmationBtn');
+        
+        // Show payment modal
+        function showPaymentModal() {
+            // Clear current items
+            paymentItems.innerHTML = '';
+            
+            // Add items to payment modal
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const paymentItem = document.createElement('div');
+                paymentItem.className = 'cart-item';
+                paymentItem.innerHTML = `
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.service}</div>
+                        <div class="cart-item-quantity">Qty: ${item.quantity}</div>
+                    </div>
+                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
+                `;
+                
+                paymentItems.appendChild(paymentItem);
+            });
+            
+            // Update total
+            paymentTotal.textContent = `$${total.toFixed(2)}`;
+            
+            // Show modal
+            paymentModal.classList.add('active');
+        }
+        
+        // Close payment modal
+        closePaymentModal.addEventListener('click', () => {
+            paymentModal.classList.remove('active');
+        });
+        
+        // Show appropriate payment form based on selection
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', () => {
+                // Hide all forms
+                paymentForms.forEach(form => {
+                    form.style.display = 'none';
+                });
+                
+                // Show selected form
+                const selectedForm = document.getElementById(`${method.value}Form`);
+                if (selectedForm) {
+                    selectedForm.style.display = 'block';
+                }
+            });
+        });
+        
+        // Handle form submissions
+        document.getElementById('mobileMoneyForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showConfirmation();
+        });
+
+        document.getElementById('cardForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showConfirmation();
+        });
+
+        document.getElementById('paypalForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showConfirmation();
+        });
+        
+        // Show confirmation modal
+        function showConfirmation() {
+            paymentModal.classList.remove('active');
+            confirmationModal.classList.add('active');
+        }
+        
+        // Close confirmation modal
+        closeConfirmationModal.addEventListener('click', () => {
+            confirmationModal.classList.remove('active');
+        });
+        
+        confirmationBtn.addEventListener('click', () => {
+            confirmationModal.classList.remove('active');
+            // Clear cart
+            cart = [];
+            updateCartCount();
+        });
+        
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                paymentModal.classList.remove('active');
+            }
+            if (e.target === cartModal) {
+                cartModal.classList.remove('active');
+            }
+            if (e.target === confirmationModal) {
+                confirmationModal.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
