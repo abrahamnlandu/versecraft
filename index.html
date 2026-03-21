@@ -2,1090 +2,242 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VerseCraft Design Co - Creative Design Solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>VerseCraft | Digital Alchemy & Creative Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+
 </head>
-
 <body>
-    <!-- Language Switch (Desktop) -->
-    <div class="language-switch desktop-language-switch">
-        <button class="language-btn active" id="enBtn">EN</button>
-        <button class="language-btn" id="frBtn">FR</button>
+
+<div class="language-switch desktop-language-switch">
+    <button class="language-btn active" id="enBtn">EN</button>
+    <button class="language-btn" id="frBtn">FR</button>
+</div>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">VerseCraft<span> Digital</span></div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
+                <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+                <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
+                <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
+                <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+                <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+            </ul>
+            <div class="mobile-language-switch">
+                <button class="language-btn active" id="mobileEnBtn">EN</button>
+                <button class="language-btn" id="mobileFrBtn">FR</button>
+            </div>
+        </nav>
+        <div class="cart-icon" id="cartIcon"><i class="fas fa-shopping-cart"></i><span class="cart-count" id="cartCount">0</span></div>
     </div>
+</header>
 
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">VerseCraft<span> Digital Co</span></div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav id="mainNav">
-                <ul>
-                    <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
-                    <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
-                    <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
-                    <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
-                    <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
-                    <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
-                </ul>
-                
-                <!-- Language Switch (Mobile) -->
-                <div class="mobile-language-switch">
-                    <button class="language-btn active" id="mobileEnBtn">EN</button>
-                    <button class="language-btn" id="mobileFrBtn">FR</button>
-                </div>
-            </nav>
-            <div class="cart-icon" id="cartIcon">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count" id="cartCount">0</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1 data-en="Integrated Digital Services" data-fr="Services Numériques Intégrés">Integrated Digital Services</h1>
-            <p data-en="Transforming your ideas into impactful digital solutions through strategy, technology, and innovation." 
-               data-fr="Transformer vos idées en solutions numériques percutantes grâce à la stratégie, la technologie et l'innovation.">
-                Transforming your ideas into impactful digital solutions through strategy, technology, and innovation.
-            </p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn" data-en="Our Services" data-fr="Nos Services">Our Services</a>
-                <a href="#contact" class="btn btn-outline" data-en="Get in Touch" data-fr="Contactez-nous">Get in Touch</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="About VerseCraft" data-fr="À propos de VerseCraft">About VerseCraft</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3 data-en="We Craft Visual Stories That Inspire" data-fr="Nous Créons des Histoires Visuelles Inspirantes">We Build Digital Solutions That Elevate Your Brand</h3>
-                    <p data-en="VerseCraft Digital Co is an integrated digital services company focused on transforming ideas into impactful digital and physical solutions." 
-                       data-fr="VerseCraft Digital est une entreprise de services numériques intégrés dédiée à la transformation de vos idées en solutions percutantes, tant numériques que physiques.">
-                        VerseCraft Digital Co is an integrated digital services company focused on transforming ideas into impactful digital and physical solutions.
-                    </p>
-                    <p data-en="We provide a wide range of services including design and print solutions, poster design, acrostic and digital art, web and mobile development, data analytics and visualization, and digital business cards; helping individuals and businesses strengthen their presence both online and offline." 
-                       data-fr="Nous proposons une large gamme de services, notamment des solutions de conception et d'impression, la création d'affiches, l'art acrostiche et numérique, le développement web et mobile, l'analyse et la visualisation de données, ainsi que des cartes de visite numériques ; aidant les particuliers et les entreprises à renforcer leur présence, aussi bien en ligne que hors ligne.">
-                        We provide a wide range of services including design and print solutions, poster design, acrostic and digital art, web and mobile development, data analytics and visualization, and digital business cards; helping individuals and businesses strengthen their presence both online and offline.
-                    </p>
-                    <p data-en="Our approach blends creativity, technology, and data-driven thinking to deliver solutions that are visually compelling, technically sound, and strategically aligned with your goals." 
-                       data-fr="Notre approche allie créativité, technologie et réflexion axée sur les données pour fournir des solutions à la fois visuellement percutantes, techniquement solides et stratégiquement alignées sur vos objectifs.">
-                        Our approach blends creativity, technology, and data-driven thinking to deliver solutions that are visually compelling, technically sound, and strategically aligned with your goals.
-                    </p>
-                </div>
-                <div class="about-image">
-                    <img src="imgs/about.jpg" alt="Our Team Working">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="Our Services" data-fr="Nos Services">Our Services</h2>
-            </div>
-            <div class="service-top-text">
-                <h3 data-en="Looking for a price for your project? The ones you see are our standard starting rates. Since every project is unique (size, details, urgency), the final price may vary. Let's talk! Our team is here to provide you with a no-obligation, tailored quote." 
-                       data-fr="Vous cherchez un prix pour votre projet ? Ceux que vous voyez sont nos tarifs de base. Comme chaque projet est unique (taille, détails, urgence), le prix final peut varier. Parlons-en ! Notre équipe est là pour vous proposer un devis sur mesure, sans engagement.">
-                        Looking for a price for your project? Since every project is unique (size, details, urgency), the final price may vary. Let's talk! Our team is here to provide you with a no-obligation, tailored quote.
-                </h3>
-            </div>
-            <div class="services-grid">
-                <!-- Acrostic Art Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-pen-fancy"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-en="Acrostic & Digital Art" data-fr="Acrostiche et Art Digital">Acrostic & Digital Art</h3>
-                        <ul>
-                            <li data-en="Personalized Acrostic Art with photo" data-fr="Art acrostiche personnalisé avec photo">Personalized Acrostic Art with photo</li>
-                            <li data-en="Custom name poems" data-fr="Poèmes personnalisés sur les noms">Custom name poems</li>
-                            <li data-en="Gift-worthy designs" data-fr="Designs dignes de cadeaux">Gift-worthy designs</li>
-                            <li data-en="Wall art creations" data-fr="Créations d'art mural">Wall art creations</li>
-                            <li data-en="Digital Art" data-fr="Art Digital">Digital Art</li>
-
-                        </ul>
-                        <!-- <div class="service-price" data-en="$99" data-fr="99€">$99</div> -->
-                        <div class="service-actions">
-                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
-                           <!-- <button class="btn btn-sm buy-now-btn" data-service="Acrostic Art" data-price="99" data-en="Buy Now" data-fr="Souscrire">Buy Now</button> -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Visualization Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</h3>
-                        <ul>
-                            <li data-en="Interactive dashboards" data-fr="Tableaux de bord interactifs">Interactive dashboards</li>
-                            <li data-en="Infographic design" data-fr="Design d'infographie">Infographic design</li>
-                            <li data-en="Data storytelling" data-fr="Narration de données">Data storytelling</li>
-                            <li data-en="Chart and graph creation" data-fr="Création de graphiques">Chart and graph creation</li>
-                        </ul>
-                        <!-- <div class="service-price" data-en="$249" data-fr="249€">$249</div> -->
-                        <div class="service-actions">
-                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
-                           <!-- <button class="btn btn-sm buy-now-btn" data-service="Data Visualization" data-price="249" data-en="Buy Now" data-fr="Acheter">Buy Now</button> -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Graphic & Print Design Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-en="Graphic & Print Design" data-fr="Design Graphique & Imprimé">Graphic & Print Design</h3>
-                        <ul>
-                            <li data-en="Logo design and brand identity" data-fr="Design de logo et identité de marque">Logo, poster design and brand identity</li>
-                            <li data-en="Marketing materials (brochures, flyers)" data-fr="Matériel marketing (brochures, dépliants)">Marketing materials (brochures, flyers)</li>
-                            <li data-en="Social media graphics" data-fr="Graphiques pour médias sociaux">Social media graphics</li>
-                            <li data-en="Business cards and stationery" data-fr="Cartes de visite et papeterie">Business cards and stationery</li>
-                        </ul>
-                        <!-- <div class="service-price" data-en="$199" data-fr="199€">$199</div>-->
-                        <div class="service-actions">
-                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
-                          <!--  <button class="btn btn-sm buy-now-btn" data-service="Graphic & Print Design" data-price="199" data-en="Buy Now" data-fr="Acheter">Buy Now</button> -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Development Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-en="Web Development" data-fr="Développement Web">Web Development</h3>
-                        <ul>
-                            <li data-en="Modern, responsive websites" data-fr="Sites web modernes et responsives">Modern, responsive websites</li>
-                            <li data-en="Built for performance and scalability" data-fr="Construits pour la performance et l'évolutivité">Built for performance and scalability</li>
-                            <li data-en="Strong visual impact" data-fr="Fort impact visuel">Strong visual impact</li>
-                            <li data-en="Optimized for all devices" data-fr="Optimisés pour tous les appareils">Optimized for all devices</li>
-                        </ul>
-                        <!-- <div class="service-price" data-en="$499" data-fr="499€">$499</div> -->
-                        <div class="service-actions">
-                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
-                         <!--   <button class="btn btn-sm buy-now-btn" data-service="Web Development" data-price="499" data-en="Buy Now" data-fr="Acheter">Buy Now</button> -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mobile Development Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-en="Mobile Development" data-fr="Développement Mobile">Mobile Development</h3>
-                        <ul>
-                            <li data-en="iOS & Android apps" data-fr="Applications iOS et Android">iOS & Android apps</li>
-                            <li data-en="User-centered design" data-fr="Conception centrée sur l'utilisateur">User-centered design</li>
-                            <li data-en="From concept to code" data-fr="Du concept au code">From concept to code</li>
-                            <li data-en="Fluid, functional mobile solutions" data-fr="Solutions mobiles fluides et fonctionnelles">Fluid, functional mobile solutions</li>
-                        </ul>
-                        <!-- <div class="service-price" data-en="$699" data-fr="699€">$699</div> -->
-                        <div class="service-actions">
-                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
-                          <!--  <button class="btn btn-sm buy-now-btn" data-service="Mobile Development" data-price="699" data-en="Buy Now" data-fr="Acheter">Buy Now</button> -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Analytics Service -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3 data-en="Data Analytics" data-fr="Analyse de Données">Data Analytics</h3>
-                        <ul>
-                            <li data-en="Turn data into decisions" data-fr="Transformez les données en décisions">Turn data into decisions</li>
-                            <li data-en="Custom dashboards and analytics tools" data-fr="Tableaux de bord et outils d'analyse personnalisés">Custom dashboards and analytics tools</li>
-                            <li data-en="See the story behind the numbers" data-fr="Découvrez l'histoire derrière les chiffres">See the story behind the numbers</li>
-                            <li data-en="Actionable insights for your business" data-fr="Informations exploitables pour votre entreprise">Actionable insights for your business</li>
-                        </ul>
-                        <!-- <div class="service-price" data-en="$349" data-fr="349€">$349</div> -->
-                        <div class="service-actions">
-                            <a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a>
-                           <!-- <button class="btn btn-sm buy-now-btn" data-service="Data Analytics" data-price="349" data-en="Buy Now" data-fr="Acheter">Buy Now</button> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="section" id="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="Our Portfolio" data-fr="Notre Portfolio">Our Portfolio</h2>
-            </div>
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all" data-en="All" data-fr="Tous">All</button>
-                <button class="filter-btn" data-filter="acrostic" data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic Art</button>
-                <button class="filter-btn" data-filter="data" data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</button>
-                <button class="filter-btn" data-filter="resume" data-en="Infographic Resumes" data-fr="CV Infographiques">Infographic Resumes</button>
-                <button class="filter-btn" data-filter="graphic" data-en="Graphic Design" data-fr="Design Graphique">Graphic Design</button>
-            </div>
-            <div class="portfolio-grid">
-                <!-- Portfolio Items -->
-                <div class="portfolio-item" data-category="acrostic">
-                    <img src="imgs/01.jpg" alt="Acrostic Art Example" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 data-en="Personalized Name Art" data-fr="Art de Nom Personnalisé">Personalized Name Art</h3>
-                        <p data-en="Custom acrostic poem artwork for a wedding gift" data-fr="Œuvre d'art poème acrostiche personnalisé pour un cadeau de mariage">Custom acrostic poem artwork for a wedding gift</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="data">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80" alt="Data Visualization Example" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 data-en="Annual Report Design" data-fr="Design de Rapport Annuel">Annual Report Design</h3>
-                        <p data-en="Data visualization for a corporate annual report" data-fr="Visualisation de données pour un rapport annuel d'entreprise">Data visualization for a corporate annual report</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="resume">
-                    <img src="imgs/03.jpg" alt="Infographic Resume Example" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 data-en="Creative Resume" data-fr="CV Créatif">Creative Resume</h3>
-                        <p data-en="Infographic resume for a marketing professional" data-fr="CV infographique pour un professionnel du marketing">Infographic resume for a marketing professional</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="graphic">
-                    <img src="imgs/04.png" alt="Logo Design Example" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 data-en="Brand Identity" data-fr="Identité de Marque">Brand Identity</h3>
-                        <p data-en="Complete branding package for a tech startup" data-fr="Pack complet de branding pour une startup technologique">Complete branding package for a tech startup</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="acrostic">
-                    <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1976&q=80" alt="Acrostic Art Example" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 data-en="Family Name Art" data-fr="Art de Nom de Famille">Family Name Art</h3>
-                        <p data-en="Custom family name artwork with photo integration" data-fr="Œuvre d'art de nom de famille personnalisé avec intégration de photo">Custom family name artwork with photo integration</p>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="data">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Data Dashboard Example" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3 data-en="Analytics Dashboard" data-fr="Tableau de Bord Analytique">Analytics Dashboard</h3>
-                        <p data-en="Interactive data dashboard for a SaaS company" data-fr="Tableau de bord de données interactif pour une entreprise SaaS">Interactive data dashboard for a SaaS company</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="section testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="What Our Clients Say" data-fr="Ce Que Disent Nos Clients">What Our Clients Say</h2>
-            </div>
-            <div class="testimonial-slider">
-                <div class="testimonial-slide active">
-                    <div class="testimonial-content">
-                        <p data-en="VerseCraft transformed our boring annual report into a visually stunning document that our stakeholders actually want to read. The data visualization work was exceptional and helped communicate complex information clearly." 
-                           data-fr="VerseCraft a transformé notre rapport annuel ennuyeux en un document visuellement époustouflant que nos parties prenantes ont réellement envie de lire. Le travail de visualisation des données était exceptionnel et a aidé à communiquer des informations complexes clairement.">
-                            VerseCraft transformed our boring annual report into a visually stunning document that our stakeholders actually want to read.
-                        </p>
-                    </div>
-                    <div class="testimonial-author">Sarah Johnson</div>
-                    <div class="testimonial-position" data-en="Marketing Director, TechCorp" data-fr="Directrice Marketing, TechCorp">Marketing Director, TechCorp</div>
-                </div>
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <p data-en="The personalized acrostic art they created for my parents' anniversary brought tears to their eyes. It was the perfect gift - meaningful, beautiful, and completely unique. The attention to detail was remarkable." 
-                           data-fr="L'art acrostiche personnalisé qu'ils ont créé pour l'anniversaire de mes parents leur a tiré des larmes. C'était le cadeau parfait - significatif, beau et complètement unique. L'attention portée aux détails était remarquable.">
-                            The personalized acrostic art they created for my parents' anniversary brought tears to their eyes.
-                        </p>
-                    </div>
-                    <div class="testimonial-author">Michael Chen</div>
-                    <div class="testimonial-position" data-en="Satisfied Customer" data-fr="Client Satisfait">Satisfied Customer</div>
-                </div>
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <p data-en="Our new infographic resumes have helped our candidates stand out in a competitive job market. VerseCraft understood exactly how to showcase our employees' skills and experience in a creative, professional way." 
-                           data-fr="Nos nouveaux CV infographiques ont aidé nos candidats à se démarquer sur un marché du travail concurrentiel. VerseCraft a parfaitement compris comment mettre en valeur les compétences et l'expérience de nos employés de manière créative et professionnelle.">
-                            Our new infographic resumes have helped our candidates stand out in a competitive job market.
-                        </p>
-                    </div>
-                    <div class="testimonial-author">Emily Rodriguez</div>
-                    <div class="testimonial-position" data-en="HR Manager, TalentFirst" data-fr="Responsable RH, TalentFirst">HR Manager, TalentFirst</div>
-                </div>
-            </div>
-            <div class="slider-nav">
-                <div class="slider-dot active" data-slide="0"></div>
-                <div class="slider-dot" data-slide="1"></div>
-                <div class="slider-dot" data-slide="2"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq" id="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="Frequently Asked Questions" data-fr="Foire Aux Questions">Frequently Asked Questions</h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-en="How long does it take to complete a project?" data-fr="Combien de temps faut-il pour terminer un projet ?">How long does it take to complete a project?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="The timeline depends on the complexity of the project. Simple designs can be completed in 3-5 days, while more complex projects may take 2-3 weeks. We'll provide a detailed timeline after discussing your specific needs." 
-                           data-fr="Le délai dépend de la complexité du projet. Les designs simples peuvent être terminés en 3 à 5 jours, tandis que les projets plus complexes peuvent prendre 2 à 3 semaines. Nous vous fournirons un calendrier détaillé après avoir discuté de vos besoins spécifiques.">
-                            The timeline depends on the complexity of the project. Simple designs can be completed in 3-5 days, while more complex projects may take 2-3 weeks.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-en="Do you offer revisions after the design is completed?" data-fr="Proposez-vous des révisions après la fin du design ?">Do you offer revisions after the design is completed?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Yes, we offer up to 3 rounds of revisions for all our design projects to ensure you're completely satisfied with the final result." 
-                           data-fr="Oui, nous proposons jusqu'à 3 séries de révisions pour tous nos projets de design pour nous assurer que vous êtes entièrement satisfait du résultat final.">
-                            Yes, we offer up to 3 rounds of revisions for all our design projects to ensure you're completely satisfied with the final result.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-en="What payment methods do you accept?" data-fr="Quels modes de paiement acceptez-vous ?">What payment methods do you accept?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="We accept credit cards, PayPal, mobile money, and bank transfers. Payment is typically split into two parts: 50% upfront and 50% upon completion." 
-                           data-fr="Nous acceptons les cartes de crédit, PayPal, mobile money et les virements bancaires. Le paiement est généralement divisé en deux parties : 50% d'avance et 50% à l'achèvement.">
-                            We accept credit cards, PayPal, mobile money, and bank transfers. Payment is typically split into two parts: 50% upfront and 50% upon completion.
-                        </p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-en="Can I request a custom service not listed here?" data-fr="Puis-je demander un service personnalisé non listé ici ?">Can I request a custom service not listed here?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p data-en="Absolutely! We love creative challenges. Contact us with your ideas, and we'll work with you to develop a custom solution that meets your specific needs." 
-                           data-fr="Absolument ! Nous adorons les défis créatifs. Contactez-nous avec vos idées et nous travaillerons avec vous pour développer une solution personnalisée qui répond à vos besoins spécifiques.">
-                            Absolutely! We love creative challenges. Contact us with your ideas, and we'll work with you to develop a custom solution that meets your specific needs.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-en="Get In Touch" data-fr="Contactez-Nous">Get In Touch</h2>
-            </div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3 data-en="Contact Information" data-fr="Informations de Contact">Contact Information</h3>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4 data-en="Location" data-fr="Adresse">Location</h4>
-                                <p>Bloomington, IL 61701 /Usa</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4 data-en="Phone" data-fr="Téléphone">Phone</h4>
-                                <p><a href="tel:+243894235656">+1 (309) 445-7438 | +243 894 235 656</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4 data-en="Email" data-fr="Email">Email</h4>
-                                <p><a href="mailto:contact@versecraft.com">contact@versecraft.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 data-en="Follow Us" data-fr="Suivez-Nous">Follow Us</h3>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/share/1Hndv2G1er/" target="_blank" rel="noopener" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/versecraft_digital_co?igsh=MTFiYTZxZHN1NGU4cg%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/versecraft-digital-co/" target="_blank" rel="noopener" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group floating-label-group">
-                            <input type="text" id="name" name="name" class="form-control" placeholder=" " required>
-                            <label class="floating-label" data-en="Your Name" data-fr="Votre Nom">Your Name</label>
-                        </div>
-                        <div class="form-group floating-label-group">
-                            <input type="email" id="email" name="email" class="form-control" placeholder=" " required>
-                            <label class="floating-label" data-en="Your Email" data-fr="Votre Email">Your Email</label>
-                        </div>
-                        <div class="form-group floating-label-group">
-                            <input type="text" id="subject" name="subject" class="form-control" placeholder=" " required>
-                            <label class="floating-label" data-en="Subject" data-fr="Sujet">Subject</label>
-                        </div>
-                        <div class="form-group floating-label-group">
-                            <textarea id="message" name="message" class="form-control" placeholder=" " required></textarea>
-                            <label class="floating-label" data-en="Your Message" data-fr="Votre Message">Your Message</label>
-                        </div>
-                        <button type="submit" class="btn" data-en="Send Message" data-fr="Envoyer le Message">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3 data-en="VerseCraft Design Co" data-fr="VerseCraft Design Co">VerseCraft Digital Co</h3>
-                    <p data-en="Transforming ideas into impactful digital and creative solutions through strategy, technology, and design." 
-                       data-fr="Transformez vos idées en réalités visuellement époustouflantes avec nos services de design complets.">
-                        Transforming ideas into impactful digital and creative solutions through strategy, technology, and design.
-                    </p>
-                    <div class="footer-social">
-                        <a href="https://www.facebook.com/share/1Hndv2G1er/" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/versecraft_digital_co?igsh=MTFiYTZxZHN1NGU4cg%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/versecraft-digital-co/"><i class="fab fa-linkedin-in"></i></a>
-                        <!-- <a href="#"><i class="fab fa-twitter"></i></a> -->
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3 data-en="Our Services" data-fr="Nos Services">Our Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#services" data-en="Acrostic Art" data-fr="Art Acrostiche">Acrostic & Digital Art</a></li>
-                        <li><a href="#services" data-en="Data Visualization" data-fr="Visualisation de Données">Data Visualization</a></li>
-                        <li><a href="#services" data-en="Graphic & Print Design" data-fr="Design Graphique & Imprimé">Graphic & Print Design</a></li>
-                        <li><a href="#services" data-en="Web Development" data-fr="Développement Web">Web Development</a></li>
-                        <li><a href="#services" data-en="Mobile Development" data-fr="Développement Mobile">Mobile Development</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3 data-en="Quick Links" data-fr="Liens Rapides">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home" data-en="Home" data-fr="Accueil">Home</a></li>
-                        <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
-                        <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
-                        <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
-                        <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3 data-en="Newsletter" data-fr="Bulletin d'information">Newsletter</h3>
-                    <p data-en="Subscribe to our newsletter for the latest updates and offers." 
-                       data-fr="Abonnez-vous à notre newsletter pour les dernières mises à jour et offres.">
-                        Subscribe to our newsletter for the latest updates and offers.
-                    </p>
-                    <form class="footer-newsletter">
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                            <button type="submit" data-en="Subscribe" data-fr="S'abonner">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 VerseCraft Design Co. <span data-en="All Rights Reserved." data-fr="Tous droits réservés.">All Rights Reserved.</span></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Payment Modal -->
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closePaymentModal">&times;</span>
-            <h2 data-en="Complete Your Purchase" data-fr="Finalisez Votre Achat">Complete Your Purchase</h2>
-            <p data-en="You're purchasing:" data-fr="Vous achetez :">You're purchasing:</p>
-            <div class="cart-items" id="paymentItems">
-                <!-- Cart items will be added here dynamically -->
-            </div>
-            <div class="cart-total">
-                <span data-en="Total:" data-fr="Total :">Total:</span>
-                <span id="paymentTotal">$0</span>
-            </div>
-            
-            <h3 data-en="Select Payment Method" data-fr="Sélectionnez le Mode de Paiement">Select Payment Method</h3>
-            <div class="payment-options">
-                <div class="payment-option">
-                    <input type="radio" id="mobileMoney" name="paymentMethod" value="mobileMoney">
-                    <label for="mobileMoney">
-                        <span class="payment-icon"><i class="fas fa-mobile-alt"></i></span>
-                        <span data-en="Mobile Money" data-fr="Mobile Money">Mobile Money</span>
-                    </label>
-                </div>
-                
-                <div class="payment-option">
-                    <input type="radio" id="card" name="paymentMethod" value="card">
-                    <label for="card">
-                        <span class="payment-icon"><i class="fas fa-credit-card"></i></span>
-                        <span data-en="Credit/Debit Card" data-fr="Carte de Crédit/Débit">Credit/Debit Card</span>
-                    </label>
-                </div>
-                
-                <div class="payment-option">
-                    <input type="radio" id="paypal" name="paymentMethod" value="paypal">
-                    <label for="paypal">
-                        <span class="payment-icon"><i class="fab fa-paypal"></i></span>
-                        <span>PayPal</span>
-                    </label>
-                </div>
-            </div>
-            
-            <!-- Mobile Money Form -->
-            <form class="payment-form" id="mobileMoneyForm">
-                <div class="form-group floating-label-group">
-                    <select class="form-control" id="mobileMoneyProvider" required>
-                        <option value="" disabled selected></option>
-                        <option value="mpesa">M-Pesa</option>
-                        <option value="orange">Orange Money</option>
-                        <option value="afri">Afri Money</option>
-                        <option value="airtel">Airtel Money</option>
-                    </select>
-                    <label class="floating-label" data-en="Select Provider" data-fr="Sélectionnez le fournisseur">Select Provider</label>
-                </div>
-                
-                <div class="form-group floating-label-group">
-                    <input type="tel" class="form-control" id="mobileNumber" placeholder=" " required>
-                    <label class="floating-label" data-en="Mobile Number" data-fr="Numéro de mobile">Mobile Number</label>
-                </div>
-                
-                <div class="form-group floating-label-group">
-                    <input type="text" class="form-control" id="mobileName" placeholder=" " required>
-                    <label class="floating-label" data-en="Full Name" data-fr="Nom complet">Full Name</label>
-                </div>
-                
-                <button type="submit" class="btn" data-en="Pay Now" data-fr="Payer Maintenant">Pay Now</button>
-            </form>
-            
-            <!-- Card Form -->
-            <form class="payment-form" id="cardForm">
-                <div class="form-group floating-label-group">
-                    <input type="text" class="form-control" id="cardNumber" placeholder=" " required>
-                    <label class="floating-label" data-en="Card Number" data-fr="Numéro de carte">Card Number</label>
-                </div>
-                
-                <div class="form-group floating-label-group">
-                    <input type="text" class="form-control" id="cardName" placeholder=" " required>
-                    <label class="floating-label" data-en="Name on Card" data-fr="Nom sur la carte">Name on Card</label>
-                </div>
-                
-                <div style="display: flex; gap: 1rem;">
-                    <div class="form-group floating-label-group" style="flex: 1;">
-                        <input type="text" class="form-control" id="expiryDate" placeholder=" " required>
-                        <label class="floating-label" data-en="Expiry Date" data-fr="Date d'expiration">Expiry Date</label>
-                    </div>
-                    
-                    <div class="form-group floating-label-group" style="flex: 1;">
-                        <input type="text" class="form-control" id="cvv" placeholder=" " required>
-                        <label class="floating-label" data-en="CVV" data-fr="CVV">CVV</label>
-                    </div>
-                </div>
-                
-                <button type="submit" class="btn" data-en="Pay Now" data-fr="Payer Maintenant">Pay Now</button>
-            </form>
-            
-            <!-- PayPal Form -->
-            <form class="payment-form" id="paypalForm">
-                <div class="form-group floating-label-group">
-                    <input type="email" class="form-control" id="paypalEmail" placeholder=" " required>
-                    <label class="floating-label" data-en="PayPal Email" data-fr="Email PayPal">PayPal Email</label>
-                </div>
-                
-                <div class="form-group floating-label-group">
-                    <input type="password" class="form-control" id="paypalPassword" placeholder=" " required>
-                    <label class="floating-label" data-en="PayPal Password" data-fr="Mot de passe PayPal">PayPal Password</label>
-                </div>
-                
-                <button type="submit" class="btn" data-en="Pay with PayPal" data-fr="Payer avec PayPal">Pay with PayPal</button>
-            </form>
+<section class="hero" id="home">
+    <div class="container hero-content">
+        <h1 data-en="Beyond Boundaries. Digital Alchemy." data-fr="Au-delà des limites. Alchimie numérique.">Beyond Boundaries. Digital Alchemy.</h1>
+        <p data-en="We fuse bold design, data intelligence, and immersive technology to elevate your brand — online & offline." data-fr="Nous fusionnons design audacieux, intelligence des données et technologie immersive pour élever votre marque.">We fuse bold design, data intelligence, and immersive technology to elevate your brand — online & offline.</p>
+        <div class="hero-buttons">
+            <a href="#services" class="btn" data-en="Explore Services" data-fr="Explorer">Explore Services</a>
+            <a href="#contact" class="btn btn-outline" data-en="Start a Project" data-fr="Commencer">Start a Project</a>
         </div>
     </div>
+</section>
 
-    <!-- Cart Modal -->
-    <div class="modal" id="cartModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeCartModal">&times;</span>
-            <h2 data-en="Your Cart" data-fr="Votre Panier">Your Cart</h2>
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will be added here dynamically -->
-                <div class="empty-cart-message" id="emptyCartMessage" data-en="Your cart is empty" data-fr="Votre panier est vide">Your cart is empty</div>
+<section class="section" id="about">
+    <div class="container">
+        <div class="section-title"><h2 data-en="About VerseCraft" data-fr="À propos">About VerseCraft</h2></div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3 data-en="We Build Digital Empires" data-fr="Nous construisons des empires numériques">We Build Digital Empires</h3>
+                <p data-en="VerseCraft Digital Co is an integrated creative studio transforming raw ideas into iconic digital & physical experiences. From acrostic poetry art to full-stack apps." data-fr="VerseCraft Digital est un studio créatif intégré transformant les idées brutes en expériences iconiques.">VerseCraft Digital Co is an integrated creative studio transforming raw ideas into iconic digital & physical experiences.</p>
+                <p data-en="Our approach combines art direction, advanced data visualization, and cutting-edge development. We help brands resonate deeply with audiences." data-fr="Notre approche combine direction artistique, data viz et développement de pointe.">Our approach combines art direction, advanced data visualization, and cutting-edge development. We help brands resonate deeply with audiences.</p>
             </div>
-            <div class="cart-total" id="cartTotalContainer">
-                <span data-en="Total:" data-fr="Total :">Total:</span>
-                <span id="cartTotal">$0</span>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Creative team">
             </div>
-            <button class="btn" id="checkoutBtn" data-en="Proceed to Checkout" data-fr="Passer à la Caisse" disabled>Proceed to Checkout</button>
         </div>
     </div>
+</section>
 
-    <!-- Confirmation Modal -->
-    <div class="modal" id="confirmationModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeConfirmationModal">&times;</span>
-            <div class="confirmation-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h2 data-en="Thank You For Your Purchase!" data-fr="Merci Pour Votre Achat !">Thank You For Your Purchase!</h2>
-            <p data-en="Your order has been successfully placed. We will contact you shortly to discuss the details of your project." 
-               data-fr="Votre commande a été passée avec succès. Nous vous contacterons prochainement pour discuter des détails de votre projet.">
-                Your order has been successfully placed. We will contact you shortly to discuss the details of your project.
-            </p>
-            <p data-en="Order ID: #VC2023-001" data-fr="ID de commande : #VC2023-001">Order ID: #VC2023-001</p>
-            <button class="btn" id="confirmationBtn" data-en="Continue Browsing" data-fr="Continuer la Navigation">Continue Browsing</button>
+<section class="section services" id="services">
+    <div class="container">
+        <div class="section-title"><h2 data-en="Premium Services" data-fr="Services Premium">Premium Services</h2></div>
+        <div class="service-top-text" data-en="Tailored solutions — every project is unique. Reach out for a custom quote." data-fr="Solutions sur mesure — chaque projet est unique. Contactez-nous pour un devis.">Tailored solutions — every project is unique. Reach out for a custom quote.</div>
+        <div class="services-grid" id="servicesGrid"></div>
+    </div>
+</section>
+
+<section class="section" id="portfolio">
+    <div class="container">
+        <div class="section-title"><h2 data-en="Curated Works" data-fr="Travaux sélectionnés">Curated Works</h2></div>
+        <div class="portfolio-filter" id="filterContainer"></div>
+        <div class="portfolio-grid" id="portfolioGrid"></div>
+    </div>
+</section>
+
+<section class="section testimonials">
+    <div class="container">
+        <div class="section-title"><h2 data-en="Voices of trust" data-fr="Échos de confiance">Voices of trust</h2></div>
+        <div class="testimonial-slider" id="testimonialSlider"></div>
+        <div class="slider-nav" id="sliderDots"></div>
+    </div>
+</section>
+
+<section class="section faq" id="faq">
+    <div class="container">
+        <div class="section-title"><h2 data-en="Insights & FAQs" data-fr="FAQ & éclairages">Insights & FAQs</h2></div>
+        <div class="faq-list" id="faqList"></div>
+    </div>
+</section>
+
+<section class="section contact" id="contact">
+    <div class="container">
+        <div class="section-title"><h2 data-en="Let's create" data-fr="Créons ensemble">Let's create</h2></div>
+        <div class="contact-container">
+            <div class="contact-info"><h3 data-en="Reach out" data-fr="Contactez-nous">Reach out</h3><div class="contact-details"><div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div class="contact-text"><h4>Studio</h4><p>Bloomington, IL / Global Remote</p></div></div><div class="contact-item"><div class="contact-icon"><i class="fas fa-phone-alt"></i></div><div class="contact-text"><h4>Connect</h4><p><a href="tel:+13094457438" style="color:white;">+1 (309) 445-7438</a></p></div></div><div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div class="contact-text"><h4>Mail</h4><p><a href="mailto:studio@versecraft.com" style="color:white;">studio@versecraft.com</a></p></div></div></div><div class="social-links"><a href="#" class="social-link"><i class="fab fa-instagram"></i></a><a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-link"><i class="fab fa-behance"></i></a></div></div>
+            <div class="contact-form"><form id="contactForm"><div class="floating-label-group"><input type="text" id="name" class="form-control" placeholder=" " required><label class="floating-label" data-en="Full name" data-fr="Nom complet">Full name</label></div><div class="floating-label-group"><input type="email" id="email" class="form-control" placeholder=" " required><label class="floating-label" data-en="Email address" data-fr="Adresse email">Email address</label></div><div class="floating-label-group"><textarea id="message" rows="4" class="form-control" placeholder=" " required></textarea><label class="floating-label" data-en="Tell us about your vision" data-fr="Parlez-nous de votre vision">Tell us about your vision</label></div><button type="submit" class="btn" data-en="Send Inquiry" data-fr="Envoyer">Send Inquiry</button></form></div>
         </div>
     </div>
+</section>
 
-    <script>
-        // Language Switching Functionality
-        const enBtn = document.getElementById('enBtn');
-        const frBtn = document.getElementById('frBtn');
-        const mobileEnBtn = document.getElementById('mobileEnBtn');
-        const mobileFrBtn = document.getElementById('mobileFrBtn');
-        let currentLanguage = 'en';
+<footer><div class="container"><div class="footer-container"><div class="footer-col"><h3>VerseCraft</h3><p data-en="Design that resonates, code that scales." data-fr="Un design qui résonne, un code qui évolue.">Design that resonates, code that scales.</p></div><div class="footer-col"><h3 data-en="Navigate" data-fr="Navigation">Navigate</h3><ul class="footer-links"><li><a href="#home">Home</a></li><li><a href="#services">Services</a></li><li><a href="#portfolio">Portfolio</a></li></ul></div><div class="footer-col"><h3 data-en="Legal" data-fr="Mentions">Legal</h3><p>© 2026 VerseCraft Digital Co</p></div></div></div></footer>
 
-        function switchLanguage(lang) {
-            currentLanguage = lang;
-            
-            // Update language buttons
-            enBtn.classList.toggle('active', lang === 'en');
-            frBtn.classList.toggle('active', lang === 'fr');
-            mobileEnBtn.classList.toggle('active', lang === 'en');
-            mobileFrBtn.classList.toggle('active', lang === 'fr');
-            
-            // Update all elements with data attributes
-            document.querySelectorAll('[data-en], [data-fr]').forEach(element => {
-                if (element.dataset[lang]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = element.dataset[lang];
-                    } else if (element.tagName === 'IMG') {
-                        element.alt = element.dataset[lang];
-                    } else {
-                        element.textContent = element.dataset[lang];
-                    }
-                }
-            });
-        }
+<div class="modal" id="cartModal"><div class="modal-content"><span class="close-modal" id="closeCartModal">&times;</span><h2>Your Cart</h2><div id="cartItemsList" class="cart-items"></div><div class="cart-total"><span>Total:</span><span id="cartTotalAmount">$0</span></div><button id="checkoutBtn" class="btn">Checkout</button></div></div>
+<div class="modal" id="paymentModal"><div class="modal-content"><span class="close-modal" id="closePaymentModal">&times;</span><h2>Secure Checkout</h2><div id="paymentItemsList"></div><div class="cart-total"><span>Total:</span><span id="paymentTotalAmount">$0</span></div><button id="mockPayBtn" class="btn">Confirm & Complete</button></div></div>
+<div class="modal" id="confirmationModal"><div class="modal-content"><span class="close-modal" id="closeConfirmationModal">&times;</span><div class="confirmation-icon"><i class="fas fa-check-circle"></i></div><h2>Order Received</h2><p>We'll craft your vision and reach out within 24h.</p><button id="confirmationBtn" class="btn">Explore More</button></div></div>
 
-        enBtn.addEventListener('click', () => switchLanguage('en'));
-        frBtn.addEventListener('click', () => switchLanguage('fr'));
-        mobileEnBtn.addEventListener('click', () => switchLanguage('en'));
-        mobileFrBtn.addEventListener('click', () => switchLanguage('fr'));
+<script>
+    // services data
+    const services = [
+        {icon:"fas fa-feather-alt", name:"Acrostic & Digital Art", features:["Personalized name poems","Wall art & photo integration","Gift-worthy unique pieces"], price:99},
+        {icon:"fas fa-chart-pie", name:"Data Visualization", features:["Interactive dashboards","Infographics & storytelling","Custom analytics"], price:249},
+        {icon:"fas fa-palette", name:"Graphic & Print Design", features:["Logo & brand identity","Posters, flyers, social kits","Business cards & stationery"], price:199},
+        {icon:"fas fa-laptop-code", name:"Web Development", features:["Modern responsive sites","Performance & SEO optimized","Strong visual impact"], price:499},
+        {icon:"fas fa-mobile-alt", name:"Mobile Development", features:["iOS & Android apps","User-centered UX/UI","From concept to store"], price:699},
+        {icon:"fas fa-chart-line", name:"Data Analytics", features:["Actionable insights","Custom dashboards","Predictive storytelling"], price:349}
+    ];
+    const portfolioItems = [
+        {cat:"acrostic", img:"https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", title:"Poetic Name Art", desc:"Custom verse for wedding"},
+        {cat:"data", img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", title:"Analytics Dashboard", desc:"Interactive data story"},
+        {cat:"resume", img:"https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", title:"Infographic Resume", desc:"Creative CV design"},
+        {cat:"graphic", img:"https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", title:"Brand Identity", desc:"Full visual system"},
+        {cat:"acrostic", img:"https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", title:"Acrostic Canvas", desc:"Family name heritage"},
+        {cat:"data", img:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", title:"Annual Report", desc:"Corporate data storytelling"}
+    ];
+    const faqData = [{q:"Project timeline?", a:"3-5 days for simple designs, 2-3 weeks for complex — we adapt."},{q:"Revisions policy?", a:"Up to 3 refinement rounds included."},{q:"Payment methods?", a:"Cards, PayPal, mobile money, bank transfer. 50% deposit."}];
+    const testimonials = [{text:"VerseCraft elevated our brand identity — pure brilliance.", author:"— Olivia Chen, Creative Lead"},{text:"The data dashboard they built gave us real-time clarity.", author:"— Marcus V., Analytics Director"},{text:"My family acrostic art was emotional and stunning. Best gift ever.", author:"— Jasmine K."}];
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
+    let cart = [];
+    let currentLang = 'en';
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Close mobile menu if open
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Portfolio Filter
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const filterValue = button.getAttribute('data-filter');
-                
-                // Filter portfolio items
-                portfolioItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Testimonial Slider
-        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
-        const sliderDots = document.querySelectorAll('.slider-dot');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            testimonialSlides.forEach(slide => slide.classList.remove('active'));
-            sliderDots.forEach(dot => dot.classList.remove('active'));
-            
-            testimonialSlides[index].classList.add('active');
-            sliderDots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        sliderDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const slideIndex = parseInt(dot.getAttribute('data-slide'));
-                showSlide(slideIndex);
-            });
-        });
-
-        // Auto-advance testimonials
-        setInterval(() => {
-            let nextSlide = (currentSlide + 1) % testimonialSlides.length;
-            showSlide(nextSlide);
-        }, 5000);
-
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the form data to a server
-            // For this example, we'll show an alert in the current language
-            if (currentLanguage === 'en') {
-                alert(`Thank you, ${name}! Your message has been received. We'll contact you soon at ${email}.`);
-            } else {
-                alert(`Merci, ${name}! Votre message a bien été reçu. Nous vous contacterons bientôt à ${email}.`);
-            }
-            
-            // Reset form
-            contactForm.reset();
-        });
-
-        // Scroll Reveal Animation
-        window.addEventListener('scroll', revealOnScroll);
-
-        function revealOnScroll() {
-            const sections = document.querySelectorAll('.section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (sectionTop < windowHeight - 100) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        // Initialize sections with hidden state
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
-
-        // Trigger initial reveal check
-        revealOnScroll();
-
-        // FAQ Toggle
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                answer.classList.toggle('active');
-                
-                const icon = question.querySelector('i');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-            });
-        });
-
-        // Shopping Cart Functionality
-        const cartIcon = document.getElementById('cartIcon');
-        const cartCount = document.getElementById('cartCount');
-        const cartModal = document.getElementById('cartModal');
-        const closeCartModal = document.getElementById('closeCartModal');
-        const cartItems = document.getElementById('cartItems');
-        const emptyCartMessage = document.getElementById('emptyCartMessage');
-        const cartTotal = document.getElementById('cartTotal');
-        const cartTotalContainer = document.getElementById('cartTotalContainer');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const buyNowButtons = document.querySelectorAll('.buy-now-btn');
-        
-        let cart = [];
-        
-        // Open cart modal
-        cartIcon.addEventListener('click', () => {
-            updateCartDisplay();
-            cartModal.classList.add('active');
-        });
-        
-        // Close cart modal
-        closeCartModal.addEventListener('click', () => {
-            cartModal.classList.remove('active');
-        });
-        
-        // Add to cart functionality
-        buyNowButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const service = button.getAttribute('data-service');
-                const price = parseFloat(button.getAttribute('data-price'));
-                
-                // Check if item already in cart
-                const existingItemIndex = cart.findIndex(item => item.service === service);
-                
-                if (existingItemIndex >= 0) {
-                    cart[existingItemIndex].quantity += 1;
-                } else {
-                    cart.push({
-                        service: service,
-                        price: price,
-                        quantity: 1
-                    });
-                }
-                
+    function renderServices() {
+        const grid = document.getElementById('servicesGrid');
+        grid.innerHTML = services.map(s => `<div class="service-card"><div class="service-icon"><i class="${s.icon}"></i></div><div class="service-content"><h3>${s.name}</h3><ul>${s.features.map(f => `<li>${f}</li>`).join('')}</ul><div class="service-actions"><a href="#contact" class="btn btn-sm" data-en="Inquire" data-fr="Demander">Inquire</a><button class="btn btn-sm buy-now" data-name="${s.name}" data-price="${s.price}">Buy Now</button></div></div></div>`).join('');
+        attachBuyEvents();
+    }
+    function attachBuyEvents() {
+        document.querySelectorAll('.buy-now').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const name = btn.getAttribute('data-name');
+                const price = parseFloat(btn.getAttribute('data-price'));
+                const existing = cart.find(i => i.name === name);
+                if(existing) existing.qty++;
+                else cart.push({name, price, qty:1});
                 updateCartCount();
-                
-                // Show confirmation
-                if (currentLanguage === 'en') {
-                    alert(`Added ${service} to your cart!`);
-                } else {
-                    alert(`${service} ajouté à votre panier !`);
-                }
+                alert(`${name} added to cart.`);
             });
         });
-        
-        // Update cart count
-        function updateCartCount() {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = totalItems;
-            
-            // Enable or disable checkout button
-            checkoutBtn.disabled = totalItems === 0;
-        }
-        
-        // Update cart display
-        function updateCartDisplay() {
-            // Clear current items
-            cartItems.innerHTML = '';
-            
-            if (cart.length === 0) {
-                emptyCartMessage.style.display = 'block';
-                cartTotalContainer.style.display = 'none';
-                return;
-            }
-            
-            emptyCartMessage.style.display = 'none';
-            cartTotalContainer.style.display = 'flex';
-            
-            // Add items to cart
-            let total = 0;
-            
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <div class="cart-item-details">
-                        <div class="cart-item-name">${item.service}</div>
-                        <div class="cart-item-quantity">Qty: ${item.quantity}</div>
-                    </div>
-                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                    <button class="remove-item" data-index="${index}"><i class="fas fa-trash"></i></button>
-                `;
-                
-                cartItems.appendChild(cartItem);
-            });
-            
-            // Update total
-            cartTotal.textContent = `$${total.toFixed(2)}`;
-            
-            // Add event listeners to remove buttons
-            const removeButtons = document.querySelectorAll('.remove-item');
-            removeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const index = parseInt(button.getAttribute('data-index'));
-                    cart.splice(index, 1);
-                    updateCartDisplay();
-                    updateCartCount();
-                });
-            });
-        }
-        
-        // Checkout button
-        checkoutBtn.addEventListener('click', () => {
-            cartModal.classList.remove('active');
-            showPaymentModal();
+    }
+    function updateCartCount() { document.getElementById('cartCount').innerText = cart.reduce((s,i)=>s+i.qty,0); }
+    function renderPortfolio(filter='all') {
+        const grid = document.getElementById('portfolioGrid');
+        const filtered = filter === 'all' ? portfolioItems : portfolioItems.filter(p => p.cat === filter);
+        grid.innerHTML = filtered.map(p => `<div class="portfolio-item"><img class="portfolio-img" src="${p.img}" alt="work"><div class="portfolio-overlay"><h3>${p.title}</h3><p>${p.desc}</p></div></div>`).join('');
+    }
+    function renderFAQ() {
+        const faqDiv = document.getElementById('faqList');
+        faqDiv.innerHTML = faqData.map((item,idx)=>`<div class="faq-item"><div class="faq-question"><span>${item.q}</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${item.a}</p></div></div>`).join('');
+        document.querySelectorAll('.faq-question').forEach(q => q.addEventListener('click',function(){this.nextElementSibling.classList.toggle('active');}));
+    }
+    function renderTestimonials() {
+        const slider = document.getElementById('testimonialSlider');
+        slider.innerHTML = testimonials.map((t,i)=>`<div class="testimonial-slide ${i===0?'active':''}"><div class="testimonial-content"><p>“${t.text}”</p></div><div class="testimonial-author">${t.author}</div></div>`).join('');
+        const dotsDiv = document.getElementById('sliderDots');
+        dotsDiv.innerHTML = testimonials.map((_,i)=>`<span class="slider-dot ${i===0?'active':''}" data-idx="${i}"></span>`).join('');
+        let cur=0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const showSlide = (idx)=>{slides.forEach((s,i)=>{s.classList.toggle('active',i===idx); dots[i].classList.toggle('active',i===idx);}); cur=idx;};
+        dots.forEach(d=>d.addEventListener('click',()=>showSlide(parseInt(d.dataset.idx))));
+        setInterval(()=>{showSlide((cur+1)%slides.length);},5000);
+    }
+    function updateLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll('[data-en],[data-fr]').forEach(el => {
+            if(el.dataset[lang]) el.innerText = el.dataset[lang];
         });
-        
-        // Payment Modal Functionality
-        const paymentModal = document.getElementById('paymentModal');
-        const closePaymentModal = document.getElementById('closePaymentModal');
-        const paymentItems = document.getElementById('paymentItems');
-        const paymentTotal = document.getElementById('paymentTotal');
-        const paymentMethods = document.querySelectorAll('input[name="paymentMethod"]');
-        const paymentForms = document.querySelectorAll('.payment-form');
-        const confirmationModal = document.getElementById('confirmationModal');
-        const closeConfirmationModal = document.getElementById('closeConfirmationModal');
-        const confirmationBtn = document.getElementById('confirmationBtn');
-        
-        // Show payment modal
-        function showPaymentModal() {
-            // Clear current items
-            paymentItems.innerHTML = '';
-            
-            // Add items to payment modal
-            let total = 0;
-            
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                
-                const paymentItem = document.createElement('div');
-                paymentItem.className = 'cart-item';
-                paymentItem.innerHTML = `
-                    <div class="cart-item-details">
-                        <div class="cart-item-name">${item.service}</div>
-                        <div class="cart-item-quantity">Qty: ${item.quantity}</div>
-                    </div>
-                    <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-                `;
-                
-                paymentItems.appendChild(paymentItem);
-            });
-            
-            // Update total
-            paymentTotal.textContent = `$${total.toFixed(2)}`;
-            
-            // Show modal
-            paymentModal.classList.add('active');
-        }
-        
-        // Close payment modal
-        closePaymentModal.addEventListener('click', () => {
-            paymentModal.classList.remove('active');
-        });
-        
-        // Show appropriate payment form based on selection
-        paymentMethods.forEach(method => {
-            method.addEventListener('change', () => {
-                // Hide all forms
-                paymentForms.forEach(form => {
-                    form.style.display = 'none';
-                });
-                
-                // Show selected form
-                const selectedForm = document.getElementById(`${method.value}Form`);
-                if (selectedForm) {
-                    selectedForm.style.display = 'block';
-                }
-            });
-        });
-        
-        // Handle form submissions
-        document.getElementById('mobileMoneyForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showConfirmation();
-        });
-
-        document.getElementById('cardForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showConfirmation();
-        });
-
-        document.getElementById('paypalForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            showConfirmation();
-        });
-        
-        // Show confirmation modal
-        function showConfirmation() {
-            paymentModal.classList.remove('active');
-            confirmationModal.classList.add('active');
-        }
-        
-        // Close confirmation modal
-        closeConfirmationModal.addEventListener('click', () => {
-            confirmationModal.classList.remove('active');
-        });
-        
-        confirmationBtn.addEventListener('click', () => {
-            confirmationModal.classList.remove('active');
-            // Clear cart
-            cart = [];
-            updateCartCount();
-        });
-        
-        // Close modals when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === paymentModal) {
-                paymentModal.classList.remove('active');
-            }
-            if (e.target === cartModal) {
-                cartModal.classList.remove('active');
-            }
-            if (e.target === confirmationModal) {
-                confirmationModal.classList.remove('active');
-            }
-        });
-    </script>
+        document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll(`#${lang}Btn, #mobile${lang.toUpperCase()}Btn`).forEach(btn => btn.classList.add('active'));
+    }
+    // cart modal
+    const cartModal = document.getElementById('cartModal');
+    document.getElementById('cartIcon').addEventListener('click',()=>{showCartModal();});
+    function showCartModal() {
+        const container = document.getElementById('cartItemsList');
+        if(cart.length===0) container.innerHTML = '<div class="cart-item">Cart is empty</div>';
+        else container.innerHTML = cart.map((item,i)=>`<div class="cart-item"><span>${item.name} (x${item.qty})</span><span>$${(item.price*item.qty).toFixed(2)}</span><button class="remove-item" data-idx="${i}"><i class="fas fa-trash"></i></button></div>`).join('');
+        const total = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+        document.getElementById('cartTotalAmount').innerText = `$${total.toFixed(2)}`;
+        document.querySelectorAll('.remove-item').forEach(btn=>btn.addEventListener('click',(e)=>{const idx=parseInt(btn.dataset.idx); cart.splice(idx,1); updateCartCount(); showCartModal();}));
+        cartModal.classList.add('active');
+    }
+    document.getElementById('closeCartModal').addEventListener('click',()=>cartModal.classList.remove('active'));
+    document.getElementById('checkoutBtn').addEventListener('click',()=>{cartModal.classList.remove('active'); showPaymentModal();});
+    function showPaymentModal() {
+        const pm = document.getElementById('paymentModal');
+        const itemsDiv = document.getElementById('paymentItemsList');
+        itemsDiv.innerHTML = cart.map(i=>`<div class="cart-item"><span>${i.name} x${i.qty}</span><span>$${(i.price*i.qty).toFixed(2)}</span></div>`).join('');
+        const total = cart.reduce((s,i)=>s+(i.price*i.qty),0);
+        document.getElementById('paymentTotalAmount').innerText = `$${total.toFixed(2)}`;
+        pm.classList.add('active');
+    }
+    document.getElementById('closePaymentModal').addEventListener('click',()=>document.getElementById('paymentModal').classList.remove('active'));
+    document.getElementById('mockPayBtn').addEventListener('click',()=>{
+        if(cart.length===0) return;
+        document.getElementById('paymentModal').classList.remove('active');
+        document.getElementById('confirmationModal').classList.add('active');
+        cart = []; updateCartCount();
+    });
+    document.getElementById('closeConfirmationModal').addEventListener('click',()=>document.getElementById('confirmationModal').classList.remove('active'));
+    document.getElementById('confirmationBtn').addEventListener('click',()=>document.getElementById('confirmationModal').classList.remove('active'));
+    // filter
+    const filterBtns = [{filter:'all',label:'All'},{filter:'acrostic',label:'Acrostic'},{filter:'data',label:'Data Viz'},{filter:'resume',label:'Resume'},{filter:'graphic',label:'Graphic'}];
+    const filterDiv = document.getElementById('filterContainer');
+    filterDiv.innerHTML = filterBtns.map(f=>`<button class="filter-btn" data-filter="${f.filter}">${f.label}</button>`).join('');
+    filterDiv.addEventListener('click',(e)=>{if(e.target.classList.contains('filter-btn')){document.querySelectorAll('.filter-btn').forEach(btn=>btn.classList.remove('active')); e.target.classList.add('active'); renderPortfolio(e.target.dataset.filter);}});
+    renderPortfolio();
+    renderServices();
+    renderFAQ();
+    renderTestimonials();
+    // language events
+    document.getElementById('enBtn').addEventListener('click',()=>updateLanguage('en'));
+    document.getElementById('frBtn').addEventListener('click',()=>updateLanguage('fr'));
+    document.getElementById('mobileEnBtn').addEventListener('click',()=>updateLanguage('en'));
+    document.getElementById('mobileFrBtn').addEventListener('click',()=>updateLanguage('fr'));
+    updateLanguage('en');
+    // mobile nav
+    document.getElementById('mobileMenuBtn').addEventListener('click',()=>{document.getElementById('mainNav').classList.toggle('active');});
+    document.querySelectorAll('a[href^="#"]').forEach(anchor=>anchor.addEventListener('click',function(e){e.preventDefault();const target=document.querySelector(this.getAttribute('href'));if(target){window.scrollTo({top:target.offsetTop-80,behavior:'smooth'});document.getElementById('mainNav').classList.remove('active');}}));
+    document.getElementById('contactForm').addEventListener('submit',(e)=>{e.preventDefault();alert(currentLang==='en'?'Thank you! We will reach out soon.':'Merci, nous vous contacterons bientôt.'); e.target.reset();});
+    // smooth reveal
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.style.opacity='1',e.target.style.transform='translateY(0)';});},{threshold:0.1});
+    sections.forEach(s=>{s.style.opacity='0';s.style.transform='translateY(30px)';s.style.transition='0.6s';observer.observe(s);});
+</script>
 </body>
 </html>
