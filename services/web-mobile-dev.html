@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerseCraft Digital — Web &amp; Mobile Development</title>
+<meta name="description" content="VerseCraft Digital Co builds premium custom websites and mobile apps. iOS, Android, cross-platform, e-commerce, web applications and more.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:        #07112A;
+  --navy-mid:    #0D1B3E;
+  --accent:      #6C63FF;
+  --accent-lt:   #9D97FF;
+  --gold:        #E8A93A;
+  --gold-lt:     #F5C96A;
+  --cyan:        #00D4C8;
+  --white:       #FFFFFF;
+  --off-white:   #E4ECF8;
+  --muted:       #7A8AAA;
+  --card:        rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.09);
+  --focus-ring:  #9D97FF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;line-height:1.6}
+:focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;border-radius:3px}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px}
+
+/* SKIP LINK */
+.skip-link{position:absolute;left:-9999px;top:auto;z-index:9999;background:var(--accent);color:#fff;font-weight:600;padding:12px 20px;border-radius:0 0 8px 0;font-size:0.9rem;text-decoration:none}
+.skip-link:focus{left:0;top:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:0 6%;height:68px;background:rgba(7,17,42,0.96);backdrop-filter:blur(18px);border-bottom:1px solid var(--card-border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:500;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:4px;list-style:none;align-items:center;flex-wrap:wrap}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:0.82rem;font-weight:500;padding:6px 12px;border-radius:5px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,0.07)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;font-weight:700!important;padding:8px 18px!important;border-radius:6px!important}
+.nav-cta:hover{background:var(--accent-lt)!important}
+.nav-alt{color:var(--muted)!important;font-size:0.78rem!important}
+
+/* SERVICE TABS */
+.service-tabs{position:sticky;top:68px;z-index:150;background:rgba(7,17,42,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--card-border);display:flex;overflow-x:auto;scrollbar-width:none}
+.service-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:1;min-width:160px;padding:16px 20px;border:none;background:transparent;color:var(--muted);font-family:'Manrope',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all .25s;border-bottom:2px solid transparent;white-space:nowrap;text-align:center}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04)}
+.tab-btn[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);background:rgba(108,99,255,0.06)}
+.tab-icon{font-size:1.1rem;display:block;margin-bottom:4px}
+.service-panel{display:none}
+.service-panel.active{display:block}
+
+/* HERO */
+.hero{min-height:calc(100vh - 126px);padding-top:40px;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-inner{max-width:1260px;margin:0 auto;padding:60px 7%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.3);color:var(--accent);font-size:0.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:24px}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,4.2vw,4rem);font-weight:500;line-height:1.08;margin-bottom:20px}
+.hero h1 .ac{color:var(--accent)}
+.hero h1 .ag{color:var(--gold)}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:36px;max-width:460px;font-weight:300}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.hero-grid-lines{position:absolute;inset:0;pointer-events:none;opacity:.05;background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);background-size:60px 60px}
+.hero-mobile{background:radial-gradient(ellipse 70% 60% at 65% 40%,rgba(108,99,255,.09) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 20% 70%,rgba(0,212,200,.05) 0%,transparent 60%),var(--navy)}
+.hero-web{background:radial-gradient(ellipse 70% 60% at 65% 40%,rgba(232,169,58,.08) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 15% 65%,rgba(0,212,200,.04) 0%,transparent 60%),var(--navy)}
+
+/* BUTTONS */
+.btn-primary{background:var(--accent);color:#fff;padding:13px 30px;border-radius:7px;font-size:0.88rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .25s;box-shadow:0 6px 24px rgba(108,99,255,.35);display:inline-flex;align-items:center;gap:6px}
+.btn-primary:hover{background:var(--accent-lt);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--off-white);padding:12px 30px;border-radius:7px;font-size:0.88rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.18);transition:all .25s;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn-secondary:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-gold{background:var(--gold);color:#07112A;padding:13px 30px;border-radius:7px;font-size:0.88rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .25s;box-shadow:0 6px 24px rgba(232,169,58,.3);display:inline-flex;align-items:center;gap:6px}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px)}
+
+/* CHIPS */
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--card-border);border-radius:100px;padding:5px 12px;font-size:0.76rem;color:var(--muted)}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);flex-shrink:0}
+
+/* SECTIONS */
+.section-wrap{max-width:1260px;margin:0 auto;padding:80px 7%}
+.section-bg{background:rgba(13,27,62,.55)}
+.st{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--cyan);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:500;line-height:1.15;margin-bottom:14px}
+.ssub{font-size:1rem;color:var(--muted);line-height:1.8;max-width:600px;margin-bottom:48px;font-weight:300}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:40px}
+.card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:28px;transition:border-color .3s,transform .3s}
+.card:hover{border-color:rgba(108,99,255,.35);transform:translateY(-4px)}
+.card-icon{font-size:1.8rem;margin-bottom:14px}
+.card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:500;margin-bottom:8px}
+.card p{font-size:0.86rem;color:var(--muted);line-height:1.7}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.price-card{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:32px;position:relative;overflow:hidden}
+.price-card.hot{border-color:var(--accent);background:rgba(108,99,255,.06)}
+.price-card.hot-gold{border-color:var(--gold);background:rgba(232,169,58,.06)}
+.plan-badge{position:absolute;top:0;right:0;background:var(--accent);color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:0 12px 0 8px}
+.plan-badge.gold{background:var(--gold);color:#07112A}
+.plan-name{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.plan-price{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:500;color:var(--white);line-height:1}
+.plan-price span{font-size:1rem;font-weight:400;color:var(--muted)}
+.plan-period{font-size:0.78rem;color:var(--muted);margin-top:4px;margin-bottom:20px}
+.plan-feats{list-style:none;margin-bottom:28px}
+.plan-feats li{font-size:0.84rem;color:var(--off-white);padding:7px 0;border-bottom:1px solid var(--card-border);display:flex;align-items:flex-start;gap:8px}
+.plan-feats li::before{content:'✓';color:var(--cyan);font-weight:700;font-size:0.75rem;margin-top:2px;flex-shrink:0}
+.btn-plan{display:block;text-align:center;background:var(--card);border:1.5px solid var(--card-border);color:var(--white);padding:12px 20px;border-radius:8px;font-size:0.86rem;font-weight:700;text-decoration:none;transition:all .25s;cursor:pointer}
+.btn-plan:hover{background:var(--accent);border-color:var(--accent)}
+.price-card.hot .btn-plan{background:var(--accent);border-color:var(--accent)}
+.price-card.hot-gold .btn-plan{background:var(--gold);border-color:var(--gold);color:#07112A}
+
+/* STATS */
+.stats-row{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.stat-item .val{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:500;color:var(--accent);line-height:1}
+.stat-item .lbl{font-size:0.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+/* PROCESS */
+.process-list{display:grid;gap:24px;margin-bottom:40px}
+.process-step{display:flex;gap:20px;align-items:flex-start;padding:24px;background:var(--card);border:1px solid var(--card-border);border-radius:12px}
+.step-num{font-family:'IBM Plex Mono',monospace;font-size:1.4rem;font-weight:600;color:var(--accent);opacity:.7;flex-shrink:0;min-width:44px}
+.step-body h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:500;margin-bottom:6px}
+.step-body p{font-size:0.86rem;color:var(--muted);line-height:1.7}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:40px}
+.testimonial{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:28px;position:relative}
+.testimonial::before{content:'"';position:absolute;top:12px;left:20px;font-family:'Syne',sans-serif;font-size:4rem;color:var(--accent);opacity:.2;line-height:1}
+.testimonial p{font-size:0.92rem;color:var(--off-white);line-height:1.8;margin-bottom:16px;padding-top:8px}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.ta-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}
+.ta-name{font-size:0.86rem;font-weight:700}
+.ta-role{font-size:0.76rem;color:var(--muted)}
+
+/* FEATURES */
+.feat-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:48px}
+.feat-list-items{display:grid;gap:20px}
+.feat-item{display:flex;gap:16px;align-items:flex-start}
+.feat-num{font-family:'IBM Plex Mono',monospace;font-size:1.1rem;color:var(--accent);opacity:.6;font-weight:600;min-width:32px;flex-shrink:0}
+.feat-item h4{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:500;margin-bottom:5px}
+.feat-item p{font-size:0.84rem;color:var(--muted);line-height:1.7}
+.feat-stat-panel{background:var(--card);border:1px solid var(--card-border);border-radius:12px;padding:28px}
+.fsp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.fsp-stat .val{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:500;color:var(--accent)}
+.fsp-stat .lbl{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.bar-group{margin-bottom:14px}
+.bar-label{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);margin-bottom:5px}
+.bar-track{background:rgba(255,255,255,.07);border-radius:100px;height:7px;overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;transition:width 1.5s ease}
+
+/* MARQUEE */
+.marquee-strip{background:rgba(13,27,62,.8);border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);padding:14px 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;gap:48px;animation:marquee 28s linear infinite;font-size:0.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.marquee-inner span{color:var(--accent)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:flex-start}
+.contact-left h2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:500;margin-bottom:16px}
+.contact-left p{color:var(--muted);line-height:1.8;margin-bottom:32px;font-size:0.94rem}
+.contact-detail{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.cd-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.cd-text .lbl{font-size:0.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600}
+.cd-text .val{font-size:0.9rem;color:var(--off-white);margin-top:2px}
+.cd-text a{color:var(--accent);text-decoration:none}
+.cd-text a:hover{text-decoration:underline}
+.form-box{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:36px}
+.form-box h3{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:500;margin-bottom:24px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--card-border);border-radius:7px;padding:11px 14px;font-family:'Manrope',sans-serif;font-size:0.9rem;color:var(--white);transition:border-color .2s}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);background:rgba(108,99,255,.04);outline:none}
+.fg select option{background:#0D1B3E;color:var(--white)}
+.fg textarea{min-height:110px;resize:vertical}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-submit{width:100%;background:var(--accent);color:#fff;border:none;border-radius:8px;padding:14px;font-family:'Manrope',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;transition:all .25s;box-shadow:0 6px 24px rgba(108,99,255,.3)}
+.btn-submit:hover{background:var(--accent-lt);transform:translateY(-1px)}
+.btn-submit-gold{background:var(--gold);color:#07112A;box-shadow:0 6px 24px rgba(232,169,58,.25)}
+.btn-submit-gold:hover{background:var(--gold-lt)}
+
+/* PHONE MOCKUP */
+.phone-scene{display:flex;justify-content:center;align-items:center;position:relative;padding:20px 0}
+.phone-glow{position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,.2) 0%,transparent 70%)}
+.phone-frame{width:210px;background:#080e1e;border-radius:36px;padding:10px;box-shadow:0 36px 90px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07);position:relative;z-index:2;animation:phoneFloat 5s ease-in-out infinite}
+@keyframes phoneFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(1.5deg)}}
+.phone-notch{width:70px;height:18px;background:#080e1e;border-radius:10px;margin:0 auto 8px;border:1px solid rgba(255,255,255,.04)}
+.phone-screen{background:linear-gradient(160deg,#0F1E40,#07112A);border-radius:26px;padding:14px;min-height:360px}
+.ps-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.ps-time{font-size:0.66rem;color:var(--off-white);font-weight:600}
+.ps-icons{display:flex;gap:3px}
+.ps-icons span{width:12px;height:7px;border-radius:2px;background:rgba(255,255,255,.22);display:block}
+.ps-card{background:linear-gradient(135deg,var(--accent),#4A44CC);border-radius:14px;padding:14px;margin-bottom:10px}
+.ps-clbl{font-size:0.56rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.65);margin-bottom:3px}
+.ps-cval{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:500}
+.ps-csub{font-size:0.58rem;color:rgba(255,255,255,.5);margin-top:1px}
+.ps-row2{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.ps-mini{background:rgba(255,255,255,.05);border-radius:10px;padding:10px}
+.ps-mini-lbl{font-size:0.56rem;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.ps-mini-val{font-size:0.88rem;font-weight:700}
+.ps-chart-bar{display:flex;align-items:flex-end;gap:4px;height:40px;background:rgba(255,255,255,.03);border-radius:8px;padding:6px}
+.bar-col{flex:1;border-radius:2px 2px 0 0}
+
+/* BROWSER MOCKUP */
+.browser-scene{display:flex;justify-content:center;align-items:center;padding:20px 0}
+.browser-wrap{width:100%;max-width:480px;background:#0A1828;border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.55);animation:dashFloat 6s ease-in-out infinite}
+@keyframes dashFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.browser-bar{background:#112030;padding:11px 14px;display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%}
+.url-bar{flex:1;background:#0A1828;border-radius:4px;padding:4px 10px;font-size:0.7rem;color:rgba(255,255,255,.35);font-family:'IBM Plex Mono',monospace}
+.bm-strip{background:linear-gradient(135deg,#1A3850,#0E2738);padding:22px 20px}
+.bm-line{height:9px;border-radius:2px;background:rgba(255,255,255,.85);width:65%;margin-bottom:7px}
+.bm-line.sm{width:42%;height:6px;background:rgba(255,255,255,.4)}
+.bm-btn{width:26%;height:22px;border-radius:2px;background:var(--gold);margin-top:14px}
+.bm-cards{padding:16px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.bm-card{background:#112030;border-radius:6px;padding:12px}
+.bm-icon{width:20px;height:20px;border-radius:4px;background:rgba(232,169,58,.6);margin-bottom:6px}
+.bm-l{height:4px;border-radius:2px;background:rgba(255,255,255,.15);margin-bottom:3px}
+.bm-l.sh{width:58%}
+.bm-footer{background:#071520;padding:10px 20px;display:flex;justify-content:space-between}
+.bm-fl{width:44px;height:7px;border-radius:2px;background:rgba(255,255,255,.15)}
+.bm-fls{display:flex;gap:6px}
+.bm-fl-sm{width:24px;height:4px;border-radius:2px;background:rgba(255,255,255,.1)}
+
+/* FOOTER */
+footer{background:rgba(5,10,22,.95);border-top:1px solid var(--card-border);padding:56px 7% 28px}
+.footer-inner{max-width:1260px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:500;margin-bottom:12px}
+.footer-brand span{color:var(--accent)}
+.footer-desc{font-size:0.84rem;color:var(--muted);line-height:1.8}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;color:var(--off-white)}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:9px}
+.footer-col a{text-decoration:none;color:var(--muted);font-size:0.84rem;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{max-width:1260px;margin:0 auto;padding-top:20px;border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-bottom span{font-size:0.8rem;color:var(--muted)}
+
+/* SUCCESS OVERLAY */
+.success-overlay{display:none;position:fixed;inset:0;background:rgba(5,10,22,.9);z-index:999;align-items:center;justify-content:center}
+.success-box{background:var(--navy-mid);border:1px solid var(--card-border);border-radius:20px;padding:48px 40px;max-width:420px;width:90%;text-align:center}
+.success-icon{font-size:2.8rem;margin-bottom:14px}
+.success-box h3{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:500;margin-bottom:10px}
+.success-box p{color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:22px}
+.success-close{background:var(--accent);color:#fff;border:none;padding:11px 26px;font-family:'Manrope',sans-serif;font-size:0.87rem;font-weight:700;cursor:pointer;border-radius:7px}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.show{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:40px}.feat-split{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){nav{padding:0 5%}.section-wrap{padding:60px 5%}.hero-inner{padding:40px 5%}.stats-row{gap:24px}.hero h1{font-size:2rem}.footer-inner{grid-template-columns:1fr}.form-row2{grid-template-columns:1fr}}
+@media(forced-colors:active){.btn-primary,.btn-gold,.btn-submit{forced-color-adjust:none}}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <a href="https://www.graphiverse.net/" class="nav-logo" aria-label="VerseCraft Digital Co — Home">VerseCraft <span>Digital</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="landing-data-analytics.html" class="nav-alt">Data &amp; Analytics →</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<div role="tablist" class="service-tabs" aria-label="Service sections" id="service-tabs">
+  <button class="tab-btn" role="tab" aria-selected="true"  aria-controls="panel-mobile" id="tab-mobile" onclick="switchTab('mobile')">
+    <span class="tab-icon" aria-hidden="true">📱</span>Mobile Development
+  </button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-web"    id="tab-web"    onclick="switchTab('web')">
+    <span class="tab-icon" aria-hidden="true">🌐</span>Web Development
+  </button>
+</div>
+
+<main id="main-content">
+
+<!-- ══════════ MOBILE PANEL ══════════ -->
+<div id="panel-mobile" class="service-panel active" role="tabpanel" aria-labelledby="tab-mobile">
+
+  <section class="hero hero-mobile" aria-label="Mobile development hero">
+    <div class="hero-grid-lines" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">📱 Mobile App Development</div>
+        <h1>Build Apps That <span class="ac">Users Love</span> &amp; Investors Fund</h1>
+        <p class="hero-sub">From startup MVP to enterprise-grade platform — we engineer iOS, Android, and cross-platform apps that perform beautifully, convert users, and scale without breaking.</p>
+        <div class="hero-actions">
+          <a href="#m-contact" class="btn-primary">Start My App →</a>
+          <a href="#m-pricing" class="btn-secondary">See Pricing</a>
+        </div>
+        <div class="hero-chips" role="list" aria-label="Technology highlights">
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>iOS &amp; Android</span>
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>React Native / Flutter</span>
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>App Store Ready</span>
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>60fps Performance</span>
+        </div>
+      </div>
+      <div class="phone-scene" aria-hidden="true">
+        <div class="phone-glow"></div>
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="ps-bar"><span class="ps-time">9:41</span><div class="ps-icons"><span></span><span></span><span></span></div></div>
+            <div class="ps-card"><div class="ps-clbl">Revenue Today</div><div class="ps-cval">$24,850</div><div class="ps-csub">↑ 18.4% vs yesterday</div></div>
+            <div class="ps-row2">
+              <div class="ps-mini"><div class="ps-mini-lbl">Active Users</div><div class="ps-mini-val" style="color:#00D4C8">8,412</div></div>
+              <div class="ps-mini"><div class="ps-mini-lbl">Conversions</div><div class="ps-mini-val" style="color:#9D97FF">3.8%</div></div>
+            </div>
+            <div class="ps-chart-bar">
+              <div class="bar-col" style="height:55%;background:#6C63FF;opacity:.7"></div>
+              <div class="bar-col" style="height:70%;background:#6C63FF;opacity:.8"></div>
+              <div class="bar-col" style="height:45%;background:#6C63FF;opacity:.6"></div>
+              <div class="bar-col" style="height:90%;background:#6C63FF"></div>
+              <div class="bar-col" style="height:60%;background:#6C63FF;opacity:.75"></div>
+              <div class="bar-col" style="height:80%;background:#6C63FF;opacity:.9"></div>
+              <div class="bar-col" style="height:100%;background:#9D97FF"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-inner">React Native <span>✦</span> Flutter <span>✦</span> Swift / SwiftUI <span>✦</span> Kotlin <span>✦</span> Firebase <span>✦</span> REST APIs <span>✦</span> Push Notifications <span>✦</span> Payment Gateways <span>✦</span> App Store &amp; Play Store <span>✦</span> CI/CD Pipelines <span>✦</span> React Native <span>✦</span> Flutter <span>✦</span> Swift / SwiftUI <span>✦</span> Kotlin <span>✦</span> Firebase <span>✦</span> REST APIs <span>✦</span> Push Notifications <span>✦</span> Payment Gateways <span>✦</span> App Store &amp; Play Store <span>✦</span> CI/CD Pipelines <span>✦</span></div>
+  </div>
+
+  <div class="section-bg">
+    <div class="section-wrap reveal" id="services">
+      <div class="stats-row" role="list">
+        <div class="stat-item" role="listitem"><div class="val">50+</div><div class="lbl">Apps Delivered</div></div>
+        <div class="stat-item" role="listitem"><div class="val">4.8★</div><div class="lbl">Avg App Rating</div></div>
+        <div class="stat-item" role="listitem"><div class="val">99.9%</div><div class="lbl">Uptime SLA</div></div>
+        <div class="stat-item" role="listitem"><div class="val">6–12wk</div><div class="lbl">Avg Launch Time</div></div>
+      </div>
+      <div class="st">What We Build</div>
+      <h2 class="stitle">Mobile Solutions for Every Stage</h2>
+      <div class="cards-grid">
+        <div class="card"><div class="card-icon" aria-hidden="true">🍎</div><h3>iOS Development</h3><p>Native Swift &amp; SwiftUI apps built to Apple's Human Interface Guidelines — polished, performant, and App Store approved.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">🤖</div><h3>Android Development</h3><p>Kotlin-native apps following Material Design 3. Optimized across the full Android device landscape — from flagships to mid-range.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">⚡</div><h3>Cross-Platform</h3><p>One codebase, two native apps. React Native &amp; Flutter deliver near-native performance at a fraction of the cost.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">🚀</div><h3>MVP Launch</h3><p>Validate your idea fast with a focused MVP — core features, real users, measurable outcomes. From concept to App Store in weeks.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">🔗</div><h3>API &amp; Backend Integration</h3><p>Seamless integration with REST APIs, GraphQL, Firebase, Supabase, Stripe, and your existing infrastructure.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">🛠️</div><h3>Maintenance &amp; Support</h3><p>Post-launch maintenance plans keep your app compatible, secure, and running on every new iOS and Android release.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap reveal">
+    <div class="st">Why VerseCraft</div>
+    <h2 class="stitle">Engineering That Goes Beyond the Surface</h2>
+    <div class="feat-split">
+      <div class="feat-list-items">
+        <div class="feat-item"><div class="feat-num" aria-hidden="true">01</div><div><h4>Performance-First Architecture</h4><p>Every app is profiled and optimized — 60fps animations, sub-2s load times, minimal battery drain.</p></div></div>
+        <div class="feat-item"><div class="feat-num" aria-hidden="true">02</div><div><h4>UI/UX That Converts</h4><p>Our designers follow HIG for iOS and Material for Android while crafting interfaces that are distinctly yours.</p></div></div>
+        <div class="feat-item"><div class="feat-num" aria-hidden="true">03</div><div><h4>Full App Store Support</h4><p>We handle screenshots, ASO optimization, review submissions, and any back-and-forth with Apple or Google.</p></div></div>
+        <div class="feat-item"><div class="feat-num" aria-hidden="true">04</div><div><h4>Post-Launch Maintenance</h4><p>OS updates break things. Ongoing maintenance plans keep your app compatible with every new release.</p></div></div>
+      </div>
+      <div class="feat-stat-panel" aria-label="Platform satisfaction stats">
+        <div class="fsp-stats">
+          <div class="fsp-stat"><div class="val">6–12</div><div class="lbl">Weeks to Launch</div></div>
+          <div class="fsp-stat"><div class="val">99.9%</div><div class="lbl">Uptime</div></div>
+          <div class="fsp-stat"><div class="val">4.8★</div><div class="lbl">Avg Rating</div></div>
+        </div>
+        <div class="bar-group"><div class="bar-label"><span>iOS</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" style="width:95%;background:linear-gradient(90deg,var(--accent),var(--accent-lt))" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="iOS satisfaction 95%"></div></div></div>
+        <div class="bar-group"><div class="bar-label"><span>Android</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,var(--cyan),rgba(0,212,200,.5))" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Android satisfaction 90%"></div></div></div>
+        <div class="bar-group"><div class="bar-label"><span>Cross-Platform</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" style="width:92%;background:linear-gradient(90deg,#8B5CF6,#C4B5FD)" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="Cross-platform satisfaction 92%"></div></div></div>
+        <p style="margin-top:16px;font-size:0.78rem;color:var(--muted)">Client satisfaction ratings across 50+ delivered mobile projects.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-bg">
+    <div class="section-wrap reveal" id="m-pricing">
+      <div class="st">Investment</div>
+      <h2 class="stitle">App Development Pricing</h2>
+      <p class="ssub">Transparent project-based pricing. Final quotes after a free discovery call to scope your specific requirements.</p>
+      <div class="pricing-grid" role="list">
+        <div class="price-card" role="listitem"><div class="plan-name">MVP / Starter</div><div class="plan-price">$8,500<span>+</span></div><div class="plan-period">starting from</div><ul class="plan-feats"><li>Single platform (iOS or Android)</li><li>Up to 8 core screens</li><li>User auth &amp; onboarding</li><li>REST API integration</li><li>App Store submission</li><li>30-day post-launch support</li></ul><a href="#m-contact" class="btn-plan">Get a Quote</a></div>
+        <div class="price-card hot" role="listitem"><div class="plan-badge">Most Popular</div><div class="plan-name">Full Product</div><div class="plan-price">$18,000<span>+</span></div><div class="plan-period">starting from</div><ul class="plan-feats"><li>iOS + Android (cross-platform)</li><li>Up to 20 screens</li><li>Push notifications &amp; analytics</li><li>Payment gateway integration</li><li>CMS / admin dashboard</li><li>60-day post-launch support</li></ul><a href="#m-contact" class="btn-plan">Start Your App</a></div>
+        <div class="price-card" role="listitem"><div class="plan-name">Enterprise</div><div class="plan-price">Custom</div><div class="plan-period">scoped to your needs</div><ul class="plan-feats"><li>Complex, multi-role apps</li><li>Offline-first architecture</li><li>Custom AI/ML features</li><li>Full backend development</li><li>Dedicated team</li><li>Ongoing retainer &amp; SLA</li></ul><a href="#m-contact" class="btn-plan">Let's Discuss</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap reveal" id="m-contact">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="st">Start Building</div>
+        <h2>Your App Idea Deserves to Exist</h2>
+        <p>Share your concept and we'll send you a detailed proposal — including timeline, tech recommendation, and project scope — within 48 hours.</p>
+        <div class="contact-detail"><div class="cd-icon" aria-hidden="true">✉️</div><div class="cd-text"><div class="lbl">Email</div><div class="val"><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></div></div></div>
+        <div class="contact-detail"><div class="cd-icon" aria-hidden="true">📞</div><div class="cd-text"><div class="lbl">Phone</div><div class="val"><a href="tel:+13094457438">+1 (309) 445-7438</a></div></div></div>
+        <div class="contact-detail"><div class="cd-icon" aria-hidden="true">⏱️</div><div class="cd-text"><div class="lbl">Response Time</div><div class="val">Within 48 hours</div></div></div>
+      </div>
+      <div class="form-box" aria-label="Mobile app quote form">
+        <h3>Request a Mobile App Quote</h3>
+        <div class="form-row2">
+          <div class="fg"><label for="mf-first">First Name <span aria-hidden="true">*</span></label><input id="mf-first" type="text" placeholder="Jane" autocomplete="given-name" required aria-required="true"></div>
+          <div class="fg"><label for="mf-last">Last Name</label><input id="mf-last" type="text" placeholder="Doe" autocomplete="family-name"></div>
+        </div>
+        <div class="fg"><label for="mf-email">Email <span aria-hidden="true">*</span></label><input id="mf-email" type="email" placeholder="jane@startup.com" autocomplete="email" required aria-required="true"></div>
+        <div class="fg"><label for="mf-co">Company / Project Name</label><input id="mf-co" type="text" placeholder="My App LLC" autocomplete="organization"></div>
+        <div class="fg"><label for="mf-platform">Platform</label><select id="mf-platform"><option value="">Select...</option><option>iOS Only</option><option>Android Only</option><option>Both (Cross-Platform)</option><option>Not sure yet</option></select></div>
+        <div class="fg"><label for="mf-idea">Describe Your App Idea</label><textarea id="mf-idea" placeholder="What does your app do? Who is it for? What's the core problem it solves?"></textarea></div>
+        <button class="btn-submit" onclick="submitForm('mobile')" aria-label="Submit mobile app quote request">Send My Request →</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-mobile -->
+
+
+<!-- ══════════ WEB PANEL ══════════ -->
+<div id="panel-web" class="service-panel" role="tabpanel" aria-labelledby="tab-web">
+
+  <section class="hero hero-web" aria-label="Web development hero">
+    <div class="hero-grid-lines" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge" style="background:rgba(232,169,58,.1);border-color:rgba(232,169,58,.35);color:var(--gold)">🌐 Website Design &amp; Development</div>
+        <h1>Websites That <span class="ag">Convert Visitors</span> Into Clients</h1>
+        <p class="hero-sub">Custom-designed, strategically built websites that reflect your brand, rank in search, and turn traffic into revenue — from brand sites to full web applications.</p>
+        <div class="hero-actions">
+          <a href="#w-contact" class="btn-gold">Start My Project →</a>
+          <a href="#w-pricing" class="btn-secondary">See Pricing</a>
+        </div>
+        <div class="hero-chips" role="list" aria-label="Technology highlights">
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Custom Design</span>
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>SEO Optimized</span>
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Fully Responsive</span>
+          <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Core Web Vitals</span>
+        </div>
+      </div>
+      <div class="browser-scene" aria-hidden="true">
+        <div class="browser-wrap">
+          <div class="browser-bar"><div class="dot" style="background:#FF5F57"></div><div class="dot" style="background:#FFBD2E"></div><div class="dot" style="background:#28CA41"></div><div class="url-bar">graphiverse.net</div></div>
+          <div class="bm-strip"><div class="bm-line"></div><div class="bm-line sm"></div><div class="bm-btn"></div></div>
+          <div class="bm-cards"><div class="bm-card"><div class="bm-icon"></div><div class="bm-l"></div><div class="bm-l sh"></div></div><div class="bm-card"><div class="bm-icon"></div><div class="bm-l"></div><div class="bm-l sh"></div></div><div class="bm-card"><div class="bm-icon"></div><div class="bm-l"></div><div class="bm-l sh"></div></div></div>
+          <div class="bm-footer"><div class="bm-fl"></div><div class="bm-fls"><div class="bm-fl-sm"></div><div class="bm-fl-sm"></div><div class="bm-fl-sm"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-inner">React &amp; Next.js <span>✦</span> WordPress &amp; Webflow <span>✦</span> Shopify &amp; E-Commerce <span>✦</span> Figma to Code <span>✦</span> SEO Architecture <span>✦</span> Core Web Vitals <span>✦</span> CMS Integration <span>✦</span> API Development <span>✦</span> ADA Compliance <span>✦</span> Performance Optimization <span>✦</span> React &amp; Next.js <span>✦</span> WordPress &amp; Webflow <span>✦</span> Shopify &amp; E-Commerce <span>✦</span> Figma to Code <span>✦</span> SEO Architecture <span>✦</span> Core Web Vitals <span>✦</span> CMS Integration <span>✦</span> API Development <span>✦</span> ADA Compliance <span>✦</span> Performance Optimization <span>✦</span></div>
+  </div>
+
+  <div class="section-bg">
+    <div class="section-wrap reveal">
+      <div class="st">What We Build</div>
+      <h2 class="stitle">Web Solutions for Every Business</h2>
+      <div class="cards-grid">
+        <div class="card"><div class="card-icon" aria-hidden="true">🎨</div><h3>Brand &amp; Marketing Sites</h3><p>Stunning, conversion-focused websites that tell your story, establish authority, and turn visitors into leads.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">🛍️</div><h3>E-Commerce Stores</h3><p>Shopify, WooCommerce, or custom — fully branded stores engineered to maximize sales and retention.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">⚙️</div><h3>Web Applications</h3><p>Complex, data-driven web apps built with modern stacks (React, Next.js) for SaaS, portals, and internal tools.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">🔄</div><h3>Redesigns</h3><p>Breathe new life into outdated websites. We audit, redesign, and rebuild — preserving SEO equity throughout.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">📈</div><h3>SEO &amp; Performance</h3><p>Core Web Vitals optimization, technical SEO architecture, and structured data — built in from day one.</p></div>
+        <div class="card"><div class="card-icon" aria-hidden="true">♿</div><h3>ADA / WCAG Compliance</h3><p>Every website we deliver meets WCAG 2.1 AA standards — accessible to all users, protected from legal risk.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap reveal">
+    <div class="st">How We Work</div>
+    <h2 class="stitle">Our Website Development Process</h2>
+    <div class="process-list">
+      <div class="process-step"><div class="step-num" aria-label="Step 1">I</div><div class="step-body"><h4>Discovery &amp; Strategy</h4><p>We start with a deep-dive into your business, audience, and goals. Strategy shapes every design and development decision that follows.</p></div></div>
+      <div class="process-step"><div class="step-num" aria-label="Step 2">II</div><div class="step-body"><h4>Design &amp; Prototype</h4><p>Custom wireframes and high-fidelity mockups in Figma — your brand, your voice. Refined through collaborative feedback before a single line of code is written.</p></div></div>
+      <div class="process-step"><div class="step-num" aria-label="Step 3">III</div><div class="step-body"><h4>Development &amp; Build</h4><p>Clean, performant code. Responsive across all devices. Optimized for Core Web Vitals and accessibility standards from day one.</p></div></div>
+      <div class="process-step"><div class="step-num" aria-label="Step 4">IV</div><div class="step-body"><h4>Launch &amp; Support</h4><p>Rigorous QA before go-live, then 30 days of post-launch monitoring and support included with every project.</p></div></div>
+    </div>
+  </div>
+
+  <div class="section-bg">
+    <div class="section-wrap reveal">
+      <div class="st">Social Proof</div>
+      <h2 class="stitle">What Our Clients Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial"><p>The website they built didn't just look incredible — it started converting visitors into clients from day one.</p><div class="testimonial-author"><div class="ta-avatar" aria-hidden="true">SJ</div><div><div class="ta-name">Sarah Johnson</div><div class="ta-role">Marketing Director, TechCorp</div></div></div></div>
+        <div class="testimonial"><p>Our new site has completely transformed how potential customers perceive us. Professional, fast, and exactly on-brand.</p><div class="testimonial-author"><div class="ta-avatar" aria-hidden="true">ER</div><div><div class="ta-name">Emily Rodriguez</div><div class="ta-role">HR Manager, TalentFirst</div></div></div></div>
+        <div class="testimonial"><p>VerseCraft delivered beyond expectations — on time and within budget. I'd recommend them to any business serious about their online presence.</p><div class="testimonial-author"><div class="ta-avatar" aria-hidden="true">MC</div><div><div class="ta-name">Michael Chen</div><div class="ta-role">Founder, Launchpad Co.</div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap reveal" id="w-pricing">
+    <div class="st">Investment</div>
+    <h2 class="stitle">Transparent Pricing</h2>
+    <p class="ssub">Fixed project pricing — no hourly surprises. Scope is defined before work begins.</p>
+    <div class="pricing-grid" role="list">
+      <div class="price-card" role="listitem"><div class="plan-name">Launchpad</div><div class="plan-price">$2,400</div><div class="plan-period">one-time project fee</div><ul class="plan-feats"><li>Up to 5 pages</li><li>Custom responsive design</li><li>CMS integration</li><li>Basic SEO setup</li><li>Contact form &amp; analytics</li><li>14-day post-launch support</li></ul><a href="#w-contact" class="btn-plan" style="border-color:var(--gold);color:var(--gold)">Get Started</a></div>
+      <div class="price-card hot-gold" role="listitem"><div class="plan-badge gold">Most Popular</div><div class="plan-name">Signature</div><div class="plan-price">$5,800</div><div class="plan-period">one-time project fee</div><ul class="plan-feats"><li>Up to 15 pages</li><li>Full brand integration</li><li>Custom animations</li><li>E-commerce ready</li><li>Advanced SEO architecture</li><li>30-day post-launch support</li></ul><a href="#w-contact" class="btn-plan">Start This Project</a></div>
+      <div class="price-card" role="listitem"><div class="plan-name">Enterprise</div><div class="plan-price">Custom</div><div class="plan-period">scoped to your needs</div><ul class="plan-feats"><li>Unlimited pages &amp; complexity</li><li>Web app / SaaS interfaces</li><li>API &amp; systems integration</li><li>Dedicated project manager</li><li>Ongoing retainer available</li><li>SLA guarantees</li></ul><a href="#w-contact" class="btn-plan" style="border-color:var(--gold);color:var(--gold)">Let's Talk</a></div>
+    </div>
+  </div>
+
+  <div class="section-bg">
+    <div class="section-wrap reveal" id="w-contact">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <div class="st">Start a Project</div>
+          <h2>Tell Us About Your Vision</h2>
+          <p>Every great website begins with a conversation. Share your project and we'll respond within one business day with an honest assessment and next steps.</p>
+          <div class="contact-detail"><div class="cd-icon" aria-hidden="true">✉️</div><div class="cd-text"><div class="lbl">Email</div><div class="val"><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></div></div></div>
+          <div class="contact-detail"><div class="cd-icon" aria-hidden="true">📞</div><div class="cd-text"><div class="lbl">Phone</div><div class="val"><a href="tel:+13094457438">+1 (309) 445-7438</a></div></div></div>
+          <div class="contact-detail"><div class="cd-icon" aria-hidden="true">⏱️</div><div class="cd-text"><div class="lbl">Response Time</div><div class="val">Within 1 business day</div></div></div>
+        </div>
+        <div class="form-box" aria-label="Web project inquiry form">
+          <h3>Project Inquiry</h3>
+          <div class="form-row2">
+            <div class="fg"><label for="wf-first">First Name <span aria-hidden="true">*</span></label><input id="wf-first" type="text" placeholder="Jane" autocomplete="given-name" required aria-required="true"></div>
+            <div class="fg"><label for="wf-last">Last Name</label><input id="wf-last" type="text" placeholder="Doe" autocomplete="family-name"></div>
+          </div>
+          <div class="fg"><label for="wf-co">Company / Brand</label><input id="wf-co" type="text" placeholder="Your Company" autocomplete="organization"></div>
+          <div class="fg"><label for="wf-email">Email <span aria-hidden="true">*</span></label><input id="wf-email" type="email" placeholder="jane@company.com" autocomplete="email" required aria-required="true"></div>
+          <div class="fg"><label for="wf-type">Project Type</label><select id="wf-type"><option value="">Select...</option><option>Brand / Marketing Website</option><option>E-Commerce Store</option><option>Web Application</option><option>Landing Page Campaign</option><option>Website Redesign</option><option>Other</option></select></div>
+          <div class="fg"><label for="wf-details">Project Details</label><textarea id="wf-details" placeholder="Tell us about your project, goals, and timeline..."></textarea></div>
+          <button class="btn-submit btn-submit-gold" onclick="submitForm('web')" aria-label="Submit web project inquiry">Send Project Inquiry →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-web -->
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-brand">VerseCraft <span>Digital</span></div><p class="footer-desc">Transforming ideas into impactful digital solutions through strategy, technology, and design. Based in Bloomington, IL — serving clients globally.</p></div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#" onclick="switchTab('mobile');return false">Mobile Development</a></li><li><a href="#" onclick="switchTab('web');return false">Web Development</a></li><li><a href="landing-data-analytics.html">Data Analytics &amp; Viz</a></li><li><a href="https://www.graphiverse.net/#services">All Services</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="https://www.graphiverse.net/">Main Site</a></li><li><a href="https://www.graphiverse.net/#portfolio">Portfolio</a></li><li><a href="https://www.graphiverse.net/#about">About</a></li><li><a href="https://www.graphiverse.net/#faq">FAQ</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+13094457438">+1 (309) 445-7438</a></li><li><a href="tel:+243894235656">+243 894 235 656</a></li><li><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></li><li><span style="color:var(--muted)">Bloomington, IL 61701</span></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 VerseCraft Digital Co LLC. All Rights Reserved.</span><span>Crafted with passion ✦ Designed for impact</span></div>
+</footer>
+
+<div id="success-overlay" class="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title" aria-describedby="success-desc">
+  <div class="success-box"><div class="success-icon" aria-hidden="true">🚀</div><h3 id="success-title">Request Received!</h3><p id="success-desc">We'll review your project and get back to you within 48 hours. Exciting things ahead.</p><button class="success-close" onclick="closeOverlay()" aria-label="Close">Close</button></div>
+</div>
+
+<script>
+/* TABS */
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.setAttribute('aria-selected', b.id === 'tab-'+id ? 'true' : 'false'));
+  document.querySelectorAll('.service-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-'+id));
+  document.querySelectorAll('#panel-'+id+' .reveal:not(.show)').forEach(el => observer.observe(el));
+  document.getElementById('service-tabs').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('service-tabs').addEventListener('keydown', e => {
+  const tabs = [...document.querySelectorAll('.tab-btn')];
+  const idx = tabs.indexOf(document.activeElement);
+  if (e.key==='ArrowRight') tabs[(idx+1)%tabs.length].focus();
+  if (e.key==='ArrowLeft')  tabs[(idx+tabs.length-1)%tabs.length].focus();
+});
+/* REVEAL */
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); }), {threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+/* FORM */
+function submitForm(type) {
+  const ids = {mobile:['mf-first','mf-email'], web:['wf-first','wf-email']};
+  const [fid, eid] = ids[type] || [];
+  const first = (document.getElementById(fid)||{}).value?.trim()||'';
+  const email = (document.getElementById(eid)||{}).value?.trim()||'';
+  if (!first || !email) { alert('Please fill in your name and email address.'); return; }
+  const ov = document.getElementById('success-overlay');
+  ov.style.display = 'flex';
+  setTimeout(()=>{ ov.querySelector('.success-close')?.focus(); }, 100);
+  const sub = encodeURIComponent(type.charAt(0).toUpperCase()+type.slice(1)+' Project Inquiry — '+first);
+  const body = encodeURIComponent('Name: '+first+'\nEmail: '+email+'\nService: '+type);
+  window.location.href = 'mailto:contact@graphiverse.net?subject='+sub+'&body='+body;
+}
+function closeOverlay() { document.getElementById('success-overlay').style.display = 'none'; }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeOverlay(); });
+</script>
+</body>
+</html>
