@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VerseCraft Academy — Data & Excel Mastery</title>
+  <meta name="description" content="VerseCraft Academy: Master Advanced Data Architecture & Handling and Expert-Level Excel Analytics. Professional training from VerseCraft Digital Co, Bloomington IL." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute; top: -999px; left: 0;
+      padding: .6rem 1.2rem; background: #4f7cba; color: #fff;
+      font-size: .85rem; font-weight: 600; z-index: 9999;
+      border-radius: 0 0 6px 0; text-decoration: none;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* ── Palette ── */
+    :root {
+      --bg:       #10131c;
+      --bg2:      #13172280;
+      --surface:  #161b28;
+      --panel:    #1b2135;
+      --border:   rgba(160,180,230,.1);
+      --border-m: rgba(160,180,230,.18);
+
+      --blue:     #6b9bd2;
+      --blue-lt:  #8fb3e0;
+      --blue-dim: rgba(107,155,210,.12);
+      --sage:     #7aaa90;
+      --sage-lt:  #95c0a8;
+      --sage-dim: rgba(122,170,144,.1);
+      --gold:     #c5a96a;
+      --gold-dim: rgba(197,169,106,.1);
+
+      --txt:      #d8dff0;
+      --txt-sub:  #8892aa;
+      --txt-dim:  #545f78;
+
+      --radius:   7px;
+      --max:      1120px;
+      --ease:     cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      line-height: 1.7;
+      overflow-x: hidden;
+      font-size: 15px;
+    }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 3px; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    code { font-family: 'JetBrains Mono', monospace; font-size: .82em; color: var(--blue-lt); background: var(--blue-dim); padding: .15em .45em; border-radius: 4px; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(16,19,28,.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .nav__brand { display: flex; flex-direction: column; gap: .1rem; }
+    .nav__brand-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; letter-spacing: .01em; color: var(--txt);
+    }
+    .nav__brand-top em { font-style: italic; color: var(--blue-lt); }
+    .nav__brand-bot {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--txt-dim);
+    }
+    .nav__links { display: flex; gap: 2rem; list-style: none; }
+    .nav__links a { font-size: .78rem; font-weight: 500; color: var(--txt-sub); transition: color .2s; }
+    .nav__links a:hover, .nav__links a:focus { color: var(--txt); }
+    .nav__cta {
+      font-size: .78rem; font-weight: 600;
+      padding: .45rem 1.1rem;
+      border: 1px solid var(--border-m); border-radius: var(--radius);
+      color: var(--txt); background: rgba(107,155,210,.08);
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .nav__cta:hover, .nav__cta:focus { background: var(--blue-dim); border-color: rgba(107,155,210,.35); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 110px 0 6rem; position: relative; overflow: hidden;
+    }
+    .hero__glow {
+      position: absolute; pointer-events: none;
+      width: 700px; height: 700px; right: -180px; top: -150px;
+      background: radial-gradient(ellipse, rgba(107,155,210,.07) 0%, transparent 68%);
+    }
+    .hero__glow2 {
+      position: absolute; pointer-events: none;
+      width: 400px; height: 400px; bottom: -80px; left: 5%;
+      background: radial-gradient(ellipse, rgba(122,170,144,.05) 0%, transparent 65%);
+    }
+    .hero__grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(160,180,230,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(160,180,230,.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    .hero__inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .hero__tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--blue); border: 1px solid rgba(107,155,210,.22);
+      background: var(--blue-dim); padding: .28rem .8rem; border-radius: 20px; margin-bottom: 1.6rem;
+    }
+    .hero__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+      font-weight: 300; line-height: 1.18; letter-spacing: -.01em;
+      color: var(--txt); margin-bottom: 1.25rem;
+    }
+    .hero__title strong { font-weight: 600; }
+    .hero__title .c-blue { color: var(--blue-lt); }
+    .hero__title .c-sage { color: var(--sage-lt); }
+    .hero__desc {
+      font-size: .95rem; font-weight: 300; color: var(--txt-sub);
+      max-width: 460px; margin-bottom: 2rem; line-height: 1.85;
+    }
+    .hero__chips { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2.25rem; }
+    .chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .63rem; letter-spacing: .08em;
+      padding: .25rem .75rem; border-radius: 20px; border: 1px solid;
+    }
+    .chip--blue { color: var(--blue-lt); border-color: rgba(107,155,210,.25); background: var(--blue-dim); }
+    .chip--sage { color: var(--sage-lt); border-color: rgba(122,170,144,.25); background: var(--sage-dim); }
+    .chip--gold { color: var(--gold); border-color: rgba(197,169,106,.22); background: var(--gold-dim); }
+    .hero__ctas { display: flex; gap: .85rem; flex-wrap: wrap; }
+    .btn {
+      font-size: .82rem; font-weight: 600; letter-spacing: .02em;
+      padding: .72rem 1.6rem; border-radius: var(--radius);
+      display: inline-flex; align-items: center; gap: .45rem;
+      transition: all .22s var(--ease); cursor: pointer; border: 1px solid transparent;
+    }
+    .btn--primary { background: var(--blue); color: #0e1220; border-color: var(--blue); }
+    .btn--primary:hover, .btn--primary:focus { background: var(--blue-lt); border-color: var(--blue-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,155,210,.25); }
+    .btn--subtle { background: transparent; border-color: var(--border-m); color: var(--txt-sub); }
+    .btn--subtle:hover, .btn--subtle:focus { border-color: rgba(107,155,210,.3); color: var(--txt); transform: translateY(-1px); }
+
+    /* Hero info card */
+    .hero__card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .hcard__head {
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .hcard__title { font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--txt-dim); }
+    .hcard__badge {
+      font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .1em;
+      padding: .18rem .6rem; border-radius: 10px;
+      color: var(--sage-lt); background: var(--sage-dim); border: 1px solid rgba(122,170,144,.2);
+    }
+    .hcard__body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .hcard__track { padding: 1rem 1.25rem; border-radius: var(--radius); border: 1px solid var(--border); }
+    .hcard__track--blue { background: rgba(107,155,210,.05); border-color: rgba(107,155,210,.18); }
+    .hcard__track--sage { background: rgba(122,170,144,.05); border-color: rgba(122,170,144,.18); }
+    .htrack__label { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .6rem; }
+    .htrack__label--blue { color: var(--blue); }
+    .htrack__label--sage { color: var(--sage); }
+    .htrack__item { font-size: .78rem; color: var(--txt-sub); line-height: 1.7; padding-left: 1rem; position: relative; }
+    .htrack__item::before { content: ''; position: absolute; left: 0; top: .52em; width: 4px; height: 4px; border-radius: 50%; }
+    .htrack__item--blue::before { background: var(--blue); }
+    .htrack__item--sage::before { background: var(--sage); }
+    .hcard__footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border); display: flex; gap: 1.5rem; }
+    .hcard__stat { text-align: center; flex: 1; }
+    .hcard__stat-num { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--txt); line-height: 1; }
+    .hcard__stat-lbl { font-family: 'JetBrains Mono', monospace; font-size: .57rem; letter-spacing: .1em; text-transform: uppercase; color: var(--txt-dim); margin-top: .2rem; }
+
+    /* ── SECTIONS ── */
+    .sec { padding: 6rem 0; }
+    .sec--alt { background: var(--surface); }
+    .sec--panel { background: var(--panel); }
+
+    .sec-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--txt-dim);
+      margin-bottom: .7rem; display: flex; align-items: center; gap: .5rem;
+    }
+    .sec-label::after { content: ''; flex: 0 0 24px; height: 1px; background: var(--border-m); }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 400;
+      line-height: 1.2; letter-spacing: -.01em; color: var(--txt); margin-bottom: .85rem;
+    }
+    .sec-title strong { font-weight: 600; }
+    .sec-title .c-blue { color: var(--blue-lt); }
+    .sec-title .c-sage { color: var(--sage-lt); }
+    .sec-sub { font-size: .9rem; font-weight: 300; color: var(--txt-sub); max-width: 520px; line-height: 1.85; margin-bottom: 3rem; }
+
+    /* ── MODULES ── */
+    .modules__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .track { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--panel); transition: border-color .25s, box-shadow .25s; }
+    .track:hover { border-color: var(--border-m); box-shadow: 0 12px 40px rgba(0,0,0,.25); }
+    .track__top { padding: 1.75rem 1.75rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .track__eyebrow {
+      font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase;
+      padding: .22rem .65rem; border-radius: 20px; border: 1px solid; display: inline-block; margin-bottom: .85rem;
+    }
+    .track__eyebrow--blue { color: var(--blue); border-color: rgba(107,155,210,.25); background: var(--blue-dim); }
+    .track__eyebrow--sage { color: var(--sage); border-color: rgba(122,170,144,.25); background: var(--sage-dim); }
+    .track__name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; line-height: 1.3; color: var(--txt); margin-bottom: .5rem; }
+    .track__tagline { font-size: .84rem; font-weight: 300; color: var(--txt-sub); line-height: 1.7; }
+    .track__lessons { padding: 1.25rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; list-style: none; }
+    .lesson {
+      display: grid; grid-template-columns: 24px 1fr; gap: .75rem; align-items: start;
+      padding: .85rem 1rem; border-radius: var(--radius);
+      border: 1px solid transparent; background: rgba(255,255,255,.02);
+      transition: background .2s, border-color .2s;
+    }
+    .lesson:hover { background: rgba(107,155,210,.04); border-color: var(--border); }
+    .track--sage .lesson:hover { background: rgba(122,170,144,.04); }
+    .lesson__n { font-family: 'JetBrains Mono', monospace; font-size: .62rem; color: var(--txt-dim); padding-top: .18rem; }
+    .lesson__name { font-size: .88rem; font-weight: 600; color: var(--txt); margin-bottom: .3rem; }
+    .lesson__desc { font-size: .8rem; font-weight: 300; color: var(--txt-sub); line-height: 1.7; }
+    .lesson__chip {
+      font-family: 'JetBrains Mono', monospace; font-size: .58rem; letter-spacing: .08em;
+      padding: .15rem .55rem; border-radius: 10px; border: 1px solid; display: inline-block; margin-top: .4rem;
+    }
+    .lesson__chip--blue { color: var(--blue); border-color: rgba(107,155,210,.2); background: var(--blue-dim); }
+    .lesson__chip--sage { color: var(--sage); border-color: rgba(122,170,144,.2); background: var(--sage-dim); }
+    .track__foot { padding: 1.25rem 1.75rem; border-top: 1px solid var(--border); }
+    .track__link { font-size: .8rem; font-weight: 600; display: inline-flex; align-items: center; gap: .4rem; transition: gap .2s, color .2s; }
+    .track__link--blue { color: var(--blue); }
+    .track__link--sage { color: var(--sage); }
+    .track__link:hover { gap: .75rem; }
+    .track__link .arr { transition: transform .2s; }
+    .track__link:hover .arr { transform: translateX(3px); }
+
+    /* ── FOR WHOM ── */
+    .for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .for-card { padding: 1.75rem; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); transition: border-color .22s, transform .22s; }
+    .for-card:hover { border-color: var(--border-m); transform: translateY(-3px); }
+    .for-card__icon { font-size: 1.5rem; margin-bottom: .85rem; }
+    .for-card__title { font-size: .9rem; font-weight: 600; color: var(--txt); margin-bottom: .4rem; }
+    .for-card__desc { font-size: .8rem; font-weight: 300; color: var(--txt-sub); line-height: 1.75; }
+
+    /* ── PROCESS ── */
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 3.5rem; position: relative;
+    }
+    .process-grid::before {
+      content: ''; position: absolute;
+      top: 22px; left: 12%; right: 12%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-m) 30%, var(--border-m) 70%, transparent);
+    }
+    .pstep { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .85rem; }
+    .pstep__n {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--border-m); background: var(--surface);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: var(--txt-sub);
+      position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .pstep__title { font-size: .88rem; font-weight: 600; color: var(--txt); }
+    .pstep__desc { font-size: .78rem; font-weight: 300; color: var(--txt-sub); line-height: 1.7; }
+
+    /* ── TOOLS ── */
+    .tools-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .85rem; margin-top: 3rem; }
+    .tool {
+      padding: 1.1rem .85rem; background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .04em; color: var(--txt-sub);
+      transition: border-color .2s, color .2s, transform .2s;
+    }
+    .tool:hover { border-color: var(--border-m); color: var(--txt); transform: translateY(-2px); }
+    .tool__ic { font-size: 1.2rem; margin-bottom: .4rem; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: .6rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); background: var(--panel); overflow: hidden; }
+    .faq-btn {
+      width: 100%; padding: 1.1rem 1.4rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      background: none; border: none; cursor: pointer; text-align: left;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: .88rem; font-weight: 500;
+      color: var(--txt); transition: color .2s;
+    }
+    .faq-btn:hover, .faq-btn:focus { color: var(--blue-lt); }
+    .faq-ic {
+      width: 24px; height: 24px; flex-shrink: 0;
+      border: 1px solid var(--border-m); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; color: var(--txt-sub);
+      transition: transform .28s, background .2s, border-color .2s;
+    }
+    .faq-item.open .faq-ic { transform: rotate(45deg); background: var(--blue-dim); border-color: rgba(107,155,210,.3); color: var(--blue-lt); }
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height .32s ease; }
+    .faq-item.open .faq-body { max-height: 200px; }
+    .faq-body p { padding: 0 1.4rem 1.1rem; font-size: .82rem; font-weight: 300; color: var(--txt-sub); line-height: 1.8; }
+
+    /* ── CTA ── */
+    .cta-sec { padding: 6rem 0; text-align: center; position: relative; overflow: hidden; }
+    .cta-sec::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(160,180,230,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(160,180,230,.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .cta-glow { position: absolute; pointer-events: none; width: 500px; height: 500px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(ellipse, rgba(107,155,210,.06) 0%, transparent 65%); }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-label { font-family: 'JetBrains Mono', monospace; font-size: .63rem; letter-spacing: .2em; text-transform: uppercase; color: var(--txt-dim); margin-bottom: 1rem; }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 3.5vw, 2.9rem); font-weight: 300; line-height: 1.2; letter-spacing: -.01em; color: var(--txt); margin-bottom: 1rem; }
+    .cta-title strong { font-weight: 600; }
+    .cta-title .c-blue { color: var(--blue-lt); }
+    .cta-sub { font-size: .88rem; font-weight: 300; color: var(--txt-sub); max-width: 460px; margin: 0 auto 2rem; line-height: 1.85; }
+    .cta-btns { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    .footer { background: #0b0e17; border-top: 1px solid var(--border); padding: 2rem 0; }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer__brand { font-family: 'Cormorant Garamond', serif; font-size: .95rem; font-weight: 600; color: var(--txt-sub); }
+    .footer__brand em { font-style: italic; color: var(--blue); }
+    .footer__links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer__links a { font-size: .75rem; color: var(--txt-dim); transition: color .2s; }
+    .footer__links a:hover, .footer__links a:focus { color: var(--txt-sub); }
+    .footer__copy { font-size: .72rem; color: var(--txt-dim); }
+
+    /* ── Scroll reveal ── */
+    [data-r] { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+    [data-r].on { opacity: 1; transform: none; }
+
+    /* ── Entrance ── */
+    @keyframes up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+    .e1 { animation: up .65s var(--ease) .08s both; }
+    .e2 { animation: up .65s var(--ease) .18s both; }
+    .e3 { animation: up .65s var(--ease) .28s both; }
+    .e4 { animation: up .65s var(--ease) .38s both; }
+    .e5 { animation: up .65s var(--ease) .48s both; }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__card { display: none; }
+      .modules__grid { grid-template-columns: 1fr; }
+      .for-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .process-grid::before { display: none; }
+      .tools-grid { grid-template-columns: repeat(3,1fr); }
+      .nav__links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .for-grid { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2,1fr); }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="container nav__inner">
+        <a href="https://www.graphiverse.net/" class="nav__brand" aria-label="VerseCraft Digital Co home">
+          <span class="nav__brand-top">VerseCraft <em>Digital Co</em></span>
+          <span class="nav__brand-bot">Academy · Data &amp; Excel</span>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="#modules">Curriculum</a></li>
+          <li><a href="#for-whom">Who It's For</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://www.graphiverse.net/#services">All Services</a></li>
+        </ul>
+        <a href="https://www.graphiverse.net/#contact" class="nav__cta">Enroll Now</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__glow2" aria-hidden="true"></div>
+      <div class="hero__grid-bg" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div>
+          <span class="hero__tag e1">VerseCraft Academy — Now Open</span>
+          <h1 class="hero__title e2" id="hero-heading">
+            Become fluent in<br>
+            <strong class="c-blue">Data Architecture</strong><br>
+            &amp; <strong class="c-sage">Excel Analytics</strong>
+          </h1>
+          <p class="hero__desc e3">
+            Two expert-led training tracks that take you from messy raw data to polished, automated, insight-driven dashboards — all within tools you already use.
+          </p>
+          <div class="hero__chips e4" role="list" aria-label="Topics covered">
+            <span class="chip chip--blue" role="listitem">Data Wrangling</span>
+            <span class="chip chip--blue" role="listitem">SQL Connectivity</span>
+            <span class="chip chip--sage" role="listitem">Power Query</span>
+            <span class="chip chip--sage" role="listitem">XLOOKUP · LAMBDA</span>
+            <span class="chip chip--gold" role="listitem">Interactive Dashboards</span>
+          </div>
+          <div class="hero__ctas e5">
+            <a href="#modules" class="btn btn--primary">View Curriculum →</a>
+            <a href="https://www.graphiverse.net/#contact" class="btn btn--subtle">Request a Quote</a>
+          </div>
+        </div>
+
+        <div class="hero__card" aria-hidden="true">
+          <div class="hcard__head">
+            <span class="hcard__title">Academy Overview</span>
+            <span class="hcard__badge">2 Tracks · 6 Modules</span>
+          </div>
+          <div class="hcard__body">
+            <div class="hcard__track hcard__track--blue">
+              <div class="htrack__label htrack__label--blue">Track 01 — Data Architecture</div>
+              <div class="htrack__item htrack__item--blue">Data Wrangling &amp; Cleaning</div>
+              <div class="htrack__item htrack__item--blue">Validation &amp; Error Handling</div>
+              <div class="htrack__item htrack__item--blue">Database Connectivity (SQL / Web)</div>
+            </div>
+            <div class="hcard__track hcard__track--sage">
+              <div class="htrack__label htrack__label--sage">Track 02 — Excel Analytics</div>
+              <div class="htrack__item htrack__item--sage">Dynamic Modeling — XLOOKUP &amp; LAMBDA</div>
+              <div class="htrack__item htrack__item--sage">Automation via Power Query</div>
+              <div class="htrack__item htrack__item--sage">Interactive Dashboard Design</div>
+            </div>
+          </div>
+          <div class="hcard__footer">
+            <div class="hcard__stat">
+              <div class="hcard__stat-num">6</div>
+              <div class="hcard__stat-lbl">Modules</div>
+            </div>
+            <div class="hcard__stat">
+              <div class="hcard__stat-num">&lt;24h</div>
+              <div class="hcard__stat-lbl">Support</div>
+            </div>
+            <div class="hcard__stat">
+              <div class="hcard__stat-num">100%</div>
+              <div class="hcard__stat-lbl">Hands-on</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODULES -->
+    <section id="modules" class="sec sec--alt" aria-labelledby="modules-heading">
+      <div class="container">
+        <p class="sec-label" aria-hidden="true">Full Curriculum</p>
+        <h2 class="sec-title" id="modules-heading" data-r>Two tracks. <strong>Complete coverage.</strong></h2>
+        <p class="sec-sub" data-r>Each track stands alone, yet they're designed to complement each other perfectly. Master both and you control the full data pipeline — from source to story.</p>
+        <div class="modules__grid" data-r>
+
+          <article class="track" aria-labelledby="t1-heading">
+            <div class="track__top">
+              <span class="track__eyebrow track__eyebrow--blue">Track 01</span>
+              <h3 class="track__name" id="t1-heading">Advanced Data Architecture &amp; Handling</h3>
+              <p class="track__tagline">Build reliable, clean data foundations. Learn to tame messy real-world inputs and keep your models accurate and current.</p>
+            </div>
+            <ol class="track__lessons" aria-label="Lessons in Track 01">
+              <li class="lesson">
+                <span class="lesson__n" aria-hidden="true">01</span>
+                <div>
+                  <h4 class="lesson__name">Data Wrangling</h4>
+                  <p class="lesson__desc">Cleaning and transforming raw, messy data into structured, usable formats — handling duplicates, inconsistencies, and missing values at scale.</p>
+                  <span class="lesson__chip lesson__chip--blue">Foundations</span>
+                </div>
+              </li>
+              <li class="lesson">
+                <span class="lesson__n" aria-hidden="true">02</span>
+                <div>
+                  <h4 class="lesson__name">Data Integrity &amp; Validation</h4>
+                  <p class="lesson__desc">Setting up validation rules and error-handling systems so clean data enters your pipeline from the very first input — no surprises downstream.</p>
+                  <span class="lesson__chip lesson__chip--blue">Quality Control</span>
+                </div>
+              </li>
+              <li class="lesson">
+                <span class="lesson__n" aria-hidden="true">03</span>
+                <div>
+                  <h4 class="lesson__name">Database Connectivity</h4>
+                  <p class="lesson__desc">Connecting Excel to external sources — SQL databases, REST APIs, and live web data — so reports stay dynamic and refresh automatically.</p>
+                  <span class="lesson__chip lesson__chip--blue">Live Data</span>
+                </div>
+              </li>
+            </ol>
+            <div class="track__foot">
+              <a href="https://www.graphiverse.net/#contact" class="track__link track__link--blue">Enroll in Track 01 <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <article class="track track--sage" aria-labelledby="t2-heading">
+            <div class="track__top">
+              <span class="track__eyebrow track__eyebrow--sage">Track 02</span>
+              <h3 class="track__name" id="t2-heading">Expert-Level Excel Analytics</h3>
+              <p class="track__tagline">Move far beyond basic formulas. Automate workflows, build scalable models, and deliver stunning dashboards without leaving Excel.</p>
+            </div>
+            <ol class="track__lessons" aria-label="Lessons in Track 02">
+              <li class="lesson">
+                <span class="lesson__n" aria-hidden="true">01</span>
+                <div>
+                  <h4 class="lesson__name">Dynamic Modeling</h4>
+                  <p class="lesson__desc">Beyond VLOOKUP — using <code>XLOOKUP</code>, <code>LET</code>, and <code>LAMBDA</code> to build scalable, readable, and maintainable formula-driven models.</p>
+                  <span class="lesson__chip lesson__chip--sage">Advanced Formulas</span>
+                </div>
+              </li>
+              <li class="lesson">
+                <span class="lesson__n" aria-hidden="true">02</span>
+                <div>
+                  <h4 class="lesson__name">Automation with Power Query</h4>
+                  <p class="lesson__desc">Automate every repetitive data task — imports, transformations, merges — without writing a single line of code. Work smarter, not harder.</p>
+                  <span class="lesson__chip lesson__chip--sage">No-Code Automation</span>
+                </div>
+              </li>
+              <li class="lesson">
+                <span class="lesson__n" aria-hidden="true">03</span>
+                <div>
+                  <h4 class="lesson__name">Interactive Visual Storytelling</h4>
+                  <p class="lesson__desc">Building high-end interactive dashboards — slicers, dynamic charts, KPI panels — at the level seen in professional data portfolios, all inside Excel.</p>
+                  <span class="lesson__chip lesson__chip--sage">Dashboards</span>
+                </div>
+              </li>
+            </ol>
+            <div class="track__foot">
+              <a href="https://www.graphiverse.net/#contact" class="track__link track__link--sage">Enroll in Track 02 <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section id="for-whom" class="sec" aria-labelledby="for-heading">
+      <div class="container">
+        <p class="sec-label" aria-hidden="true">Audience</p>
+        <h2 class="sec-title" id="for-heading" data-r>Who this is <strong>built for</strong></h2>
+        <p class="sec-sub" data-r>Whether you're stepping up professionally or already deep in analytics — these tracks meet you where you are.</p>
+        <div class="for-grid" data-r>
+          <div class="for-card">
+            <div class="for-card__icon" aria-hidden="true">📊</div>
+            <h3 class="for-card__title">Analysts &amp; Planners</h3>
+            <p class="for-card__desc">Finance, ops, or business analysts who want to move faster, automate repetitive work, and present data more convincingly to stakeholders.</p>
+          </div>
+          <div class="for-card">
+            <div class="for-card__icon" aria-hidden="true">🏢</div>
+            <h3 class="for-card__title">Business Professionals</h3>
+            <p class="for-card__desc">Managers and consultants who work with Excel every day and want to unlock its full potential without switching to expensive BI tools.</p>
+          </div>
+          <div class="for-card">
+            <div class="for-card__icon" aria-hidden="true">🎓</div>
+            <h3 class="for-card__title">Students &amp; Career Switchers</h3>
+            <p class="for-card__desc">Anyone building a data-focused career who needs practical, portfolio-worthy skills that stand out in applications and interviews.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="sec sec--panel" aria-labelledby="process-heading">
+      <div class="container">
+        <header style="text-align:center; max-width:520px; margin:0 auto;">
+          <p class="sec-label" style="justify-content:center;" aria-hidden="true">How It Works</p>
+          <h2 class="sec-title" id="process-heading" data-r>From enrollment <strong>to expertise</strong></h2>
+        </header>
+        <ol class="process-grid" aria-label="Training process">
+          <li class="pstep" data-r>
+            <div class="pstep__n" aria-label="Step 1">01</div>
+            <h3 class="pstep__title">Discovery Call</h3>
+            <p class="pstep__desc">We assess your level and align the training to your specific goals and workflow.</p>
+          </li>
+          <li class="pstep" data-r>
+            <div class="pstep__n" aria-label="Step 2">02</div>
+            <h3 class="pstep__title">Tailored Plan</h3>
+            <p class="pstep__desc">One or both tracks — sessions adapt to your pace, schedule, and real data challenges.</p>
+          </li>
+          <li class="pstep" data-r>
+            <div class="pstep__n" aria-label="Step 3">03</div>
+            <h3 class="pstep__title">Hands-On Practice</h3>
+            <p class="pstep__desc">Every module is project-based — real datasets, deliverables you can use immediately.</p>
+          </li>
+          <li class="pstep" data-r>
+            <div class="pstep__n" aria-label="Step 4">04</div>
+            <h3 class="pstep__title">Ongoing Support</h3>
+            <p class="pstep__desc">Post-training expert guidance, file reviews, and Q&amp;A — all within 24 hours.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools" class="sec sec--alt" aria-labelledby="tools-heading">
+      <div class="container">
+        <p class="sec-label" aria-hidden="true">The Stack</p>
+        <h2 class="sec-title" id="tools-heading" data-r>Tools you'll <strong class="c-blue">master</strong></h2>
+        <p class="sec-sub" data-r>Industry-standard technologies used by analysts at leading organizations worldwide.</p>
+        <div class="tools-grid" data-r role="list" aria-label="Tools covered">
+          <div class="tool" role="listitem"><div class="tool__ic" aria-hidden="true">📗</div>Excel 365</div>
+          <div class="tool" role="listitem"><div class="tool__ic" aria-hidden="true">⚡</div>Power Query</div>
+          <div class="tool" role="listitem"><div class="tool__ic" aria-hidden="true">🔁</div>Power Pivot</div>
+          <div class="tool" role="listitem"><div class="tool__ic" aria-hidden="true">🗄️</div>SQL / MySQL</div>
+          <div class="tool" role="listitem"><div class="tool__ic" aria-hidden="true">🌐</div>Web Connectors</div>
+          <div class="tool" role="listitem"><div class="tool__ic" aria-hidden="true">λ</div>LAMBDA · LET</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="sec" aria-labelledby="faq-heading">
+      <div class="container">
+        <header style="text-align:center;">
+          <p class="sec-label" style="justify-content:center;" aria-hidden="true">Questions</p>
+          <h2 class="sec-title" id="faq-heading" data-r>Frequently asked</h2>
+        </header>
+        <div class="faq-list" data-r>
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq1">Do I need prior experience to enroll? <span class="faq-ic" aria-hidden="true">+</span></button>
+            <div class="faq-body" id="faq1" role="region"><p>Basic Excel familiarity is helpful, but no advanced skills are required for Track 01. During your discovery call we'll assess your level and find the right entry point. Track 02 pairs best with some formula experience.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq2">Can I take both tracks together? <span class="faq-ic" aria-hidden="true">+</span></button>
+            <div class="faq-body" id="faq2" role="region"><p>Yes — and we encourage it. Track 01 teaches you to architect reliable data; Track 02 teaches you to model and visualize it. Together they cover the entire professional analytics workflow.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq3">Are sessions live or self-paced? <span class="faq-ic" aria-hidden="true">+</span></button>
+            <div class="faq-body" id="faq3" role="region"><p>All training is delivered in live, personalized sessions tailored to your schedule. You get direct expert feedback and real-time Q&amp;A — far more effective than pre-recorded courses.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq4">How is pricing determined? <span class="faq-ic" aria-hidden="true">+</span></button>
+            <div class="faq-body" id="faq4" role="region"><p>Every engagement is quoted individually based on your goals, session count, and chosen tracks. Contact us for a free, no-obligation quote. Payment is 50% upfront and 50% upon completion.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-btn" aria-expanded="false" aria-controls="faq5">What support is available after training? <span class="faq-ic" aria-hidden="true">+</span></button>
+            <div class="faq-body" id="faq5" role="region"><p>All Academy students receive post-training support: file reviews, formula checks, and expert Q&amp;A responded to within 24 hours. We remain invested in your success after the last session.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-sec sec--alt" aria-labelledby="cta-heading">
+      <div class="cta-glow" aria-hidden="true"></div>
+      <div class="container cta-inner">
+        <p class="cta-label">VerseCraft Academy</p>
+        <h2 class="cta-title" id="cta-heading" data-r>Ready to take your<br><strong class="c-blue">data skills</strong> further?</h2>
+        <p class="cta-sub" data-r>Book a free discovery call. We'll design a personalised training plan and have you on track within days.</p>
+        <div class="cta-btns" data-r>
+          <a href="https://www.graphiverse.net/#contact" class="btn btn--primary">Book a Free Call →</a>
+          <a href="tel:+13094457438" class="btn btn--subtle">+1 (309) 445-7438</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <a href="https://www.graphiverse.net/" class="footer__brand" aria-label="VerseCraft Digital Co home">VerseCraft <em>Academy</em></a>
+      <ul class="footer__links" role="list">
+        <li><a href="#modules">Curriculum</a></li>
+        <li><a href="#for-whom">Who It's For</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://www.graphiverse.net/#contact">Contact</a></li>
+        <li><a href="https://www.graphiverse.net/#services">All Services</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 VerseCraft Digital Co. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+        });
+        if (!open) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      });
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e,i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i % 4) * .1 + 's';
+          e.target.classList.add('on');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-r]').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
