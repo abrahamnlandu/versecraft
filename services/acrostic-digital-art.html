@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acrostic &amp; Digital Art — VerseCraft Digital Co</title>
+<meta name="description" content="Personalized acrostic art with photo, custom name poems, gift-worthy designs, wall art creations and digital art. Unique, handcrafted gifts by VerseCraft Digital Co, Bloomington IL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ─── TOKENS ─────────────────────────────────── */
+:root {
+  --navy:         #08122A;
+  --navy-mid:     #0F1E40;
+  --navy-light:   #1A2E55;
+  --accent:       #C084FC; /* soft violet/orchid — evocative, artistic, warm */
+  --accent-lt:    #D8B4FE;
+  --accent-glow:  rgba(192,132,252,.15);
+  --accent-rgba:  192,132,252;
+  --gold:         #F59E0B;
+  --white:        #FFFFFF;
+  --off-white:    #EEF0F8;
+  --muted:        #7A8AAA;
+  --card:         rgba(255,255,255,.04);
+  --card-border:  rgba(255,255,255,.08);
+  --focus:        #C084FC;
+}
+
+/* ─── RESET ──────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;line-height:1.65}
+img{display:block;max-width:100%}
+
+/* ─── ADA ────────────────────────────────────── */
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:3px}
+.skip-link{
+  position:absolute;left:-9999px;top:0;z-index:9999;
+  background:var(--accent);color:#fff;font-weight:700;
+  padding:12px 22px;font-size:.9rem;text-decoration:none;border-radius:0 0 6px 0;
+}
+.skip-link:focus{left:0}
+
+/* ─── NAV ────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;height:70px;padding:0 6%;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:rgba(8,18,42,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--card-border);transition:height .3s ease;
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:600;
+  color:var(--white);text-decoration:none;white-space:nowrap;
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;
+  padding:7px 12px;border-radius:6px;transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.07)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.btn-back{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.07);border:1px solid var(--card-border);
+  color:var(--off-white);text-decoration:none;font-size:.8rem;font-weight:600;
+  padding:8px 16px;border-radius:6px;transition:all .2s;white-space:nowrap;
+}
+.btn-back:hover{background:rgba(255,255,255,.13);color:var(--white)}
+.btn-cta{
+  background:var(--accent);color:#fff;text-decoration:none;font-size:.82rem;
+  font-weight:700;padding:9px 20px;border-radius:6px;transition:all .2s;
+  white-space:nowrap;border:none;cursor:pointer;
+}
+.btn-cta:hover{background:var(--accent-lt);color:var(--navy)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);cursor:pointer;padding:6px}
+.nav-toggle svg{width:22px;height:22px}
+
+/* ─── HERO ───────────────────────────────────── */
+.hero{
+  padding-top:70px;min-height:min(100vh,820px);
+  display:flex;align-items:center;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 68% 38%,rgba(var(--accent-rgba),.09) 0%,transparent 68%),
+    radial-gradient(ellipse 55% 50% at 18% 72%,rgba(245,158,11,.05) 0%,transparent 60%),
+    var(--navy);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-inner{
+  max-width:1240px;margin:0 auto;padding:72px 6%;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  position:relative;z-index:2;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent-glow);border:1px solid rgba(var(--accent-rgba),.25);
+  color:var(--accent);font-size:.72rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 16px;border-radius:100px;margin-bottom:24px;
+}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.4rem,3.8vw,3.6rem);
+  font-weight:500;line-height:1.1;margin-bottom:20px;
+}
+.hero h1 .hl{
+  color:var(--accent);position:relative;display:inline-block;
+}
+.hero h1 .hl::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:2px;background:var(--accent);border-radius:2px;opacity:.7;
+}
+.hero-sub{
+  font-size:1rem;color:var(--muted);line-height:1.82;
+  margin-bottom:34px;max-width:460px;font-weight:300;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  display:flex;align-items:center;gap:6px;background:var(--card);
+  border:1px solid var(--card-border);border-radius:100px;
+  padding:5px 13px;font-size:.76rem;color:var(--muted);
+}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+/* ─── ACROSTIC DISPLAY (hero right) ──────────── */
+/* An artistic acrostic-style name display as a visual */
+.acrostic-display{
+  position:relative;display:flex;flex-direction:column;
+  gap:6px;padding:36px;
+  background:rgba(192,132,252,.06);
+  border:1px solid rgba(var(--accent-rgba),.18);
+  border-radius:16px;backdrop-filter:blur(4px);
+}
+.acrostic-display::before{
+  content:'';position:absolute;inset:-1px;border-radius:16px;
+  background:linear-gradient(135deg,rgba(var(--accent-rgba),.3),transparent 50%,rgba(245,158,11,.15));
+  z-index:-1;
+}
+.acrostic-label{
+  font-family:'Syne',sans-serif;font-size:.65rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:12px;
+}
+.acrostic-row{
+  display:flex;align-items:baseline;gap:16px;
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);
+}
+.acrostic-row:last-child{border-bottom:none}
+.acrostic-letter{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:600;
+  color:var(--accent);line-height:1;width:36px;flex-shrink:0;
+  text-shadow:0 0 20px rgba(var(--accent-rgba),.5);
+}
+.acrostic-word{
+  font-size:.9rem;font-weight:300;color:var(--off-white);line-height:1.4;
+  letter-spacing:.03em;
+}
+.acrostic-word strong{font-weight:600;color:var(--white)}
+.acrostic-photo-chip{
+  display:flex;align-items:center;gap:10px;margin-top:18px;
+  padding:12px 16px;background:var(--card);border:1px solid var(--card-border);
+  border-radius:10px;
+}
+.acrostic-photo-thumb{
+  width:44px;height:44px;border-radius:8px;object-fit:cover;flex-shrink:0;
+  border:2px solid rgba(var(--accent-rgba),.3);
+}
+.apc-text{font-size:.78rem;color:var(--muted);line-height:1.5}
+.apc-text strong{display:block;font-size:.85rem;color:var(--off-white);font-weight:600;margin-bottom:2px}
+
+/* ─── BUTTONS ────────────────────────────────── */
+.btn-primary{
+  background:var(--accent);color:#fff;padding:13px 30px;border-radius:7px;
+  font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  box-shadow:0 8px 28px rgba(var(--accent-rgba),.3);
+  transition:all .25s;display:inline-flex;align-items:center;gap:7px;
+}
+.btn-primary:hover{background:var(--accent-lt);color:var(--navy);transform:translateY(-2px)}
+.btn-wire{
+  background:transparent;color:var(--off-white);padding:12px 30px;border-radius:7px;
+  font-family:'Manrope',sans-serif;font-size:.88rem;font-weight:600;
+  text-decoration:none;border:1.5px solid rgba(255,255,255,.18);
+  transition:all .25s;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
+}
+.btn-wire:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+/* ─── STATS BAR ──────────────────────────────── */
+.stats-bar{
+  display:flex;background:var(--navy-mid);
+  border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);
+}
+.stat-cell{flex:1;padding:34px 24px;text-align:center;border-right:1px solid var(--card-border)}
+.stat-cell:last-child{border-right:none}
+.stat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:500;color:var(--accent);line-height:1}
+.stat-lbl{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
+
+/* ─── PHOTO STRIP ────────────────────────────── */
+.strip-section{
+  background:var(--navy-mid);overflow:hidden;padding:50px 0;
+  border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);
+  position:relative;
+}
+.strip-label{
+  text-align:center;margin-bottom:26px;
+  font-family:'Syne',sans-serif;font-size:.7rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+}
+.strip-wrap{position:relative}
+.strip-track{
+  display:flex;gap:14px;width:max-content;
+  animation:stripScroll 42s linear infinite;
+}
+.strip-track:hover{animation-play-state:paused}
+@keyframes stripScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.strip-item{
+  flex:0 0 auto;width:300px;height:210px;border-radius:10px;
+  overflow:hidden;position:relative;background:var(--navy-light);
+}
+.strip-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.strip-item:hover img,.strip-item:focus img{transform:scale(1.06)}
+.strip-caption{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,18,42,.9) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:16px 18px;opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.strip-item:hover .strip-caption,.strip-item:focus .strip-caption{opacity:1}
+.strip-cat{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:3px;font-weight:700}
+.strip-ttl{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:600;line-height:1.3}
+.strip-fade-l,.strip-fade-r{position:absolute;top:0;bottom:0;width:100px;pointer-events:none;z-index:2}
+.strip-fade-l{left:0;background:linear-gradient(to right,var(--navy-mid),transparent)}
+.strip-fade-r{right:0;background:linear-gradient(to left,var(--navy-mid),transparent)}
+
+/* ─── SECTION LAYOUT ─────────────────────────── */
+.wrap{max-width:1240px;margin:0 auto;padding:56px 6%}
+.bg-mid{background:rgba(15,30,64,.55)}
+.st{font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,2.5vw,2.4rem);font-weight:500;line-height:1.2;margin-bottom:12px}
+.ssub{font-size:.97rem;color:var(--muted);line-height:1.82;max-width:580px;margin-bottom:36px;font-weight:300}
+
+/* ─── SERVICE CARDS ──────────────────────────── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.svc-card{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:14px;padding:32px 28px;
+  transition:border-color .3s,transform .3s;position:relative;overflow:hidden;
+}
+.svc-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
+}
+.svc-card:hover{border-color:rgba(var(--accent-rgba),.3);transform:translateY(-5px)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{font-size:2rem;margin-bottom:16px;display:block}
+.svc-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:500;margin-bottom:10px}
+.svc-card p{font-size:.86rem;color:var(--muted);line-height:1.75;margin-bottom:18px}
+.svc-ul{list-style:none;margin-bottom:22px}
+.svc-ul li{
+  font-size:.83rem;color:var(--off-white);padding:6px 0;
+  border-bottom:1px solid var(--card-border);
+  display:flex;align-items:center;gap:8px;
+}
+.svc-ul li::before{content:'✦';color:var(--accent);font-size:.6rem;flex-shrink:0}
+.svc-cta{
+  font-size:.82rem;font-weight:700;color:var(--accent);text-decoration:none;
+  display:inline-flex;align-items:center;gap:5px;
+  background:none;border:none;cursor:pointer;font-family:'Manrope',sans-serif;
+  padding:0;border-bottom:1px solid transparent;transition:border-color .2s;
+}
+.svc-cta:hover{border-bottom-color:var(--accent)}
+
+/* ─── HOW IT WORKS (visual timeline) ─────────── */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;position:relative}
+.process-grid::before{
+  content:'';position:absolute;top:28px;left:10%;right:10%;height:1px;
+  background:linear-gradient(to right,transparent,rgba(var(--accent-rgba),.3),transparent);
+}
+.proc-step{padding:0 24px 0;text-align:center;position:relative}
+.proc-dot{
+  width:56px;height:56px;border-radius:50%;margin:0 auto 18px;
+  background:var(--card);border:1px solid rgba(var(--accent-rgba),.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:600;color:var(--accent);
+  position:relative;z-index:1;transition:background .3s,border-color .3s;
+}
+.proc-step:hover .proc-dot{background:rgba(var(--accent-rgba),.15);border-color:var(--accent)}
+.proc-step h4{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:600;margin-bottom:8px}
+.proc-step p{font-size:.83rem;color:var(--muted);line-height:1.75}
+
+/* ─── GIFT USE CASES ─────────────────────────── */
+.gifts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.gift-card{
+  background:var(--card);border:1px solid var(--card-border);border-radius:12px;
+  padding:24px 20px;text-align:center;transition:border-color .3s,transform .3s;
+}
+.gift-card:hover{border-color:rgba(var(--accent-rgba),.3);transform:translateY(-3px)}
+.gift-emoji{font-size:2.2rem;margin-bottom:12px;display:block}
+.gift-card h4{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:600;margin-bottom:6px}
+.gift-card p{font-size:.8rem;color:var(--muted);line-height:1.65}
+
+/* ─── PORTFOLIO GRID ─────────────────────────── */
+.port-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:32px}
+.port-item{
+  border-radius:12px;overflow:hidden;position:relative;
+  background:var(--navy-light);aspect-ratio:4/3;cursor:pointer;
+}
+.port-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.port-item:hover img,.port-item:focus-within img{transform:scale(1.06)}
+.port-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(8,18,42,.9) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px;opacity:0;transition:opacity .3s;
+}
+.port-item:hover .port-overlay,.port-item:focus-within .port-overlay{opacity:1}
+.p-cat{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;font-weight:700}
+.p-ttl{font-family:'Syne',sans-serif;font-size:1rem;font-weight:500;line-height:1.3}
+.p-desc{font-size:.8rem;color:var(--muted);margin-top:4px}
+
+/* ─── TESTIMONIALS ───────────────────────────── */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.testi{
+  background:var(--card);border:1px solid var(--card-border);
+  border-radius:12px;padding:28px;position:relative;
+}
+.testi::before{
+  content:'\201C';position:absolute;top:12px;left:20px;
+  font-family:'Syne',sans-serif;font-size:4rem;font-weight:400;
+  color:var(--accent);opacity:.18;line-height:1;pointer-events:none;
+}
+.testi blockquote{font-size:.92rem;color:var(--off-white);line-height:1.8;margin-bottom:18px;padding-top:6px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-av{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--navy-light));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:.85rem;font-weight:600;
+}
+.testi-name{font-size:.86rem;font-weight:700}
+.testi-role{font-size:.76rem;color:var(--muted);margin-top:1px}
+
+/* ─── FAQ ────────────────────────────────────── */
+.faq-list{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--card-border)}
+.faq-btn{
+  width:100%;background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 0;text-align:left;color:var(--white);
+  font-family:'Manrope',sans-serif;font-size:.95rem;font-weight:600;gap:16px;
+}
+.faq-btn:hover{color:var(--accent)}
+.faq-icon{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  background:var(--card);border:1px solid var(--card-border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;transition:transform .3s,background .3s;
+}
+.faq-btn[aria-expanded="true"] .faq-icon{
+  transform:rotate(45deg);background:var(--accent-glow);border-color:rgba(var(--accent-rgba),.3);
+}
+.faq-body{overflow:hidden;max-height:0;transition:max-height .35s ease}
+.faq-body-inner{padding:0 0 18px;font-size:.9rem;color:var(--muted);line-height:1.8}
+
+/* ─── CONTACT ────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:start}
+.contact-left h2{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:500;margin-bottom:14px}
+.contact-left p{font-size:.94rem;color:var(--muted);line-height:1.82;margin-bottom:26px;font-weight:300}
+.c-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.c-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.c-lbl{font-size:.71rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:2px}
+.c-val{font-size:.9rem;color:var(--off-white)}
+.c-val a{color:var(--accent);text-decoration:none}
+.c-val a:hover{text-decoration:underline}
+.form-box{background:var(--card);border:1px solid var(--card-border);border-radius:16px;padding:38px}
+.form-box h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:500;margin-bottom:26px}
+.fg{margin-bottom:16px}
+.fg label{
+  display:block;font-size:.77rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:6px;
+}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:rgba(255,255,255,.04);border:1px solid var(--card-border);
+  border-radius:8px;padding:11px 14px;
+  font-family:'Manrope',sans-serif;font-size:.9rem;color:var(--white);
+  transition:border-color .2s,background .2s;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--accent);background:rgba(var(--accent-rgba),.04);outline:none;
+}
+.fg select option{background:var(--navy-mid);color:var(--white)}
+.fg textarea{min-height:120px;resize:vertical}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-submit{
+  width:100%;background:var(--accent);color:#fff;border:none;border-radius:8px;
+  padding:14px;font-family:'Manrope',sans-serif;font-size:.9rem;font-weight:700;
+  cursor:pointer;letter-spacing:.04em;
+  box-shadow:0 6px 24px rgba(var(--accent-rgba),.25);transition:all .25s;
+}
+.btn-submit:hover{background:var(--accent-lt);color:var(--navy);transform:translateY(-1px)}
+
+/* ─── BACK TO MAIN BANNER ────────────────────── */
+.main-banner{
+  background:linear-gradient(135deg,var(--navy-mid),var(--navy-light));
+  border-top:1px solid var(--card-border);padding:44px 6%;text-align:center;
+}
+.main-banner h2{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:500;margin-bottom:12px}
+.main-banner p{font-size:.97rem;color:var(--muted);max-width:520px;margin:0 auto 30px;line-height:1.8}
+.main-banner-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ─── FOOTER ─────────────────────────────────── */
+footer{background:rgba(5,10,20,.95);border-top:1px solid var(--card-border);padding:52px 6% 26px}
+.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer-brand{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:600;margin-bottom:12px}
+.footer-brand span{color:var(--accent)}
+.footer-desc{font-size:.83rem;color:var(--muted);line-height:1.8}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--off-white);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:9px}
+.footer-col a{text-decoration:none;color:var(--muted);font-size:.83rem;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bot{max-width:1240px;margin:0 auto;padding-top:22px;border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-bot span{font-size:.78rem;color:var(--muted)}
+
+/* ─── MODAL ──────────────────────────────────── */
+.modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(5,10,20,.85);align-items:center;justify-content:center}
+.modal-box{background:var(--navy-mid);border:1px solid var(--card-border);border-radius:20px;padding:48px 40px;max-width:420px;width:90%;text-align:center}
+.modal-icon{font-size:3rem;margin-bottom:14px}
+.modal-box h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:500;margin-bottom:10px}
+.modal-box p{font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:24px}
+.modal-close{background:var(--accent);color:#fff;border:none;padding:11px 26px;border-radius:7px;font-family:'Manrope',sans-serif;font-size:.87rem;font-weight:700;cursor:pointer}
+.modal-close:hover{background:var(--accent-lt);color:var(--navy)}
+
+/* ─── CARD ANIMATIONS ────────────────────────── */
+.svc-card{animation:fadeUp .5s ease both}
+.svc-card:nth-child(1){animation-delay:.05s}
+.svc-card:nth-child(2){animation-delay:.1s}
+.svc-card:nth-child(3){animation-delay:.15s}
+.svc-card:nth-child(4){animation-delay:.2s}
+.svc-card:nth-child(5){animation-delay:.25s}
+.gift-card{animation:fadeUp .45s ease both}
+.gift-card:nth-child(1){animation-delay:.04s}
+.gift-card:nth-child(2){animation-delay:.08s}
+.gift-card:nth-child(3){animation-delay:.12s}
+.gift-card:nth-child(4){animation-delay:.16s}
+.gift-card:nth-child(5){animation-delay:.20s}
+.gift-card:nth-child(6){animation-delay:.24s}
+.proc-step{animation:fadeUp .5s ease both}
+.proc-step:nth-child(1){animation-delay:.05s}
+.proc-step:nth-child(2){animation-delay:.1s}
+.proc-step:nth-child(3){animation-delay:.15s}
+.proc-step:nth-child(4){animation-delay:.2s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ─── RESPONSIVE ─────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:44px}
+  .acrostic-display{max-width:520px}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .process-grid::before{display:none}
+}
+@media(max-width:768px){
+  nav{padding:0 5%}
+  .nav-links{display:none}
+  .nav-links.open{
+    display:flex;flex-direction:column;position:fixed;top:70px;left:0;right:0;
+    background:rgba(8,18,42,.98);padding:18px;gap:4px;
+    border-bottom:1px solid var(--card-border);z-index:199;
+  }
+  .nav-toggle{display:block}
+  .wrap{padding:44px 5%}
+  .stats-bar{flex-wrap:wrap}
+  .stat-cell{min-width:50%;border-right:none;border-bottom:1px solid var(--card-border)}
+  .stat-cell:nth-child(3),.stat-cell:nth-child(4){border-bottom:none}
+  .strip-item{width:240px;height:170px}
+  .form-box{padding:26px}
+  .form-row2{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .main-banner-btns{flex-direction:column;align-items:center}
+  .gifts-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2.2rem}
+  .port-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .acrostic-letter{font-size:1.6rem;width:28px}
+}
+@media(prefers-reduced-motion:reduce){
+  .strip-track{animation:none}
+  .svc-card,.gift-card,.proc-step{animation:none}
+}
+@media(forced-colors:active){
+  .btn-primary,.btn-submit,.btn-cta{forced-color-adjust:none}
+}
+</style>
+</head>
+<body>
+
+<a href="#services" class="skip-link">Skip to main content</a>
+
+<!-- ══════ NAV ══════ -->
+<nav aria-label="Main navigation">
+  <a href="https://www.graphiverse.net/" class="nav-logo" aria-label="VerseCraft Digital Co — Home">
+    VerseCraft <span>Digital Co</span>
+  </a>
+  <ul class="nav-links" id="nav-menu" role="list">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.graphiverse.net/" class="btn-back" aria-label="Return to VerseCraft main website">← Main Site</a>
+    <a href="#contact" class="btn-cta">Get a Quote</a>
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+
+    <div>
+      <div class="hero-badge">✨ Acrostic &amp; Digital Art</div>
+      <h1 id="hero-title">
+        Art That Spells<br>
+        Out Every<br>
+        <span class="hl">Emotion</span>
+      </h1>
+      <p class="hero-sub">
+        Personalized acrostic poems woven into stunning visual art — each letter revealing a word that captures your story. Custom name poems, wall art, and digital creations made to be gifted and treasured forever.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Order Your Art →</a>
+        <a href="#portfolio" class="btn-wire">See Examples</a>
+      </div>
+      <div class="hero-chips" role="list" aria-label="Highlights">
+        <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Personalized</span>
+        <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Gift-Ready</span>
+        <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Wall Art</span>
+        <span class="chip" role="listitem"><span class="chip-dot" aria-hidden="true"></span>Digital Delivery</span>
+      </div>
+    </div>
+
+    <!-- Live acrostic display — artistic representation -->
+    <div class="acrostic-display" aria-label="Example acrostic art for the name GRACE" role="img">
+      <div class="acrostic-label">Acrostic Art Example</div>
+
+      <div class="acrostic-row">
+        <span class="acrostic-letter" aria-hidden="true">G</span>
+        <span class="acrostic-word"><strong>Graceful</strong> in every step you take</span>
+      </div>
+      <div class="acrostic-row">
+        <span class="acrostic-letter" aria-hidden="true">R</span>
+        <span class="acrostic-word"><strong>Radiant</strong> light that fills the room</span>
+      </div>
+      <div class="acrostic-row">
+        <span class="acrostic-letter" aria-hidden="true">A</span>
+        <span class="acrostic-word"><strong>Adored</strong> by all who know your heart</span>
+      </div>
+      <div class="acrostic-row">
+        <span class="acrostic-letter" aria-hidden="true">C</span>
+        <span class="acrostic-word"><strong>Cherished</strong> beyond all measure</span>
+      </div>
+      <div class="acrostic-row">
+        <span class="acrostic-letter" aria-hidden="true">E</span>
+        <span class="acrostic-word"><strong>Extraordinary</strong> in every way</span>
+      </div>
+
+      <div class="acrostic-photo-chip">
+        <img class="acrostic-photo-thumb"
+             src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&auto=format&fit=crop&q=80"
+             alt="Example portrait photo used in acrostic art">
+        <div class="apc-text">
+          <strong>With Photo Integration</strong>
+          Your portrait beautifully woven into the design
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════ STATS ══════ -->
+<div class="stats-bar" role="list" aria-label="Studio statistics">
+  <div class="stat-cell" role="listitem">
+    <div class="stat-num">500+</div>
+    <div class="stat-lbl">Pieces Created</div>
+  </div>
+  <div class="stat-cell" role="listitem">
+    <div class="stat-num">100%</div>
+    <div class="stat-lbl">Personalized</div>
+  </div>
+  <div class="stat-cell" role="listitem">
+    <div class="stat-num">48h</div>
+    <div class="stat-lbl">Avg Delivery</div>
+  </div>
+  <div class="stat-cell" role="listitem">
+    <div class="stat-num">5★</div>
+    <div class="stat-lbl">Client Rating</div>
+  </div>
+</div>
+
+<!-- ══════ PHOTO STRIP ══════ -->
+<section class="strip-section" aria-label="Portfolio art showcase">
+  <p class="strip-label" aria-hidden="true">Our Work — Acrostic &amp; Digital Art Portfolio</p>
+  <div class="strip-wrap">
+    <div class="strip-fade-l" aria-hidden="true"></div>
+    <div class="strip-fade-r" aria-hidden="true"></div>
+    <!--
+    ══════════════════════════════════════════════
+    PHOTO STRIP — Replace each src="" with your own artwork photos.
+    JS duplicates these 8 items for the seamless infinite scroll.
+    ══════════════════════════════════════════════
+    -->
+    <div class="strip-track" id="strip-track" role="list" aria-label="Scrolling art portfolio">
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://www.graphiverse.net/imgs/01.jpg"
+             alt="Personalized acrostic name art with photo" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Acrostic Art</span>
+          <span class="strip-ttl">Name Art with Photo</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://www.graphiverse.net/imgs/04.jpg"
+             alt="Family name artwork with photo integration" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Family Art</span>
+          <span class="strip-ttl">Family Name Artwork</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=640&auto=format&fit=crop&q=85"
+             alt="Digital art creation with abstract colors" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Digital Art</span>
+          <span class="strip-ttl">Abstract Digital Creation</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=640&auto=format&fit=crop&q=85"
+             alt="Watercolor style digital painting" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Digital Art</span>
+          <span class="strip-ttl">Watercolor Portrait</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=640&auto=format&fit=crop&q=85"
+             alt="Custom wall art print on canvas" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Wall Art</span>
+          <span class="strip-ttl">Canvas Print Creation</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=640&auto=format&fit=crop&q=85"
+             alt="Colorful illustration digital artwork" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Digital Art</span>
+          <span class="strip-ttl">Colorful Illustration</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=640&auto=format&fit=crop&q=85"
+             alt="Portrait photo integrated into acrostic poem design" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Acrostic Art</span>
+          <span class="strip-ttl">Portrait Poem Art</span>
+        </div>
+      </figure>
+
+      <figure class="strip-item" role="listitem" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=640&auto=format&fit=crop&q=85"
+             alt="Bold digital graphic artwork in vibrant colors" loading="lazy">
+        <div class="strip-caption" aria-hidden="true">
+          <span class="strip-cat">Digital Art</span>
+          <span class="strip-ttl">Vibrant Digital Piece</span>
+        </div>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SERVICES ══════ -->
+<div class="bg-mid">
+  <div class="wrap" id="services">
+    <div class="st">What We Create</div>
+    <h2 class="stitle">Acrostic &amp; Digital Art Services</h2>
+    <p class="ssub">Every piece is handcrafted just for you — no templates, no shortcuts. Just meaningful art that tells your unique story.</p>
+
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <span class="svc-icon" aria-hidden="true">✍️</span>
+        <h3>Personalized Acrostic Art with Photo</h3>
+        <p>Your name or a loved one's name transformed into a beautiful poem, illustrated with a portrait photo woven seamlessly into the design.</p>
+        <ul class="svc-ul" aria-label="Acrostic Art with Photo features">
+          <li>Custom poem written for your name</li>
+          <li>Your photo artistically integrated</li>
+          <li>Multiple style options (elegant, modern, floral)</li>
+          <li>High-resolution digital file for printing</li>
+          <li>Ready in 24–48 hours</li>
+        </ul>
+        <a href="#contact" class="svc-cta" aria-label="Order Acrostic Art with Photo">Order Now →</a>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon" aria-hidden="true">📜</span>
+        <h3>Custom Name Poems</h3>
+        <p>A beautifully written acrostic poem using your chosen name or word — heartfelt, original, and designed to move whoever receives it.</p>
+        <ul class="svc-ul" aria-label="Custom Name Poem features">
+          <li>Unique poem crafted word by word</li>
+          <li>Any name, word, or short phrase</li>
+          <li>Elegant typographic layout</li>
+          <li>Available in multiple languages</li>
+          <li>Print-ready + digital delivery</li>
+        </ul>
+        <a href="#contact" class="svc-cta" aria-label="Order a Custom Name Poem">Order Now →</a>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon" aria-hidden="true">🎁</span>
+        <h3>Gift-Worthy Designs</h3>
+        <p>Artfully packaged digital art pieces designed specifically to be given as gifts — with custom framing options and premium presentation.</p>
+        <ul class="svc-ul" aria-label="Gift-Worthy Design features">
+          <li>Occasions: birthdays, weddings, anniversaries</li>
+          <li>Baby showers &amp; baptisms</li>
+          <li>Graduation &amp; retirement gifts</li>
+          <li>Gift card &amp; digital greeting included</li>
+          <li>Rush 24-hour option available</li>
+        </ul>
+        <a href="#contact" class="svc-cta" aria-label="Order a Gift Design">Order Now →</a>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon" aria-hidden="true">🖼️</span>
+        <h3>Wall Art Creations</h3>
+        <p>Statement pieces sized and crafted for your walls — living room, nursery, office, or hallway. Designed to complement your space and speak to your story.</p>
+        <ul class="svc-ul" aria-label="Wall Art features">
+          <li>Custom sizing (8×10" up to 24×36")</li>
+          <li>Canvas, poster &amp; frame-ready formats</li>
+          <li>Family names &amp; meaningful words</li>
+          <li>Coordinated multi-piece sets</li>
+          <li>High-res 300dpi print files</li>
+        </ul>
+        <a href="#contact" class="svc-cta" aria-label="Order Wall Art">Order Now →</a>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon" aria-hidden="true">🎨</span>
+        <h3>Digital Art</h3>
+        <p>Original digital illustrations, portraits, and artistic compositions created from scratch — your vision brought to life with color, texture, and craft.</p>
+        <ul class="svc-ul" aria-label="Digital Art features">
+          <li>Custom digital portraits</li>
+          <li>Abstract &amp; decorative compositions</li>
+          <li>Illustrated characters &amp; scenes</li>
+          <li>Logo illustration &amp; mascot design</li>
+          <li>Social media &amp; profile art</li>
+        </ul>
+        <a href="#contact" class="svc-cta" aria-label="Order Digital Art">Order Now →</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ GIFT OCCASIONS ══════ -->
+<div class="wrap">
+  <div class="st">Perfect For</div>
+  <h2 class="stitle">Every Special Occasion</h2>
+  <p class="ssub">Our acrostic art pieces make unforgettable gifts for life's most meaningful moments.</p>
+
+  <div class="gifts-grid" role="list" aria-label="Gift occasions">
+    <div class="gift-card" role="listitem">
+      <span class="gift-emoji" aria-hidden="true">💍</span>
+      <h4>Weddings</h4>
+      <p>Immortalize the couple's names in a stunning keepsake they'll cherish forever.</p>
+    </div>
+    <div class="gift-card" role="listitem">
+      <span class="gift-emoji" aria-hidden="true">🎂</span>
+      <h4>Birthdays</h4>
+      <p>A one-of-a-kind gift that shows exactly how much thought went into it.</p>
+    </div>
+    <div class="gift-card" role="listitem">
+      <span class="gift-emoji" aria-hidden="true">👶</span>
+      <h4>Baby &amp; Baptism</h4>
+      <p>Welcome a new life with art featuring their name and your heartfelt words.</p>
+    </div>
+    <div class="gift-card" role="listitem">
+      <span class="gift-emoji" aria-hidden="true">🎓</span>
+      <h4>Graduation</h4>
+      <p>Celebrate their achievement with a poem that reflects their journey and future.</p>
+    </div>
+    <div class="gift-card" role="listitem">
+      <span class="gift-emoji" aria-hidden="true">❤️</span>
+      <h4>Anniversaries</h4>
+      <p>Mark another year of love with a deeply personal piece of art just for them.</p>
+    </div>
+    <div class="gift-card" role="listitem">
+      <span class="gift-emoji" aria-hidden="true">🏠</span>
+      <h4>Housewarming</h4>
+      <p>A family name piece or meaningful word to warm their brand-new home.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ HOW IT WORKS ══════ -->
+<div class="bg-mid">
+  <div class="wrap">
+    <div class="st">How It Works</div>
+    <h2 class="stitle">From Order to Art in 4 Simple Steps</h2>
+    <p class="ssub">Getting your personalized piece is easy — we do all the creative heavy lifting.</p>
+
+    <div class="process-grid" role="list" aria-label="Order process steps">
+      <div class="proc-step" role="listitem">
+        <div class="proc-dot" aria-hidden="true">01</div>
+        <h4>Send Your Details</h4>
+        <p>Share the name, occasion, your photo (optional), and any style preferences via our contact form.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-dot" aria-hidden="true">02</div>
+        <h4>We Craft Your Poem</h4>
+        <p>Our artist writes a unique poem for your name and designs the layout with care and creativity.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-dot" aria-hidden="true">03</div>
+        <h4>Preview &amp; Refine</h4>
+        <p>We share a preview for your approval. Up to 3 rounds of revisions — until it's perfect.</p>
+      </div>
+      <div class="proc-step" role="listitem">
+        <div class="proc-dot" aria-hidden="true">04</div>
+        <h4>Download &amp; Print</h4>
+        <p>Receive your high-resolution file, ready to print at any size or display digitally anywhere.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PORTFOLIO ══════ -->
+<div class="wrap" id="portfolio">
+  <div class="st">Our Work</div>
+  <h2 class="stitle">Our Portfolio</h2>
+  <p class="ssub">A glimpse of the personalized art we've created — each piece unique, each one meaningful.</p>
+
+  <div class="port-grid">
+
+    <div class="port-item" tabindex="0">
+      <img src="https://www.graphiverse.net/imgs/01.jpg"
+           alt="Custom acrostic poem artwork for a wedding gift — name poem with photo" loading="lazy">
+      <div class="port-overlay" aria-hidden="true">
+        <div class="p-cat">Acrostic Art</div>
+        <div class="p-ttl">Personalized Name Art</div>
+        <div class="p-desc">Custom acrostic poem artwork for a wedding gift</div>
+      </div>
+    </div>
+
+    <div class="port-item" tabindex="0">
+      <img src="https://www.graphiverse.net/imgs/04.jpg"
+           alt="Family name artwork with custom photo integration for a family home" loading="lazy">
+      <div class="port-overlay" aria-hidden="true">
+        <div class="p-cat">Family Art</div>
+        <div class="p-ttl">Family Name Artwork</div>
+        <div class="p-desc">Custom family name artwork with photo integration</div>
+      </div>
+    </div>
+
+    <div class="port-item" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&auto=format&fit=crop&q=85"
+           alt="Abstract digital art creation with vivid colors" loading="lazy">
+      <div class="port-overlay" aria-hidden="true">
+        <div class="p-cat">Digital Art</div>
+        <div class="p-ttl">Abstract Digital Piece</div>
+        <div class="p-desc">Original digital art created for a private collector</div>
+      </div>
+    </div>
+
+    <div class="port-item" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&auto=format&fit=crop&q=85"
+           alt="Watercolor style digital portrait painting" loading="lazy">
+      <div class="port-overlay" aria-hidden="true">
+        <div class="p-cat">Digital Art</div>
+        <div class="p-ttl">Watercolor Portrait</div>
+        <div class="p-desc">Custom watercolor-style digital portrait</div>
+      </div>
+    </div>
+
+    <div class="port-item" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&auto=format&fit=crop&q=85"
+           alt="Custom wall art print created for a living room" loading="lazy">
+      <div class="port-overlay" aria-hidden="true">
+        <div class="p-cat">Wall Art</div>
+        <div class="p-ttl">Large Format Wall Art</div>
+        <div class="p-desc">Statement wall art for a client's living room</div>
+      </div>
+    </div>
+
+    <div class="port-item" tabindex="0">
+      <img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=600&auto=format&fit=crop&q=85"
+           alt="Colorful illustration created as a birthday gift" loading="lazy">
+      <div class="port-overlay" aria-hidden="true">
+        <div class="p-cat">Gift Design</div>
+        <div class="p-ttl">Birthday Gift Illustration</div>
+        <div class="p-desc">Vibrant illustration created as a birthday surprise</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center">
+    <a href="https://www.graphiverse.net/#portfolio" class="btn-primary"
+       aria-label="View full portfolio on VerseCraft main website">
+      See Full Portfolio on graphiverse.net →
+    </a>
+  </div>
+</div>
+
+<!-- ══════ TESTIMONIALS ══════ -->
+<div class="bg-mid">
+  <div class="wrap">
+    <div class="st">Social Proof</div>
+    <h2 class="stitle">What Our Clients Say</h2>
+    <div class="testi-grid" style="margin-top:32px">
+
+      <div class="testi">
+        <blockquote>"The personalized acrostic art they created for my parents' anniversary brought tears to their eyes. Absolutely beautiful work!"</blockquote>
+        <div class="testi-author">
+          <div class="testi-av" aria-hidden="true">MC</div>
+          <div>
+            <div class="testi-name">Michael Chen</div>
+            <div class="testi-role">Anniversary Gift Customer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <blockquote>"I ordered a family name art piece for our new home and it's the first thing everyone notices when they walk in. Stunning quality."</blockquote>
+        <div class="testi-author">
+          <div class="testi-av" aria-hidden="true">AL</div>
+          <div>
+            <div class="testi-name">Amanda Lewis</div>
+            <div class="testi-role">Housewarming Gift Customer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <blockquote>"Got a custom digital portrait for my best friend's birthday. She cried happy tears — it was that personal and that beautiful. 10/10."</blockquote>
+        <div class="testi-author">
+          <div class="testi-av" aria-hidden="true">JR</div>
+          <div>
+            <div class="testi-name">Jessica Rivera</div>
+            <div class="testi-role">Birthday Gift Customer</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FAQ ══════ -->
+<div class="wrap" id="faq">
+  <div class="st">Got Questions?</div>
+  <h2 class="stitle" style="text-align:center">Frequently Asked Questions</h2>
+  <div class="faq-list" role="list">
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-btn" aria-expanded="false" aria-controls="fa1" id="fq1">
+        What information do I need to provide to get started?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body" id="fa1" role="region" aria-labelledby="fq1">
+        <div class="faq-body-inner">Just the name or word you'd like us to use, the occasion (so we can tailor the tone), your preferred style, and optionally a photo if you'd like it integrated. You can share all of this through our contact form.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-btn" aria-expanded="false" aria-controls="fa2" id="fq2">
+        How long does it take to receive my art?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body" id="fa2" role="region" aria-labelledby="fq2">
+        <div class="faq-body-inner">Most pieces are delivered within 24–48 hours. For complex designs or rush orders (same-day), please mention this in your request and we'll do our best to accommodate. Large wall art or multi-piece sets may take 3–5 days.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-btn" aria-expanded="false" aria-controls="fa3" id="fq3">
+        What file format will I receive?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body" id="fa3" role="region" aria-labelledby="fq3">
+        <div class="faq-body-inner">You'll receive a high-resolution PNG or PDF file at 300dpi — suitable for printing at any standard size. We can also provide JPEG for digital display. Just let us know your preferred format and intended print size.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-btn" aria-expanded="false" aria-controls="fa4" id="fq4">
+        Do you offer revisions?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body" id="fa4" role="region" aria-labelledby="fq4">
+        <div class="faq-body-inner">Yes — we offer up to 3 rounds of revisions on every order. We want you to absolutely love the final piece. If you'd like changes to the poem wording, colors, layout, or photo placement, just let us know.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-btn" aria-expanded="false" aria-controls="fa5" id="fq5">
+        Can you do names in other languages?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body" id="fa5" role="region" aria-labelledby="fq5">
+        <div class="faq-body-inner">Absolutely! We support acrostic art in English, French, Spanish, and more. Just mention the language in your order and we'll craft the poem accordingly. VerseCraft serves clients globally.</div>
+      </div>
+    </div>
+
+    <div class="faq-item" role="listitem">
+      <button class="faq-btn" aria-expanded="false" aria-controls="fa6" id="fq6">
+        What payment methods do you accept?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-body" id="fa6" role="region" aria-labelledby="fq6">
+        <div class="faq-body-inner">We accept credit cards, PayPal, mobile money, and bank transfers. Payment is split: 50% upfront to begin your piece and 50% upon delivery of the final file.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════ CONTACT ══════ -->
+<div class="bg-mid">
+  <div class="wrap" id="contact" style="padding-bottom:40px">
+    <div class="st">Let's Create Together</div>
+    <h2 class="stitle">Order Your Piece</h2>
+    <div class="contact-grid">
+
+      <div class="contact-left">
+        <h2>Ready to start your order?</h2>
+        <p>Fill in the form and we'll get back to you within 24 hours with a confirmation and any questions we need to create your perfect piece.</p>
+        <div class="c-item">
+          <div class="c-icon" aria-hidden="true">📍</div>
+          <div>
+            <div class="c-lbl">Location</div>
+            <div class="c-val">Bloomington, IL 61701 / USA</div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon" aria-hidden="true">📞</div>
+          <div>
+            <div class="c-lbl">Phone</div>
+            <div class="c-val">
+              <a href="tel:+13094457438">+1 (309) 445-7438</a>
+              &nbsp;|&nbsp;
+              <a href="tel:+243894235656">+243 894 235 656</a>
+            </div>
+          </div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon" aria-hidden="true">✉️</div>
+          <div>
+            <div class="c-lbl">Email</div>
+            <div class="c-val"><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></div>
+          </div>
+        </div>
+        <div style="margin-top:32px">
+          <a href="https://www.graphiverse.net/" class="btn-primary" aria-label="Back to VerseCraft main website">
+            ← Back to graphiverse.net
+          </a>
+        </div>
+      </div>
+
+      <div class="form-box" aria-label="Art order form">
+        <h3>Place Your Order</h3>
+        <div class="form-row2">
+          <div class="fg">
+            <label for="of-name">Your Name <span aria-hidden="true">*</span></label>
+            <input id="of-name" type="text" placeholder="Jane Doe" autocomplete="name" required aria-required="true">
+          </div>
+          <div class="fg">
+            <label for="of-email">Your Email <span aria-hidden="true">*</span></label>
+            <input id="of-email" type="email" placeholder="jane@email.com" autocomplete="email" required aria-required="true">
+          </div>
+        </div>
+        <div class="fg">
+          <label for="of-artname">Name / Word for the Art <span aria-hidden="true">*</span></label>
+          <input id="of-artname" type="text" placeholder="e.g. GRACE, FAMILY, LOVE" required aria-required="true">
+        </div>
+        <div class="fg">
+          <label for="of-type">Art Type</label>
+          <select id="of-type" aria-label="Select the type of art you want">
+            <option value="">Select a service...</option>
+            <option>Acrostic Art with Photo</option>
+            <option>Custom Name Poem (No Photo)</option>
+            <option>Gift Design</option>
+            <option>Wall Art Creation</option>
+            <option>Digital Art / Portrait</option>
+            <option>Not Sure — Help Me Choose</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="of-occasion">Occasion</label>
+          <select id="of-occasion" aria-label="Select the occasion for the art">
+            <option value="">Select occasion...</option>
+            <option>Wedding / Anniversary</option>
+            <option>Birthday</option>
+            <option>Baby Shower / Baptism</option>
+            <option>Graduation</option>
+            <option>Housewarming</option>
+            <option>Just Because / No Occasion</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="of-notes">Additional Notes &amp; Instructions</label>
+          <textarea id="of-notes" placeholder="Any specific words, colors, style preferences, photo details, or anything else we should know..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit()" aria-label="Submit your art order">
+          Send My Order →
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ BACK TO MAIN ══════ -->
+<div class="main-banner">
+  <h2>Explore All Our Services</h2>
+  <p>Acrostic &amp; Digital Art is just one of the creative services we offer. Visit our main website to discover everything VerseCraft Digital Co can do for you.</p>
+  <div class="main-banner-btns">
+    <a href="https://www.graphiverse.net/" class="btn-primary" aria-label="Visit VerseCraft Digital Co main website">
+      Visit graphiverse.net →
+    </a>
+    <a href="https://www.graphiverse.net/#services" class="btn-wire" aria-label="View all services">
+      All Our Services
+    </a>
+  </div>
+</div>
+
+</main>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">VerseCraft <span>Digital Co</span></div>
+      <p class="footer-desc">Transforming ideas into impactful digital and creative solutions through strategy, technology, and design.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Our Art</h4>
+      <ul>
+        <li><a href="#services">Acrostic Art with Photo</a></li>
+        <li><a href="#services">Custom Name Poems</a></li>
+        <li><a href="#services">Gift Designs</a></li>
+        <li><a href="#services">Wall Art &amp; Digital Art</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="https://www.graphiverse.net/">Home</a></li>
+        <li><a href="https://www.graphiverse.net/#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+13094457438">+1 (309) 445-7438</a></li>
+        <li><a href="tel:+243894235656">+243 894 235 656</a></li>
+        <li><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></li>
+        <li><a href="https://www.graphiverse.net/#contact">Send a Message</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>© 2026 VerseCraft Design Co. All Rights Reserved.</span>
+    <span>Crafted with passion ✦ Designed for impact</span>
+  </div>
+</footer>
+
+<!-- ══════ MODAL ══════ -->
+<div id="modal" class="modal" role="dialog" aria-modal="true"
+     aria-labelledby="modal-title" aria-describedby="modal-desc">
+  <div class="modal-box">
+    <div class="modal-icon" id="modal-icon" aria-hidden="true">✨</div>
+    <h3 id="modal-title">Order Received!</h3>
+    <p id="modal-desc">Thank you! We've received your order and will get back to you within 24 hours to confirm the details and get started on your art.</p>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close confirmation dialog">Continue</button>
+  </div>
+</div>
+
+<script>
+/* ── NAV TOGGLE ── */
+const toggle = document.getElementById('nav-toggle');
+const menu   = document.getElementById('nav-menu');
+toggle.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+});
+document.addEventListener('click', e => {
+  if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+}));
+
+/* ── NAV SHRINK ── */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.height = window.scrollY > 50 ? '58px' : '70px';
+}, { passive: true });
+
+/* ── PHOTO STRIP DUPLICATION ── */
+(function() {
+  const track = document.getElementById('strip-track');
+  if (!track) return;
+  [...track.children].forEach(item => {
+    const clone = item.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    clone.removeAttribute('tabindex');
+    clone.removeAttribute('role');
+    track.appendChild(clone);
+  });
+})();
+
+/* ── FAQ ACCORDION ── */
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.faq-btn').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      const body = document.getElementById(b.getAttribute('aria-controls'));
+      if (body) body.style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      const body = document.getElementById(btn.getAttribute('aria-controls'));
+      if (body) body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ── FORM SUBMIT ── */
+function handleSubmit() {
+  const name    = document.getElementById('of-name').value.trim();
+  const email   = document.getElementById('of-email').value.trim();
+  const artname = document.getElementById('of-artname').value.trim();
+  const type    = document.getElementById('of-type').value;
+  const occ     = document.getElementById('of-occasion').value;
+  const notes   = document.getElementById('of-notes').value.trim();
+
+  if (!name || !email) {
+    alert('Please fill in your name and email address.');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  const sub  = encodeURIComponent('Acrostic Art Order — ' + (artname || name));
+  const body = encodeURIComponent(
+    'Name: ' + name + '\nEmail: ' + email +
+    '\nArt Name/Word: ' + (artname || 'Not specified') +
+    '\nArt Type: ' + (type || 'Not specified') +
+    '\nOccasion: ' + (occ || 'Not specified') +
+    '\n\nNotes:\n' + (notes || 'None')
+  );
+  showModal('✨', 'Order Received!', "We've received your order and will be in touch within 24 hours to confirm details and begin creating your art.");
+  window.location.href = 'mailto:contact@graphiverse.net?subject=' + sub + '&body=' + body;
+}
+
+/* ── MODAL ── */
+function showModal(icon, title, desc) {
+  document.getElementById('modal-icon').textContent  = icon;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-desc').textContent  = desc;
+  const m = document.getElementById('modal');
+  m.style.display = 'flex';
+  setTimeout(() => m.querySelector('.modal-close').focus(), 80);
+}
+function closeModal() { document.getElementById('modal').style.display = 'none'; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
