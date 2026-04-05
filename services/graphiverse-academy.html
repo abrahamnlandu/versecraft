@@ -1,734 +1,834 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Graphiverse Academy — Data &amp; Excel Mastery | VerseCraft Digital Co</title>
-    <meta name="description" content="Graphiverse Academy by VerseCraft Digital Co: Advanced Data Architecture & Handling and Expert-Level Excel Analytics. Professional training, live sessions, portfolio-ready skills.">
-    <!-- Google Fonts (same as main site) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* ---------- GLOBAL VARIABLES (same as main site) ---------- */
-        :root {
-            --bg:           #07071a;
-            --bg-surface:   #0d0d24;
-            --bg-card:      rgba(255,255,255,0.04);
-            --bg-card-h:    rgba(255,255,255,0.07);
-            --primary:      #7c3aed;
-            --primary-light:#a78bfa;
-            --primary-glow: rgba(124,58,237,0.35);
-            --secondary:    #0ea5e9;
-            --secondary-glow:rgba(14,165,233,0.3);
-            --accent:       #f43f5e;
-            --success:      #10b981;
-            --gradient:     linear-gradient(135deg, #7c3aed 0%, #0ea5e9 100%);
-            --gradient-r:   linear-gradient(135deg, #0ea5e9 0%, #7c3aed 100%);
-            --text:         #f1f5f9;
-            --text-muted:   #64748b;
-            --text-soft:    #94a3b8;
-            --border:       rgba(255,255,255,0.07);
-            --border-accent:rgba(124,58,237,0.28);
-            --shadow:       0 20px 60px rgba(0,0,0,0.5);
-            --shadow-card:  0 8px 32px rgba(0,0,0,0.4);
-            --radius:       16px;
-            --radius-sm:    10px;
-            --radius-lg:    24px;
-            --transition:   all 0.35s cubic-bezier(0.4,0,0.2,1);
-            --transition-fast: all 0.2s ease;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>VerseCraft Digital Co — Graphiverse Academy</title>
+<meta name="description" content="Graphiverse Academy: Master Advanced Data Architecture & Handling and Expert-Level Excel Analytics. Professional training from VerseCraft Digital Co.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ═══════════════════ TOKENS — identical to Web & Mobile page ═══════════════ */
+:root {
+  --bg:          #05080f;
+  --bg2:         #090d18;
+  --surface:     rgba(255,255,255,.03);
+  --surface2:    rgba(255,255,255,.055);
+  --border:      rgba(255,255,255,.08);
+  --border2:     rgba(255,255,255,.13);
+  --accent:      #7c6ff7;
+  --accent2:     #a78bfa;
+  --gold:        #f0b429;
+  --gold2:       #fcd34d;
+  --cyan:        #22d3ee;
+  --teal:        #2dd4bf;
+  --rose:        #fb7185;
+  --white:       #ffffff;
+  --off:         #c8d3e8;
+  --muted:       #68748e;
+  --muted2:      #8895b0;
+  --card-radius: 16px;
+  --transition:  .25s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.65}
+img{max-width:100%;display:block}
+a{color:inherit}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(124,111,247,.4);border-radius:3px}
 
-        * { margin:0; padding:0; box-sizing:border-box; }
+/* ── SKIP ── */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;background:var(--accent);color:#fff;font-weight:700;padding:12px 20px;font-size:.9rem;text-decoration:none;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.65;
-            overflow-x: hidden;
-        }
+/* ══════════════════════════════ HEADER ══════════════════════════════ */
+#header{position:fixed;top:0;left:0;right:0;z-index:500;transition:background var(--transition),box-shadow var(--transition)}
+#header.scrolled{background:rgba(5,8,15,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border)}
+.header-container{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:72px;gap:32px}
+.logo{text-decoration:none;flex-shrink:0}
+.logo-text{font-size:1.3rem;font-weight:700;color:var(--white);letter-spacing:-.02em}
+.logo-text em{font-style:normal;color:var(--accent2);font-weight:400}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:500;color:var(--muted2);text-decoration:none;transition:color var(--transition)}
+.back-link:hover{color:var(--white)}
+.back-link i{font-size:.75rem;transition:transform var(--transition)}
+.back-link:hover i{transform:translateX(-3px)}
+#mainNav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-links{display:flex;list-style:none;gap:2px}
+.nav-links a{text-decoration:none;color:var(--muted2);font-size:.9rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:color var(--transition),background var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:var(--surface2)}
+.lang-switcher{display:flex;gap:3px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:3px}
+.lang-btn{background:transparent;border:none;color:var(--muted2);font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;padding:5px 10px;border-radius:5px;cursor:pointer;transition:all var(--transition);letter-spacing:.04em}
+.lang-btn:hover{color:var(--white)}
+.lang-btn.active{background:var(--accent);color:#fff}
+.mobile-menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:1px solid var(--border);border-radius:8px;padding:10px 12px;cursor:pointer;margin-left:auto}
+.mobile-menu-btn span{width:20px;height:2px;background:var(--white);border-radius:2px;transition:all var(--transition);display:block}
+.mobile-menu-btn.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.mobile-menu-btn.active span:nth-child(2){opacity:0}
+.mobile-menu-btn.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-        h1, h2, h3, h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.02em;
-        }
+/* ══════════════════════════════ HERO ════════════════════════════════ */
+.hero-section{position:relative;min-height:calc(100vh - 72px);display:flex;align-items:center;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55}
+.blob-1{width:600px;height:600px;background:radial-gradient(circle,rgba(45,212,191,.3),transparent 70%);top:-15%;right:-10%;animation:blobMove1 18s ease-in-out infinite}
+.blob-2{width:500px;height:500px;background:radial-gradient(circle,rgba(124,111,247,.2),transparent 70%);bottom:-10%;left:-8%;animation:blobMove2 22s ease-in-out infinite}
+.blob-3{width:400px;height:400px;background:radial-gradient(circle,rgba(34,211,238,.15),transparent 70%);top:40%;left:40%;animation:blobMove3 16s ease-in-out infinite}
+@keyframes blobMove1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-40px,30px) scale(1.05)}66%{transform:translate(20px,-20px) scale(.95)}}
+@keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(30px,-40px) scale(1.08)}70%{transform:translate(-20px,20px) scale(.93)}}
+@keyframes blobMove3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-25px,25px) scale(1.06)}}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;padding:80px 24px 60px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:2;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);border-radius:100px;padding:6px 16px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.hero-badge .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-size:clamp(2.1rem,4vw,3.6rem);font-weight:800;line-height:1.07;letter-spacing:-.03em;margin-bottom:18px}
+.gradient-teal{background:linear-gradient(135deg,var(--teal),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-accent{background:linear-gradient(135deg,var(--accent2),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.05rem;color:var(--muted2);line-height:1.8;margin-bottom:32px;max-width:460px;font-weight:400}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:5px 14px;font-size:.78rem;font-weight:500;color:var(--muted2)}
+.chip i{font-size:.7rem;color:var(--teal)}
 
-        .gradient-text {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all var(--transition);white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--teal),var(--cyan));color:#07112A;box-shadow:0 6px 28px rgba(45,212,191,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(45,212,191,.4)}
+.btn-ghost{background:transparent;color:var(--off);border:1.5px solid var(--border2)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--white);background:rgba(45,212,191,.08)}
 
-        .container {
-            width: 90%;
-            max-width: 1280px;
-            margin: 0 auto;
-        }
+/* ── MARQUEE ── */
+.marquee-wrap{background:rgba(9,13,24,.9);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:13px 0;overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:44px;animation:marquee 30s linear infinite;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.marquee-track .sep{color:var(--teal)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-        /* buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            cursor: pointer;
-            text-decoration: none;
-            border: none;
-        }
-        .btn-primary {
-            background: var(--gradient);
-            color: #fff;
-            box-shadow: 0 4px 20px var(--primary-glow);
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--primary-glow); }
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 1.5px solid var(--border-accent);
-        }
-        .btn-secondary:hover { background: var(--bg-card); border-color: var(--primary-light); color: var(--primary-light); transform: translateY(-2px); }
+/* ── SECTIONS ── */
+.section{padding:80px 0}
+.section-alt{background:rgba(9,13,24,.7)}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.section-tag-accent{color:var(--accent2)}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px}
+.section-sub{font-size:1rem;color:var(--muted2);line-height:1.8;max-width:560px;margin-bottom:44px;font-weight:400}
 
-        /* section header */
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-tag {
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 50px;
-            background: rgba(124,58,237,0.15);
-            border: 1px solid var(--border-accent);
-            color: var(--primary-light);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        .section-header h2 {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            color: var(--text);
-        }
+/* ── STATS ROW ── */
+.stats-row{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:52px;padding-bottom:44px;border-bottom:1px solid var(--border)}
+.stat-item .val{font-size:2.4rem;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-item .lbl{font-size:.74rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
 
-        /* cards grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
-        }
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 28px;
-            transition: var(--transition);
-        }
-        .service-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-card);
-        }
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            color: var(--primary-light);
-        }
-        .service-card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .service-card p {
-            color: var(--text-soft);
-            font-size: 0.9rem;
-            line-height: 1.7;
-        }
+/* ── TRACK CARDS ── */
+.tracks-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px}
+.track-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden;transition:border-color var(--transition),transform var(--transition)}
+.track-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.track-card.track-blue:hover{border-color:rgba(124,111,247,.35)}
+.track-card.track-teal:hover{border-color:rgba(45,212,191,.35)}
+.track-head{padding:28px 28px 22px;border-bottom:1px solid var(--border)}
+.track-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;border:1px solid;margin-bottom:16px}
+.track-eyebrow.blue{color:var(--accent2);border-color:rgba(124,111,247,.3);background:rgba(124,111,247,.1)}
+.track-eyebrow.teal{color:var(--teal);border-color:rgba(45,212,191,.3);background:rgba(45,212,191,.08)}
+.track-name{font-size:1.15rem;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.track-tagline{font-size:.875rem;color:var(--muted2);line-height:1.75}
+.track-lessons{padding:0 28px;list-style:none}
+.lesson-item{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--border)}
+.lesson-item:last-child{border-bottom:none}
+.lesson-num{font-size:.72rem;font-weight:700;color:var(--muted);flex-shrink:0;min-width:22px;padding-top:2px;letter-spacing:.05em}
+.lesson-body h4{font-size:.92rem;font-weight:700;letter-spacing:-.02em;margin-bottom:5px}
+.lesson-body p{font-size:.83rem;color:var(--muted2);line-height:1.75;margin-bottom:8px}
+.lesson-chip{display:inline-flex;align-items:center;font-size:.68rem;font-weight:600;letter-spacing:.06em;padding:3px 10px;border-radius:100px;border:1px solid}
+.lesson-chip.blue{color:var(--accent2);border-color:rgba(124,111,247,.25);background:rgba(124,111,247,.08)}
+.lesson-chip.teal{color:var(--teal);border-color:rgba(45,212,191,.25);background:rgba(45,212,191,.06)}
+.lesson-chip code{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;background:none;color:inherit;padding:0}
+.track-foot{padding:20px 28px;border-top:1px solid var(--border)}
+.track-link{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:700;text-decoration:none;transition:gap var(--transition),color var(--transition)}
+.track-link.blue{color:var(--accent2)}
+.track-link.teal{color:var(--teal)}
+.track-link:hover{gap:14px}
 
-        /* track cards (for academy) */
-        .track-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: var(--transition);
-        }
-        .track-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-4px);
-        }
-        .track-header {
-            padding: 28px 28px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        .track-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            margin-bottom: 12px;
-        }
-        .track-badge.blue {
-            background: rgba(124,58,237,0.15);
-            color: var(--primary-light);
-            border: 1px solid var(--border-accent);
-        }
-        .track-badge.sage {
-            background: rgba(14,165,233,0.12);
-            color: var(--secondary);
-            border: 1px solid rgba(14,165,233,0.25);
-        }
-        .track-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .track-sub {
-            color: var(--text-soft);
-            font-size: 0.85rem;
-        }
-        .track-lessons {
-            padding: 20px 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .lesson-item {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-        .lesson-num {
-            font-family: 'Space Grotesk', monospace;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            background: rgba(255,255,255,0.05);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        .lesson-content h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .lesson-content p {
-            color: var(--text-soft);
-            font-size: 0.8rem;
-            line-height: 1.6;
-        }
-        .track-footer {
-            padding: 16px 28px 24px;
-            border-top: 1px solid var(--border);
-        }
-        .track-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--primary-light);
-            transition: gap 0.2s;
-        }
-        .track-link:hover { gap: 12px; }
+/* ── FOR-WHOM CARDS ── */
+.for-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.for-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:28px;transition:border-color var(--transition),transform var(--transition)}
+.for-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.for-icon{font-size:1.8rem;margin-bottom:14px}
+.for-card h3{font-size:1.02rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+.for-card p{font-size:.875rem;color:var(--muted2);line-height:1.75}
 
-        /* stats row */
-        .stats-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-            justify-content: space-between;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            padding: 32px 40px;
-            margin: 48px 0;
-        }
-        .stat-item .val {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .stat-item .lbl {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
+/* ── PROCESS ── */
+.process-list{display:grid;gap:14px}
+.process-step{display:flex;gap:22px;align-items:flex-start;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);transition:border-color var(--transition)}
+.process-step:hover{border-color:var(--border2)}
+.step-num{font-size:1.6rem;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;min-width:40px;line-height:1;padding-top:4px}
+.step-body h4{font-size:1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:5px}
+.step-body p{font-size:.875rem;color:var(--muted2);line-height:1.75}
 
-        /* process steps */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin: 48px 0;
-        }
-        .process-step {
-            text-align: center;
-            padding: 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-        }
-        .step-num {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin: 0 auto 16px;
-            color: #fff;
-        }
-        .process-step h4 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-        .process-step p {
-            font-size: 0.8rem;
-            color: var(--text-soft);
-        }
+/* ── TOOLS ── */
+.tools-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:32px}
+.tool-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:20px 14px;text-align:center;transition:border-color var(--transition),transform var(--transition)}
+.tool-card:hover{border-color:rgba(45,212,191,.3);transform:translateY(-3px)}
+.tool-icon{font-size:1.6rem;margin-bottom:8px}
+.tool-name{font-size:.75rem;font-weight:600;color:var(--muted2)}
 
-        /* tools grid */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 16px;
-            margin: 48px 0;
-        }
-        .tool-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 20px 12px;
-            text-align: center;
-            transition: var(--transition-fast);
-        }
-        .tool-item:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-2px);
-        }
-        .tool-icon {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-        }
-        .tool-name {
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
+/* ── FAQ ── */
+.faq-list{max-width:760px;margin:32px auto 0;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden;transition:border-color var(--transition)}
+.faq-item.open{border-color:var(--border2)}
+.faq-btn{width:100%;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Space Grotesk',sans-serif;font-size:.92rem;font-weight:600;color:var(--white);transition:color var(--transition)}
+.faq-btn:hover{color:var(--teal)}
+.faq-ic{width:28px;height:28px;flex-shrink:0;border:1px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--muted2);transition:transform var(--transition),background var(--transition),color var(--transition)}
+.faq-item.open .faq-ic{transform:rotate(45deg);background:rgba(45,212,191,.1);border-color:rgba(45,212,191,.3);color:var(--teal)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.faq-item.open .faq-body{max-height:220px}
+.faq-body p{padding:0 24px 20px;font-size:.875rem;color:var(--muted2);line-height:1.8;font-weight:400}
 
-        /* FAQ */
-        .faq-list {
-            max-width: 780px;
-            margin: 40px auto 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 24px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .faq-question i {
-            transition: transform 0.3s;
-            color: var(--primary-light);
-        }
-        .faq-item.open .faq-question i {
-            transform: rotate(45deg);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding: 0 24px;
-            color: var(--text-soft);
-            font-size: 0.85rem;
-            line-height: 1.7;
-        }
-        .faq-item.open .faq-answer {
-            max-height: 200px;
-            padding-bottom: 20px;
-        }
+/* ── HERO VISUAL — Academy card ── */
+.academy-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5);animation:floatY 6s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ac-head{padding:16px 20px;background:rgba(9,13,24,.8);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ac-title{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ac-badge{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:100px;color:var(--teal);background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.25)}
+.ac-body{padding:16px 20px;display:flex;flex-direction:column;gap:12px}
+.ac-track{padding:14px 16px;border-radius:10px;border:1px solid}
+.ac-track.t-blue{background:rgba(124,111,247,.05);border-color:rgba(124,111,247,.2)}
+.ac-track.t-teal{background:rgba(45,212,191,.04);border-color:rgba(45,212,191,.18)}
+.ac-track-lbl{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.t-blue .ac-track-lbl{color:var(--accent2)}
+.t-teal .ac-track-lbl{color:var(--teal)}
+.ac-item{font-size:.78rem;color:var(--muted2);padding:3px 0 3px 14px;position:relative;line-height:1.5}
+.ac-item::before{content:'';position:absolute;left:0;top:.5em;width:5px;height:5px;border-radius:50%}
+.t-blue .ac-item::before{background:var(--accent2)}
+.t-teal .ac-item::before{background:var(--teal)}
+.ac-footer{padding:14px 20px;border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ac-stat{text-align:center}
+.ac-stat-num{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,var(--teal),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.ac-stat-lbl{font-size:.62rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
 
-        /* CTA section */
-        .cta-section {
-            text-align: center;
-            padding: 80px 0;
-            background: var(--bg-surface);
-            position: relative;
-            overflow: hidden;
-        }
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
-        }
-        .cta-title {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            margin-bottom: 20px;
-        }
-        .cta-sub {
-            color: var(--text-soft);
-            max-width: 560px;
-            margin: 0 auto 32px;
-            font-size: 1rem;
-        }
+/* ── CONTACT ── */
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+.contact-left h2{font-size:clamp(1.7rem,2.5vw,2.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:14px}
+.contact-left>p{font-size:.95rem;color:var(--muted2);line-height:1.8;margin-bottom:30px}
+.contact-detail{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px}
+.cd-icon{width:38px;height:38px;border-radius:10px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.2);display:flex;align-items:center;justify-content:center;color:var(--teal);font-size:.95rem;flex-shrink:0}
+.cd-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
+.cd-val{font-size:.9rem;color:var(--off)}
+.cd-val a{color:var(--teal);text-decoration:none;transition:color var(--transition)}
+.cd-val a:hover{color:var(--white)}
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px}
+.form-card h3{font-size:1.25rem;font-weight:800;letter-spacing:-.03em;margin-bottom:24px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted2);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px 16px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;color:var(--white);transition:border-color var(--transition),background var(--transition)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);background:rgba(45,212,191,.03);outline:none}
+.fg select option{background:#090d18;color:var(--white)}
+.fg textarea{min-height:110px;resize:vertical}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-form{width:100%;padding:14px;border:none;border-radius:10px;font-family:'Space Grotesk',sans-serif;font-size:.92rem;font-weight:700;cursor:pointer;transition:all var(--transition)}
+.btn-form-teal{background:linear-gradient(135deg,var(--teal),var(--cyan));color:#07112A;box-shadow:0 6px 28px rgba(45,212,191,.28)}
+.btn-form-teal:hover{transform:translateY(-1px);box-shadow:0 10px 40px rgba(45,212,191,.38)}
 
-        /* footer */
-        footer {
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            padding: 60px 0 30px;
-        }
-        .footer-inner {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            max-width: 1280px;
-            margin: 0 auto;
-            width: 90%;
-        }
-        .footer-brand {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-        .footer-brand span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .footer-desc {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 12px;
-            line-height: 1.6;
-        }
-        .footer-col h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 20px;
-        }
-        .footer-col ul {
-            list-style: none;
-        }
-        .footer-col li {
-            margin-bottom: 8px;
-        }
-        .footer-col a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-        .footer-col a:hover {
-            color: var(--primary-light);
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+/* ── FOOTER ── */
+.site-footer{background:rgba(4,7,14,.97);border-top:1px solid var(--border)}
+.footer-top{padding:56px 0 40px}
+.footer-grid{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+.footer-logo{font-size:1.2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;color:var(--white)}
+.footer-logo em{font-style:normal;color:var(--teal);font-weight:400}
+.footer-desc{font-size:.84rem;color:var(--muted);line-height:1.8}
+.footer-col h4{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--off);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:9px}
+.footer-col a{text-decoration:none;color:var(--muted);font-size:.84rem;transition:color var(--transition)}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid var(--border);padding:20px 0}
+.footer-bottom-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.footer-bottom-inner span{font-size:.8rem;color:var(--muted)}
 
-        /* reveal animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* ── SUCCESS OVERLAY ── */
+.success-overlay{display:none;position:fixed;inset:0;background:rgba(4,7,14,.92);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.success-box{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:48px 40px;max-width:420px;width:90%;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+.success-icon{font-size:2.8rem;margin-bottom:14px}
+.success-box h3{font-size:1.55rem;font-weight:800;letter-spacing:-.03em;margin-bottom:10px}
+.success-box p{color:var(--muted2);font-size:.9rem;line-height:1.75;margin-bottom:22px}
+.success-close{background:linear-gradient(135deg,var(--teal),var(--cyan));color:#07112A;border:none;padding:12px 28px;font-family:'Space Grotesk',sans-serif;font-size:.87rem;font-weight:700;cursor:pointer;border-radius:10px;transition:all var(--transition)}
+.success-close:hover{transform:translateY(-1px)}
 
-        /* responsive */
-        @media (max-width: 960px) {
-            .process-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-inner { grid-template-columns: 1fr 1fr; gap: 30px; }
-        }
-        @media (max-width: 640px) {
-            .process-grid { grid-template-columns: 1fr; }
-            .footer-inner { grid-template-columns: 1fr; }
-            .stats-row { flex-direction: column; align-items: center; text-align: center; }
-            .track-lessons { padding: 16px; }
-        }
-    </style>
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.revealed{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-left.revealed{opacity:1;transform:none}
+
+/* ── BACK TO TOP ── */
+.back-to-top{position:fixed;bottom:28px;right:28px;z-index:400;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--cyan));color:#07112A;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;opacity:0;transform:translateY(20px);transition:all var(--transition);box-shadow:0 6px 24px rgba(45,212,191,.3)}
+.back-to-top.visible{opacity:1;transform:translateY(0)}
+.back-to-top:hover{transform:translateY(-3px)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:44px}
+  .tracks-grid{grid-template-columns:1fr}
+  .for-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .mobile-menu-btn{display:flex}
+  #mainNav{display:none;position:fixed;inset:0;top:72px;background:rgba(5,8,15,.98);backdrop-filter:blur(20px);flex-direction:column;padding:32px 24px;gap:24px;overflow-y:auto}
+  #mainNav.open{display:flex}
+  .nav-links{flex-direction:column;gap:4px}
+  .nav-links a{padding:14px 16px;font-size:1rem;border-radius:10px}
+  .lang-switcher{justify-content:flex-start}
+}
+@media(max-width:640px){
+  .stats-row{gap:24px}
+  .hero h1{font-size:1.9rem}
+  .for-grid{grid-template-columns:1fr}
+  .tools-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .form-row2{grid-template-columns:1fr}
+  .section{padding:60px 0}
+}
+@media(max-width:400px){
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
 </head>
 <body>
 
-<!-- Language Switcher (same as main) -->
-<div style="position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 8px; background: rgba(7,7,26,0.8); backdrop-filter: blur(8px); padding: 6px 12px; border-radius: 50px; border: 1px solid var(--border);">
-    <button class="lang-btn active" id="enBtn" style="background: transparent; border: none; color: var(--text); padding: 4px 10px; border-radius: 40px; cursor: pointer; font-weight: 600;">EN</button>
-    <button class="lang-btn" id="frBtn" style="background: transparent; border: none; color: var(--text); padding: 4px 10px; border-radius: 40px; cursor: pointer;">FR</button>
-    <button class="lang-btn" id="esBtn" style="background: transparent; border: none; color: var(--text); padding: 4px 10px; border-radius: 40px; cursor: pointer;">ES</button>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ══════════ HEADER ══════════════════════════════════════════════════ -->
+<header id="header">
+  <div class="header-container">
+    <a href="https://www.graphiverse.net/" class="logo" aria-label="VerseCraft Digital Co — Home">
+      <span class="logo-text">VerseCraft<em> Digital Co</em></span>
+    </a>
+    <a href="https://www.graphiverse.net/#services" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      <span data-en="Back to Services" data-fr="Retour aux Services" data-es="Volver a Servicios">Back to Services</span>
+    </a>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="mainNav" aria-label="Main navigation">
+      <ul class="nav-links">
+        <li><a href="#curriculum" data-en="Curriculum" data-fr="Programme" data-es="Programa">Curriculum</a></li>
+        <li><a href="#for-whom"   data-en="Who It's For" data-fr="Pour Qui" data-es="Para Quién">Who It's For</a></li>
+        <li><a href="#tools"      data-en="Tools" data-fr="Outils" data-es="Herramientas">Tools</a></li>
+        <li><a href="#faq"        data-en="FAQ" data-fr="FAQ" data-es="FAQ">FAQ</a></li>
+        <li><a href="#contact"    data-en="Enroll" data-fr="S'inscrire" data-es="Inscribirse">Enroll</a></li>
+      </ul>
+      <div class="lang-switcher" id="mobileNavLang">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </nav>
+
+    <!--
+    <div class="lang-switcher" id="desktopLang" style="flex-shrink:0">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+  </div> -->
+</header>
+
+<main id="main-content">
+
+<!-- ══════════ HERO ═════════════════════════════════════════════════════ -->
+<section class="hero-section" aria-labelledby="hero-heading">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="grid-overlay"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="badge-dot"></span>
+        <span data-en="Graphiverse Academy — Now Open" data-fr="Académie Graphiverse — Ouverte" data-es="Academia Graphiverse — Abierta">Graphiverse Academy — Now Open</span>
+      </div>
+      <h1 id="hero-heading" class="reveal">
+        <span data-en="Become fluent in " data-fr="Maîtrisez l'" data-es="Domine la ">Become fluent in </span>
+        <span class="gradient-teal" data-en="Data Architecture" data-fr="Architecture des Données" data-es="Arquitectura de Datos">Data Architecture</span><br>
+        <span data-en="& " data-fr="et " data-es="y ">&amp; </span>
+        <span class="gradient-accent" data-en="Excel Analytics" data-fr="Analytique Excel" data-es="Analítica Excel">Excel Analytics</span>
+      </h1>
+      <p class="hero-sub reveal"
+         data-en="Two expert-led training tracks that take you from messy raw data to polished, automated, insight-driven dashboards — all within tools you already use."
+         data-fr="Deux parcours de formation animés par des experts pour passer de données brutes et désorganisées à des tableaux de bord automatisés et riches en insights — dans les outils que vous utilisez déjà."
+         data-es="Dos itinerarios de formación dirigidos por expertos que le llevan desde datos brutos y desordenados hasta paneles pulidos y automatizados — en herramientas que ya utiliza.">
+        Two expert-led training tracks that take you from messy raw data to polished, automated, insight-driven dashboards — all within tools you already use.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#curriculum" class="btn btn-primary" data-en="View Curriculum →" data-fr="Voir le Programme →" data-es="Ver el Programa →">View Curriculum →</a>
+        <a href="#contact" class="btn btn-ghost" data-en="Request a Quote" data-fr="Demander un Devis" data-es="Solicitar Cotización">Request a Quote</a>
+      </div>
+      <div class="hero-chips reveal">
+        <span class="chip"><i class="fas fa-database"></i><span data-en="Data Wrangling" data-fr="Nettoyage de Données" data-es="Limpieza de Datos">Data Wrangling</span></span>
+        <span class="chip"><i class="fas fa-code"></i><span data-en="SQL Connectivity" data-fr="Connexion SQL" data-es="Conectividad SQL">SQL Connectivity</span></span>
+        <span class="chip"><i class="fas fa-bolt"></i><span data-en="Power Query" data-fr="Power Query" data-es="Power Query">Power Query</span></span>
+        <span class="chip"><i class="fas fa-table"></i><span data-en="XLOOKUP · LAMBDA" data-fr="XLOOKUP · LAMBDA" data-es="XLOOKUP · LAMBDA">XLOOKUP · LAMBDA</span></span>
+        <span class="chip"><i class="fas fa-chart-bar"></i><span data-en="Interactive Dashboards" data-fr="Tableaux de Bord Interactifs" data-es="Paneles Interactivos">Interactive Dashboards</span></span>
+      </div>
+    </div>
+    <!-- ACADEMY CARD -->
+    <div class="academy-card reveal" aria-hidden="true">
+      <div class="ac-head">
+        <span class="ac-title">Academy Overview</span>
+        <span class="ac-badge">2 Tracks · 6 Modules</span>
+      </div>
+      <div class="ac-body">
+        <div class="ac-track t-blue">
+          <div class="ac-track-lbl">Track 01 — Data Architecture</div>
+          <div class="ac-item">Data Wrangling &amp; Cleaning</div>
+          <div class="ac-item">Validation &amp; Error Handling</div>
+          <div class="ac-item">Database Connectivity (SQL / Web)</div>
+        </div>
+        <div class="ac-track t-teal">
+          <div class="ac-track-lbl">Track 02 — Excel Analytics</div>
+          <div class="ac-item">Dynamic Modeling — XLOOKUP &amp; LAMBDA</div>
+          <div class="ac-item">Automation via Power Query</div>
+          <div class="ac-item">Interactive Dashboard Design</div>
+        </div>
+      </div>
+      <div class="ac-footer">
+        <div class="ac-stat"><div class="ac-stat-num">6</div><div class="ac-stat-lbl">Modules</div></div>
+        <div class="ac-stat"><div class="ac-stat-num">&lt;24h</div><div class="ac-stat-lbl">Support</div></div>
+        <div class="ac-stat"><div class="ac-stat-num">100%</div><div class="ac-stat-lbl">Hands-on</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    Excel 365 <span class="sep">✦</span> Power Query <span class="sep">✦</span> Power Pivot <span class="sep">✦</span> SQL / MySQL <span class="sep">✦</span> XLOOKUP <span class="sep">✦</span> LAMBDA &amp; LET <span class="sep">✦</span> Data Wrangling <span class="sep">✦</span> Interactive Dashboards <span class="sep">✦</span> Web Connectors <span class="sep">✦</span> KPI Design <span class="sep">✦</span>
+    Excel 365 <span class="sep">✦</span> Power Query <span class="sep">✦</span> Power Pivot <span class="sep">✦</span> SQL / MySQL <span class="sep">✦</span> XLOOKUP <span class="sep">✦</span> LAMBDA &amp; LET <span class="sep">✦</span> Data Wrangling <span class="sep">✦</span> Interactive Dashboards <span class="sep">✦</span> Web Connectors <span class="sep">✦</span> KPI Design <span class="sep">✦</span>
+  </div>
 </div>
 
-<main>
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 80vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; overflow: hidden;">
-        <div class="hero-bg" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;">
-            <div class="blob" style="position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(124,58,237,0.4) 0%, transparent 70%); top: -200px; left: -100px; filter: blur(80px);"></div>
-            <div class="blob" style="position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(14,165,233,0.3) 0%, transparent 70%); bottom: -100px; right: -80px; filter: blur(80px);"></div>
-        </div>
-        <div class="container" style="position: relative; z-index: 1;">
-            <div class="hero-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-                <div>
-                    <div class="section-tag" style="display: inline-block;" data-en="Graphiverse Academy" data-fr="Académie Graphiverse" data-es="Academia Graphiverse">Graphiverse Academy</div>
-                    <h1 style="font-size: clamp(2.2rem, 4.5vw, 3.8rem); margin: 24px 0 20px;">
-                        <span data-en="Become fluent in " data-fr="Maîtrisez " data-es="Domina ">Become fluent in </span>
-                        <span class="gradient-text" data-en="Data Architecture" data-fr="l'Architecture des Données" data-es="la Arquitectura de Datos">Data Architecture</span><br>
-                        <span data-en="&amp; " data-fr="&amp; " data-es="&amp; ">&amp; </span>
-                        <span class="gradient-text" style="background: linear-gradient(135deg, #0ea5e9, #10b981); -webkit-background-clip: text;" data-en="Excel Analytics" data-fr="l'Analyse Excel" data-es="el Análisis de Excel">Excel Analytics</span>
-                    </h1>
-                    <p class="hero-sub" style="color: var(--text-soft); font-size: 1rem; line-height: 1.8; margin-bottom: 32px;" data-en="Two expert-led training tracks that take you from messy raw data to polished, automated, insight-driven dashboards — all within tools you already use." data-fr="Deux parcours de formation animés par des experts qui vous emmènent des données brutes aux tableaux de bord automatisés et perspicaces." data-es="Dos rutas de formación dirigidas por expertos que te llevan desde datos desordenados a paneles automatizados e informativos.">Two expert-led training tracks that take you from messy raw data to polished, automated, insight-driven dashboards — all within tools you already use.</p>
-                    <div class="hero-ctas" style="display: flex; gap: 16px;">
-                        <a href="#tracks" class="btn btn-primary"><span data-en="View Curriculum" data-fr="Voir le programme" data-es="Ver plan de estudios">View Curriculum</span> →</a>
-                        <a href="#contact" class="btn btn-secondary"><span data-en="Request a Quote" data-fr="Demander un devis" data-es="Solicitar cotización">Request a Quote</span></a>
-                    </div>
-                </div>
-                <div class="hero-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                        <span class="section-tag" style="margin-bottom: 0;" data-en="Academy Overview" data-fr="Aperçu de l'Académie" data-es="Resumen de la Academia">Academy Overview</span>
-                        <span style="font-size: 0.7rem; padding: 4px 12px; background: rgba(124,58,237,0.15); border-radius: 40px;" data-en="2 Tracks · 6 Modules" data-fr="2 parcours · 6 modules" data-es="2 rutas · 6 módulos">2 Tracks · 6 Modules</span>
-                    </div>
-                    <div style="margin-bottom: 24px;">
-                        <div style="padding: 16px; background: rgba(124,58,237,0.05); border-radius: var(--radius-sm); margin-bottom: 12px;">
-                            <div style="font-weight: 600; margin-bottom: 8px; color: var(--primary-light);" data-en="Track 01 — Data Architecture" data-fr="Parcours 01 — Architecture des Données" data-es="Ruta 01 — Arquitectura de Datos">Track 01 — Data Architecture</div>
-                            <ul style="list-style: none; font-size: 0.8rem; color: var(--text-soft);">
-                                <li style="margin-bottom: 4px;">✓ <span data-en="Data Wrangling &amp; Cleaning" data-fr="Nettoyage et transformation des données" data-es="Limpieza y transformación de datos">Data Wrangling &amp; Cleaning</span></li>
-                                <li style="margin-bottom: 4px;">✓ <span data-en="Validation &amp; Error Handling" data-fr="Validation et gestion des erreurs" data-es="Validación y manejo de errores">Validation &amp; Error Handling</span></li>
-                                <li>✓ <span data-en="Database Connectivity (SQL / Web)" data-fr="Connectivité aux bases de données (SQL / Web)" data-es="Conectividad a bases de datos (SQL / Web)">Database Connectivity (SQL / Web)</span></li>
-                            </ul>
-                        </div>
-                        <div style="padding: 16px; background: rgba(14,165,233,0.05); border-radius: var(--radius-sm);">
-                            <div style="font-weight: 600; margin-bottom: 8px; color: var(--secondary);" data-en="Track 02 — Excel Analytics" data-fr="Parcours 02 — Analyse Excel" data-es="Ruta 02 — Análisis de Excel">Track 02 — Excel Analytics</div>
-                            <ul style="list-style: none; font-size: 0.8rem; color: var(--text-soft);">
-                                <li style="margin-bottom: 4px;">✓ <span data-en="Dynamic Modeling — XLOOKUP &amp; LAMBDA" data-fr="Modélisation dynamique — XLOOKUP &amp; LAMBDA" data-es="Modelado dinámico — XLOOKUP y LAMBDA">Dynamic Modeling — XLOOKUP &amp; LAMBDA</span></li>
-                                <li style="margin-bottom: 4px;">✓ <span data-en="Automation via Power Query" data-fr="Automatisation via Power Query" data-es="Automatización con Power Query">Automation via Power Query</span></li>
-                                <li>✓ <span data-en="Interactive Dashboard Design" data-fr="Conception de tableaux de bord interactifs" data-es="Diseño de paneles interactivos">Interactive Dashboard Design</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; text-align: center;">
-                        <div><div style="font-size: 1.5rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">6</div><div style="font-size: 0.7rem; color: var(--text-muted);" data-en="Modules" data-fr="Modules" data-es="Módulos">Modules</div></div>
-                        <div><div style="font-size: 1.5rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">≤24h</div><div style="font-size: 0.7rem; color: var(--text-muted);" data-en="Support" data-fr="Support" data-es="Soporte">Support</div></div>
-                        <div><div style="font-size: 1.5rem; font-weight: 700; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">100%</div><div style="font-size: 0.7rem; color: var(--text-muted);" data-en="Hands‑on" data-fr="Pratique" data-es="Práctico">Hands‑on</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <div class="container">
-        <div class="stats-row reveal">
-            <div class="stat-item"><div class="val">50+</div><div class="lbl" data-en="Trained Professionals" data-fr="Professionnels formés" data-es="Profesionales formados">Trained Professionals</div></div>
-            <div class="stat-item"><div class="val">4.9★</div><div class="lbl" data-en="Satisfaction Rate" data-fr="Taux de satisfaction" data-es="Tasa de satisfacción">Satisfaction Rate</div></div>
-            <div class="stat-item"><div class="val">100%</div><div class="lbl" data-en="Project‑Based" data-fr="Basé sur des projets" data-es="Basado en proyectos">Project‑Based</div></div>
-            <div class="stat-item"><div class="val">24h</div><div class="lbl" data-en="Response Time" data-fr="Délai de réponse" data-es="Tiempo de respuesta">Response Time</div></div>
-        </div>
+<!-- ══════════ CURRICULUM ══════════════════════════════════════════════ -->
+<section class="section section-alt" id="curriculum" aria-labelledby="curriculum-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="stats-row">
+        <div class="stat-item"><div class="val">2</div><div class="lbl" data-en="Expert Tracks" data-fr="Parcours Experts" data-es="Itinerarios Expertos">Expert Tracks</div></div>
+        <div class="stat-item"><div class="val">6</div><div class="lbl" data-en="Modules" data-fr="Modules" data-es="Módulos">Modules</div></div>
+        <div class="stat-item"><div class="val">100%</div><div class="lbl" data-en="Hands-On" data-fr="Pratique" data-es="Práctico">Hands-On</div></div>
+        <div class="stat-item"><div class="val">&lt;24h</div><div class="lbl" data-en="Support Response" data-fr="Délai de Support" data-es="Respuesta Soporte">Support Response</div></div>
+      </div>
+      <div class="section-tag" data-en="Full Curriculum" data-fr="Programme Complet" data-es="Programa Completo">Full Curriculum</div>
+      <h2 class="section-title" id="curriculum-heading" data-en="Two tracks. Complete coverage." data-fr="Deux parcours. Couverture complète." data-es="Dos itinerarios. Cobertura completa.">Two tracks. Complete coverage.</h2>
+      <p class="section-sub" data-en="Each track stands alone, yet they're designed to complement each other perfectly. Master both and you control the full data pipeline — from source to story." data-fr="Chaque parcours est autonome, mais conçu pour se compléter parfaitement. Maîtrisez les deux et vous contrôlez toute la chaîne de données — de la source au récit." data-es="Cada itinerario es independiente, pero están diseñados para complementarse perfectamente. Domínelos ambos y controlará todo el flujo de datos — desde la fuente hasta el relato.">Each track stands alone, yet they're designed to complement each other perfectly. Master both and you control the full data pipeline — from source to story.</p>
     </div>
-
-    <!-- Tracks (Curriculum) -->
-    <section id="tracks" class="container" style="padding: 60px 0;">
-        <div class="section-header reveal">
-            <div class="section-tag" data-en="Full Curriculum" data-fr="Programme complet" data-es="Plan de estudios completo">Full Curriculum</div>
-            <h2 data-en="Two tracks. <span class='gradient-text'>Complete coverage.</span>" data-fr="Deux parcours. <span class='gradient-text'>Couverture complète.</span>" data-es="Dos rutas. <span class='gradient-text'>Cobertura completa.</span>">Two tracks. <span class="gradient-text">Complete coverage.</span></h2>
-            <p class="section-sub" data-en="Each track stands alone, yet they're designed to complement each other perfectly. Master both and you control the full data pipeline — from source to story." data-fr="Chaque parcours se suffit à lui-même, mais ils sont conçus pour se compléter parfaitement. Maîtrisez les deux et vous contrôlez l'intégralité du pipeline de données." data-es="Cada ruta es independiente, pero están diseñadas para complementarse perfectamente. Domina ambas y controlas todo el flujo de datos.">Each track stands alone, yet they're designed to complement each other perfectly. Master both and you control the full data pipeline — from source to story.</p>
+    <div class="tracks-grid">
+      <!-- TRACK 01 -->
+      <article class="track-card track-blue reveal" aria-labelledby="t1-h">
+        <div class="track-head">
+          <span class="track-eyebrow blue" data-en="Track 01" data-fr="Parcours 01" data-es="Itinerario 01">Track 01</span>
+          <h3 class="track-name" id="t1-h" data-en="Advanced Data Architecture & Handling" data-fr="Architecture &amp; Gestion Avancée des Données" data-es="Arquitectura y Gestión Avanzada de Datos">Advanced Data Architecture &amp; Handling</h3>
+          <p class="track-tagline" data-en="Build reliable, clean data foundations. Learn to tame messy real-world inputs and keep your models accurate and current." data-fr="Construisez des fondations de données fiables et propres. Apprenez à maîtriser les entrées désordonnées du monde réel et à maintenir vos modèles précis et à jour." data-es="Construya fundamentos de datos fiables y limpios. Aprenda a dominar entradas desordenadas del mundo real y a mantener sus modelos precisos y actualizados.">Build reliable, clean data foundations. Learn to tame messy real-world inputs and keep your models accurate and current.</p>
         </div>
-        <div class="cards-grid reveal">
-            <!-- Track 01 -->
-            <div class="track-card">
-                <div class="track-header">
-                    <span class="track-badge blue" data-en="Track 01" data-fr="Parcours 01" data-es="Ruta 01">Track 01</span>
-                    <h3 class="track-title" data-en="Advanced Data Architecture &amp; Handling" data-fr="Architecture avancée des données &amp; traitement" data-es="Arquitectura avanzada de datos y manejo">Advanced Data Architecture &amp; Handling</h3>
-                    <p class="track-sub" data-en="Build reliable, clean data foundations. Learn to tame messy real-world inputs and keep your models accurate and current." data-fr="Construisez des bases de données fiables et propres. Apprenez à maîtriser les données réelles désordonnées." data-es="Construye bases de datos confiables y limpias. Domina entradas desordenadas del mundo real.">Build reliable, clean data foundations. Learn to tame messy real-world inputs and keep your models accurate and current.</p>
-                </div>
-                <div class="track-lessons">
-                    <div class="lesson-item"><div class="lesson-num">01</div><div class="lesson-content"><h4 data-en="Data Wrangling" data-fr="Nettoyage des données" data-es="Limpieza de datos">Data Wrangling</h4><p data-en="Cleaning and transforming raw, messy data into structured, usable formats — handling duplicates, inconsistencies, and missing values at scale." data-fr="Nettoyer et transformer des données brutes en formats structurés utilisables." data-es="Limpiar y transformar datos desordenados en formatos estructurados y utilizables.">Cleaning and transforming raw, messy data into structured, usable formats — handling duplicates, inconsistencies, and missing values at scale.</p></div></div>
-                    <div class="lesson-item"><div class="lesson-num">02</div><div class="lesson-content"><h4 data-en="Data Integrity &amp; Validation" data-fr="Intégrité et validation des données" data-es="Integridad y validación de datos">Data Integrity &amp; Validation</h4><p data-en="Setting up validation rules and error-handling systems so clean data enters your pipeline from the very first input." data-fr="Mettre en place des règles de validation et des systèmes de gestion des erreurs." data-es="Configurar reglas de validación y sistemas de manejo de errores.">Setting up validation rules and error-handling systems so clean data enters your pipeline from the very first input.</p></div></div>
-                    <div class="lesson-item"><div class="lesson-num">03</div><div class="lesson-content"><h4 data-en="Database Connectivity" data-fr="Connectivité aux bases de données" data-es="Conectividad a bases de datos">Database Connectivity</h4><p data-en="Connecting Excel to external sources — SQL databases, REST APIs, and live web data — so reports stay dynamic and refresh automatically." data-fr="Connecter Excel à des sources externes — bases de données SQL, API REST, données web." data-es="Conectar Excel a fuentes externas: bases de datos SQL, API REST, datos web.">Connecting Excel to external sources — SQL databases, REST APIs, and live web data — so reports stay dynamic and refresh automatically.</p></div></div>
-                </div>
-                <div class="track-footer"><a href="#contact" class="track-link" data-en="Enroll in Track 01" data-fr="S'inscrire au parcours 01" data-es="Inscribirse en Ruta 01">Enroll in Track 01 <i class="fas fa-arrow-right"></i></a></div>
+        <ol class="track-lessons" aria-label="Lessons Track 01">
+          <li class="lesson-item">
+            <span class="lesson-num">01</span>
+            <div class="lesson-body">
+              <h4 data-en="Data Wrangling" data-fr="Nettoyage de Données" data-es="Limpieza de Datos">Data Wrangling</h4>
+              <p data-en="Cleaning and transforming raw, messy data into structured, usable formats — handling duplicates, inconsistencies, and missing values at scale." data-fr="Nettoyer et transformer des données brutes et désordonnées en formats structurés et utilisables — gestion des doublons, incohérences et valeurs manquantes à grande échelle." data-es="Limpiar y transformar datos brutos y desordenados en formatos estructurados y utilizables — gestionando duplicados, inconsistencias y valores faltantes a escala.">Cleaning and transforming raw, messy data into structured, usable formats — handling duplicates, inconsistencies, and missing values at scale.</p>
+              <span class="lesson-chip blue" data-en="Foundations" data-fr="Fondements" data-es="Fundamentos">Foundations</span>
             </div>
-            <!-- Track 02 -->
-            <div class="track-card">
-                <div class="track-header">
-                    <span class="track-badge sage" data-en="Track 02" data-fr="Parcours 02" data-es="Ruta 02">Track 02</span>
-                    <h3 class="track-title" data-en="Expert‑Level Excel Analytics" data-fr="Analyse Excel de niveau expert" data-es="Análisis de Excel de nivel experto">Expert‑Level Excel Analytics</h3>
-                    <p class="track-sub" data-en="Move far beyond basic formulas. Automate workflows, build scalable models, and deliver stunning dashboards without leaving Excel." data-fr="Allez bien au-delà des formules de base. Automatisez les flux de travail, créez des modèles évolutifs." data-es="Ve más allá de las fórmulas básicas. Automatiza flujos de trabajo, crea modelos escalables.">Move far beyond basic formulas. Automate workflows, build scalable models, and deliver stunning dashboards without leaving Excel.</p>
-                </div>
-                <div class="track-lessons">
-                    <div class="lesson-item"><div class="lesson-num">01</div><div class="lesson-content"><h4 data-en="Dynamic Modeling" data-fr="Modélisation dynamique" data-es="Modelado dinámico">Dynamic Modeling</h4><p data-en="Beyond VLOOKUP — using XLOOKUP, LET, and LAMBDA to build scalable, readable, and maintainable formula-driven models." data-fr="Au-delà de RECHERCHEV — utilisez XLOOKUP, LET et LAMBDA." data-es="Más allá de BUSCARV: use XLOOKUP, LET y LAMBDA.">Beyond VLOOKUP — using XLOOKUP, LET, and LAMBDA to build scalable, readable, and maintainable formula-driven models.</p></div></div>
-                    <div class="lesson-item"><div class="lesson-num">02</div><div class="lesson-content"><h4 data-en="Automation with Power Query" data-fr="Automatisation avec Power Query" data-es="Automatización con Power Query">Automation with Power Query</h4><p data-en="Automate every repetitive data task — imports, transformations, merges — without writing a single line of code." data-fr="Automatisez chaque tâche de données répétitive sans écrire une seule ligne de code." data-es="Automatiza cada tarea repetitiva de datos sin escribir código.">Automate every repetitive data task — imports, transformations, merges — without writing a single line of code.</p></div></div>
-                    <div class="lesson-item"><div class="lesson-num">03</div><div class="lesson-content"><h4 data-en="Interactive Visual Storytelling" data-fr="Narration visuelle interactive" data-es="Narración visual interactiva">Interactive Visual Storytelling</h4><p data-en="Building high-end interactive dashboards — slicers, dynamic charts, KPI panels — at the level seen in professional data portfolios." data-fr="Créez des tableaux de bord interactifs haut de gamme — segments, graphiques dynamiques, indicateurs de performance." data-es="Construye paneles interactivos de alto nivel: segmentaciones, gráficos dinámicos, paneles KPI.">Building high-end interactive dashboards — slicers, dynamic charts, KPI panels — at the level seen in professional data portfolios.</p></div></div>
-                </div>
-                <div class="track-footer"><a href="#contact" class="track-link" data-en="Enroll in Track 02" data-fr="S'inscrire au parcours 02" data-es="Inscribirse en Ruta 02">Enroll in Track 02 <i class="fas fa-arrow-right"></i></a></div>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-num">02</span>
+            <div class="lesson-body">
+              <h4 data-en="Data Integrity & Validation" data-fr="Intégrité &amp; Validation des Données" data-es="Integridad y Validación de Datos">Data Integrity &amp; Validation</h4>
+              <p data-en="Setting up validation rules and error-handling systems so clean data enters your pipeline from the very first input — no surprises downstream." data-fr="Mise en place de règles de validation et de systèmes de gestion des erreurs pour que des données propres entrent dans votre pipeline dès le premier input." data-es="Configuración de reglas de validación y sistemas de gestión de errores para que datos limpios entren en su pipeline desde el primer input.">Setting up validation rules and error-handling systems so clean data enters your pipeline from the very first input — no surprises downstream.</p>
+              <span class="lesson-chip blue" data-en="Quality Control" data-fr="Contrôle Qualité" data-es="Control de Calidad">Quality Control</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Who It's For -->
-    <section class="container" style="padding: 40px 0;">
-        <div class="section-header reveal">
-            <div class="section-tag" data-en="Audience" data-fr="Public" data-es="Audiencia">Audience</div>
-            <h2 data-en="Who this is <span class='gradient-text'>built for</span>" data-fr="À qui cela <span class='gradient-text'>s'adresse</span>" data-es="Para quién está <span class='gradient-text'>diseñado</span>">Who this is <span class="gradient-text">built for</span></h2>
-        </div>
-        <div class="cards-grid reveal">
-            <div class="service-card"><div class="card-icon"><i class="fas fa-chart-line"></i></div><h3 data-en="Analysts &amp; Planners" data-fr="Analystes &amp; planificateurs" data-es="Analistas y planificadores">Analysts &amp; Planners</h3><p data-en="Finance, ops, or business analysts who want to move faster, automate repetitive work, and present data more convincingly." data-fr="Analystes financiers, opérationnels ou commerciaux qui veulent aller plus vite, automatiser et présenter les données." data-es="Analistas financieros, operativos o de negocios que quieren ser más rápidos, automatizar y presentar datos.">Finance, ops, or business analysts who want to move faster, automate repetitive work, and present data more convincingly.</p></div>
-            <div class="service-card"><div class="card-icon"><i class="fas fa-briefcase"></i></div><h3 data-en="Business Professionals" data-fr="Professionnels" data-es="Profesionales de negocios">Business Professionals</h3><p data-en="Managers and consultants who work with Excel every day and want to unlock its full potential without switching to expensive BI tools." data-fr="Managers et consultants qui utilisent Excel quotidiennement et veulent libérer son potentiel." data-es="Gerentes y consultores que usan Excel a diario y quieren desbloquear su potencial.">Managers and consultants who work with Excel every day and want to unlock its full potential without switching to expensive BI tools.</p></div>
-            <div class="service-card"><div class="card-icon"><i class="fas fa-graduation-cap"></i></div><h3 data-en="Students &amp; Career Switchers" data-fr="Étudiants &amp; reconversions" data-es="Estudiantes y cambios de carrera">Students &amp; Career Switchers</h3><p data-en="Anyone building a data-focused career who needs practical, portfolio-worthy skills that stand out in applications." data-fr="Toute personne construisant une carrière axée sur les données et ayant besoin de compétences pratiques." data-es="Cualquier persona que construya una carrera centrada en datos y necesite habilidades prácticas.">Anyone building a data-focused career who needs practical, portfolio-worthy skills that stand out in applications.</p></div>
-        </div>
-    </section>
-
-    <!-- Process -->
-    <section class="container" style="padding: 60px 0;">
-        <div class="section-header reveal">
-            <div class="section-tag" data-en="How It Works" data-fr="Comment ça marche" data-es="Cómo funciona">How It Works</div>
-            <h2 data-en="From enrollment <span class='gradient-text'>to expertise</span>" data-fr="De l'inscription <span class='gradient-text'>à l'expertise</span>" data-es="Desde la inscripción <span class='gradient-text'>hasta la experiencia</span>">From enrollment <span class="gradient-text">to expertise</span></h2>
-        </div>
-        <div class="process-grid reveal">
-            <div class="process-step"><div class="step-num">1</div><h4 data-en="Discovery Call" data-fr="Appel découverte" data-es="Llamada de descubrimiento">Discovery Call</h4><p data-en="We assess your level and align the training to your specific goals and workflow." data-fr="Nous évaluons votre niveau et adaptons la formation à vos objectifs." data-es="Evaluamos tu nivel y adaptamos la formación a tus objetivos.">We assess your level and align the training to your specific goals and workflow.</p></div>
-            <div class="process-step"><div class="step-num">2</div><h4 data-en="Tailored Plan" data-fr="Plan sur mesure" data-es="Plan personalizado">Tailored Plan</h4><p data-en="One or both tracks — sessions adapt to your pace, schedule, and real data challenges." data-fr="Un ou deux parcours — sessions adaptées à votre rythme." data-es="Una o ambas rutas: sesiones adaptadas a tu ritmo.">One or both tracks — sessions adapt to your pace, schedule, and real data challenges.</p></div>
-            <div class="process-step"><div class="step-num">3</div><h4 data-en="Hands-On Practice" data-fr="Pratique concrète" data-es="Práctica práctica">Hands-On Practice</h4><p data-en="Every module is project-based — real datasets, deliverables you can use immediately." data-fr="Chaque module est basé sur des projets réels." data-es="Cada módulo está basado en proyectos con datos reales.">Every module is project-based — real datasets, deliverables you can use immediately.</p></div>
-            <div class="process-step"><div class="step-num">4</div><h4 data-en="Ongoing Support" data-fr="Support continu" data-es="Soporte continuo">Ongoing Support</h4><p data-en="Post-training expert guidance, file reviews, and Q&amp;A — all within 24 hours." data-fr="Conseils d'experts post-formation, revues de fichiers et questions-réponses." data-es="Orientación experta posterior, revisiones de archivos y preguntas.">Post-training expert guidance, file reviews, and Q&amp;A — all within 24 hours.</p></div>
-        </div>
-    </section>
-
-    <!-- Tools -->
-    <section class="container" style="padding: 40px 0;">
-        <div class="section-header reveal">
-            <div class="section-tag" data-en="The Stack" data-fr="La pile" data-es="El stack">The Stack</div>
-            <h2 data-en="Tools you'll <span class='gradient-text'>master</span>" data-fr="Les outils que vous <span class='gradient-text'>maîtriserez</span>" data-es="Herramientas que <span class='gradient-text'>dominarás</span>">Tools you'll <span class="gradient-text">master</span></h2>
-        </div>
-        <div class="tools-grid reveal">
-            <div class="tool-item"><div class="tool-icon"><i class="fas fa-file-excel"></i></div><div class="tool-name">Excel 365</div></div>
-            <div class="tool-item"><div class="tool-icon"><i class="fas fa-bolt"></i></div><div class="tool-name">Power Query</div></div>
-            <div class="tool-item"><div class="tool-icon"><i class="fas fa-database"></i></div><div class="tool-name">Power Pivot</div></div>
-            <div class="tool-item"><div class="tool-icon"><i class="fas fa-code"></i></div><div class="tool-name">SQL / MySQL</div></div>
-            <div class="tool-item"><div class="tool-icon"><i class="fas fa-globe"></i></div><div class="tool-name">Web Connectors</div></div>
-            <div class="tool-item"><div class="tool-icon"><i class="fas fa-lambda"></i></div><div class="tool-name">LAMBDA · LET</div></div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="container" style="padding: 60px 0;">
-        <div class="section-header reveal">
-            <div class="section-tag" data-en="Questions" data-fr="Questions" data-es="Preguntas">Questions</div>
-            <h2 data-en="Frequently asked" data-fr="Foire aux questions" data-es="Preguntas frecuentes">Frequently asked</h2>
-        </div>
-        <div class="faq-list reveal">
-            <div class="faq-item"><div class="faq-question"><span data-en="Do I need prior experience to enroll?" data-fr="Ai-je besoin d'une expérience préalable pour m'inscrire ?" data-es="¿Necesito experiencia previa para inscribirme?">Do I need prior experience to enroll?</span><i class="fas fa-plus"></i></div><div class="faq-answer"><p data-en="Basic Excel familiarity is helpful, but no advanced skills are required for Track 01. During your discovery call we'll assess your level and find the right entry point. Track 02 pairs best with some formula experience." data-fr="Une familiarité de base avec Excel est utile, mais aucune compétence avancée n'est requise pour le parcours 01. Lors de votre appel découverte, nous évaluerons votre niveau." data-es="La familiaridad básica con Excel es útil, pero no se requieren habilidades avanzadas para la Ruta 01. En la llamada de descubrimiento evaluaremos tu nivel.">Basic Excel familiarity is helpful, but no advanced skills are required for Track 01. During your discovery call we'll assess your level and find the right entry point. Track 02 pairs best with some formula experience.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span data-en="Can I take both tracks together?" data-fr="Puis-je suivre les deux parcours ensemble ?" data-es="¿Puedo tomar ambas rutas juntas?">Can I take both tracks together?</span><i class="fas fa-plus"></i></div><div class="faq-answer"><p data-en="Yes — and we encourage it. Track 01 teaches you to architect reliable data; Track 02 teaches you to model and visualize it. Together they cover the entire professional analytics workflow." data-fr="Oui — et nous l'encourageons. Le parcours 01 vous apprend à architecturer des données fiables ; le parcours 02 à les modéliser et visualiser." data-es="Sí, y lo fomentamos. La Ruta 01 enseña a arquitecturar datos confiables; la Ruta 02 a modelarlos y visualizarlos.">Yes — and we encourage it. Track 01 teaches you to architect reliable data; Track 02 teaches you to model and visualize it. Together they cover the entire professional analytics workflow.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span data-en="Are sessions live or self-paced?" data-fr="Les sessions sont-elles en direct ou à votre rythme ?" data-es="¿Las sesiones son en vivo o a su propio ritmo?">Are sessions live or self-paced?</span><i class="fas fa-plus"></i></div><div class="faq-answer"><p data-en="All training is delivered in live, personalized sessions tailored to your schedule. You get direct expert feedback and real-time Q&amp;A — far more effective than pre-recorded courses." data-fr="Toute la formation est dispensée en sessions personnalisées en direct, adaptées à votre emploi du temps." data-es="Toda la formación se imparte en sesiones personalizadas en vivo, adaptadas a tu horario.">All training is delivered in live, personalized sessions tailored to your schedule. You get direct expert feedback and real-time Q&amp;A — far more effective than pre-recorded courses.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span data-en="How is pricing determined?" data-fr="Comment le prix est-il déterminé ?" data-es="¿Cómo se determina el precio?">How is pricing determined?</span><i class="fas fa-plus"></i></div><div class="faq-answer"><p data-en="Every engagement is quoted individually based on your goals, session count, and chosen tracks. Contact us for a free, no-obligation quote. Payment is 50% upfront and 50% upon completion." data-fr="Chaque engagement est devisé individuellement en fonction de vos objectifs, du nombre de sessions et des parcours choisis." data-es="Cada compromiso se cotiza individualmente según tus objetivos, número de sesiones y rutas elegidas.">Every engagement is quoted individually based on your goals, session count, and chosen tracks. Contact us for a free, no-obligation quote. Payment is 50% upfront and 50% upon completion.</p></div></div>
-            <div class="faq-item"><div class="faq-question"><span data-en="What support is available after training?" data-fr="Quel support est disponible après la formation ?" data-es="¿Qué soporte está disponible después de la formación?">What support is available after training?</span><i class="fas fa-plus"></i></div><div class="faq-answer"><p data-en="All Academy students receive post-training support: file reviews, formula checks, and expert Q&amp;A responded to within 24 hours. We remain invested in your success after the last session." data-fr="Tous les étudiants de l'Académie bénéficient d'un support post-formation : revues de fichiers, vérifications de formules et questions-réponses." data-es="Todos los estudiantes de la Academia reciben soporte posterior: revisiones de archivos, comprobaciones de fórmulas y preguntas respondidas en 24 horas.">All Academy students receive post-training support: file reviews, formula checks, and expert Q&amp;A responded to within 24 hours. We remain invested in your success after the last session.</p></div></div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <div class="reveal">
-                <div class="section-tag" style="display: inline-block;" data-en="VerseCraft Academy" data-fr="Académie Graphiverse" data-es="Academia Graphiverse">VerseCraft Academy</div>
-                <h2 class="cta-title" data-en="Ready to take your <span class='gradient-text'>data skills</span> further?" data-fr="Prêt à aller plus loin avec vos <span class='gradient-text'>compétences en données</span> ?" data-es="¿Listo para llevar tus <span class='gradient-text'>habilidades de datos</span> más lejos?">Ready to take your <span class="gradient-text">data skills</span> further?</h2>
-                <p class="cta-sub" data-en="Book a free discovery call. We'll design a personalised training plan and have you on track within days." data-fr="Réservez un appel découverte gratuit. Nous concevrons un plan de formation personnalisé et vous serez sur la bonne voie en quelques jours." data-es="Reserva una llamada de descubrimiento gratuita. Diseñaremos un plan de formación personalizado y estarás en camino en cuestión de días.">Book a free discovery call. We'll design a personalised training plan and have you on track within days.</p>
-                <div class="cta-btns" style="display: flex; gap: 16px; justify-content: center;">
-                    <a href="https://www.graphiverse.net/#contact" class="btn btn-primary"><span data-en="Book a Free Call" data-fr="Réserver un appel gratuit" data-es="Reservar llamada gratuita">Book a Free Call</span> →</a>
-                    <a href="tel:+13094457438" class="btn btn-secondary"><i class="fas fa-phone-alt"></i> +1 (309) 445-7438</a>
-                </div>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-num">03</span>
+            <div class="lesson-body">
+              <h4 data-en="Database Connectivity" data-fr="Connexion aux Bases de Données" data-es="Conectividad con Bases de Datos">Database Connectivity</h4>
+              <p data-en="Connecting Excel to external sources — SQL databases, REST APIs, and live web data — so reports stay dynamic and refresh automatically." data-fr="Connecter Excel à des sources externes — bases de données SQL, REST APIs et données web en temps réel — pour que les rapports restent dynamiques et se rafraîchissent automatiquement." data-es="Conectar Excel a fuentes externas — bases de datos SQL, REST APIs y datos web en vivo — para que los informes permanezcan dinámicos y se actualicen automáticamente.">Connecting Excel to external sources — SQL databases, REST APIs, and live web data — so reports stay dynamic and refresh automatically.</p>
+              <span class="lesson-chip blue" data-en="Live Data" data-fr="Données en Direct" data-es="Datos en Vivo">Live Data</span>
             </div>
+          </li>
+        </ol>
+        <div class="track-foot">
+          <a href="#contact" class="track-link blue" data-en="Enroll in Track 01 →" data-fr="S'inscrire au Parcours 01 →" data-es="Inscribirse en Itinerario 01 →">Enroll in Track 01 →</a>
         </div>
-    </section>
+      </article>
+      <!-- TRACK 02 -->
+      <article class="track-card track-teal reveal" aria-labelledby="t2-h">
+        <div class="track-head">
+          <span class="track-eyebrow teal" data-en="Track 02" data-fr="Parcours 02" data-es="Itinerario 02">Track 02</span>
+          <h3 class="track-name" id="t2-h" data-en="Expert-Level Excel Analytics" data-fr="Analytique Excel Expert" data-es="Analítica Excel de Nivel Experto">Expert-Level Excel Analytics</h3>
+          <p class="track-tagline" data-en="Move far beyond basic formulas. Automate workflows, build scalable models, and deliver stunning dashboards without leaving Excel." data-fr="Allez bien au-delà des formules de base. Automatisez les flux de travail, créez des modèles évolutifs et livrez des tableaux de bord époustouflants sans quitter Excel." data-es="Vaya mucho más allá de las fórmulas básicas. Automatice flujos de trabajo, construya modelos escalables y entregue paneles impresionantes sin salir de Excel.">Move far beyond basic formulas. Automate workflows, build scalable models, and deliver stunning dashboards without leaving Excel.</p>
+        </div>
+        <ol class="track-lessons" aria-label="Lessons Track 02">
+          <li class="lesson-item">
+            <span class="lesson-num">01</span>
+            <div class="lesson-body">
+              <h4 data-en="Dynamic Modeling" data-fr="Modélisation Dynamique" data-es="Modelado Dinámico">Dynamic Modeling</h4>
+              <p data-en="Beyond VLOOKUP — using XLOOKUP, LET, and LAMBDA to build scalable, readable, and maintainable formula-driven models." data-fr="Au-delà du VLOOKUP — utilisation de XLOOKUP, LET et LAMBDA pour créer des modèles évolutifs, lisibles et maintenables basés sur des formules." data-es="Más allá de VLOOKUP — uso de XLOOKUP, LET y LAMBDA para construir modelos escalables, legibles y mantenibles impulsados por fórmulas.">Beyond VLOOKUP — using XLOOKUP, LET, and LAMBDA to build scalable, readable, and maintainable formula-driven models.</p>
+              <span class="lesson-chip teal" data-en="Advanced Formulas" data-fr="Formules Avancées" data-es="Fórmulas Avanzadas">Advanced Formulas</span>
+            </div>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-num">02</span>
+            <div class="lesson-body">
+              <h4 data-en="Automation with Power Query" data-fr="Automatisation avec Power Query" data-es="Automatización con Power Query">Automation with Power Query</h4>
+              <p data-en="Automate every repetitive data task — imports, transformations, merges — without writing a single line of code. Work smarter, not harder." data-fr="Automatisez toutes les tâches répétitives liées aux données — imports, transformations, fusions — sans écrire une seule ligne de code." data-es="Automatice cada tarea repetitiva de datos — importaciones, transformaciones, combinaciones — sin escribir una sola línea de código.">Automate every repetitive data task — imports, transformations, merges — without writing a single line of code. Work smarter, not harder.</p>
+              <span class="lesson-chip teal" data-en="No-Code Automation" data-fr="Automatisation Sans Code" data-es="Automatización Sin Código">No-Code Automation</span>
+            </div>
+          </li>
+          <li class="lesson-item">
+            <span class="lesson-num">03</span>
+            <div class="lesson-body">
+              <h4 data-en="Interactive Visual Storytelling" data-fr="Visualisation Interactive &amp; Narration" data-es="Narración Visual Interactiva">Interactive Visual Storytelling</h4>
+              <p data-en="Building high-end interactive dashboards — slicers, dynamic charts, KPI panels — at the level seen in professional data portfolios, all inside Excel." data-fr="Construire des tableaux de bord interactifs haut de gamme — segments, graphiques dynamiques, panneaux KPI — au niveau des portfolios de données professionnels, entièrement dans Excel." data-es="Construcción de paneles interactivos de alto nivel — segmentadores, gráficos dinámicos, paneles KPI — al nivel visto en portfolios de datos profesionales, todo dentro de Excel.">Building high-end interactive dashboards — slicers, dynamic charts, KPI panels — at the level seen in professional data portfolios, all inside Excel.</p>
+              <span class="lesson-chip teal" data-en="Dashboards" data-fr="Tableaux de Bord" data-es="Paneles">Dashboards</span>
+            </div>
+          </li>
+        </ol>
+        <div class="track-foot">
+          <a href="#contact" class="track-link teal" data-en="Enroll in Track 02 →" data-fr="S'inscrire au Parcours 02 →" data-es="Inscribirse en Itinerario 02 →">Enroll in Track 02 →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHO IT'S FOR ════════════════════════════════════════════ -->
+<section class="section" id="for-whom" aria-labelledby="forwhom-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag" data-en="Audience" data-fr="Public Cible" data-es="Audiencia">Audience</div>
+      <h2 class="section-title" id="forwhom-heading" data-en="Who this is built for" data-fr="Pour qui est-ce conçu" data-es="Para quién está diseñado">Who this is built for</h2>
+      <p class="section-sub" data-en="Whether you're stepping up professionally or already deep in analytics — these tracks meet you where you are." data-fr="Que vous progressiez professionnellement ou que vous soyez déjà plongé dans l'analytique — ces parcours vous rejoignent là où vous en êtes." data-es="Ya sea que esté avanzando profesionalmente o que ya esté inmerso en la analítica — estos itinerarios le encuentran donde está.">Whether you're stepping up professionally or already deep in analytics — these tracks meet you where you are.</p>
+    </div>
+    <div class="for-grid" style="margin-top:32px">
+      <div class="for-card reveal">
+        <div class="for-icon" aria-hidden="true">📊</div>
+        <h3 data-en="Analysts & Planners" data-fr="Analystes &amp; Planificateurs" data-es="Analistas y Planificadores">Analysts &amp; Planners</h3>
+        <p data-en="Finance, ops, or business analysts who want to move faster, automate repetitive work, and present data more convincingly to stakeholders." data-fr="Analystes financiers, opérationnels ou business qui veulent aller plus vite, automatiser le travail répétitif et présenter les données de manière plus convaincante." data-es="Analistas de finanzas, operaciones o negocios que quieren moverse más rápido, automatizar trabajo repetitivo y presentar datos más convincentemente.">Finance, ops, or business analysts who want to move faster, automate repetitive work, and present data more convincingly to stakeholders.</p>
+      </div>
+      <div class="for-card reveal">
+        <div class="for-icon" aria-hidden="true">🏢</div>
+        <h3 data-en="Business Professionals" data-fr="Professionnels en Entreprise" data-es="Profesionales de Negocios">Business Professionals</h3>
+        <p data-en="Managers and consultants who work with Excel every day and want to unlock its full potential without switching to expensive BI tools." data-fr="Managers et consultants qui travaillent avec Excel tous les jours et veulent en libérer tout le potentiel sans passer à des outils BI coûteux." data-es="Gerentes y consultores que trabajan con Excel todos los días y quieren desbloquear su potencial completo sin cambiar a costosas herramientas de BI.">Managers and consultants who work with Excel every day and want to unlock its full potential without switching to expensive BI tools.</p>
+      </div>
+      <div class="for-card reveal">
+        <div class="for-icon" aria-hidden="true">🎓</div>
+        <h3 data-en="Students & Career Switchers" data-fr="Étudiants &amp; Reconversions" data-es="Estudiantes y Reconversión">Students &amp; Career Switchers</h3>
+        <p data-en="Anyone building a data-focused career who needs practical, portfolio-worthy skills that stand out in applications and interviews." data-fr="Toute personne construisant une carrière axée sur les données qui a besoin de compétences pratiques, dignes d'un portfolio, qui se démarquent dans les candidatures et entretiens." data-es="Cualquier persona que construya una carrera enfocada en datos y necesite habilidades prácticas y dignas de portfolio que destaquen en solicitudes y entrevistas.">Anyone building a data-focused career who needs practical, portfolio-worthy skills that stand out in applications and interviews.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROCESS ═════════════════════════════════════════════════ -->
+<section class="section section-alt" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:520px;margin:0 auto 32px">
+      <div class="section-tag" data-en="How It Works" data-fr="Comment Ça Fonctionne" data-es="Cómo Funciona">How It Works</div>
+      <h2 class="section-title" id="process-heading" data-en="From enrollment to expertise" data-fr="De l'inscription à l'expertise" data-es="De la inscripción a la experiencia">From enrollment to expertise</h2>
+    </div>
+    <div class="process-list">
+      <div class="process-step reveal">
+        <div class="step-num">I</div>
+        <div class="step-body">
+          <h4 data-en="Discovery Call" data-fr="Appel de Découverte" data-es="Llamada de Descubrimiento">Discovery Call</h4>
+          <p data-en="We assess your level and align the training to your specific goals and workflow." data-fr="Nous évaluons votre niveau et adaptons la formation à vos objectifs spécifiques et à votre flux de travail." data-es="Evaluamos su nivel y alineamos la formación con sus objetivos específicos y flujo de trabajo.">We assess your level and align the training to your specific goals and workflow.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">II</div>
+        <div class="step-body">
+          <h4 data-en="Tailored Plan" data-fr="Plan Personnalisé" data-es="Plan Personalizado">Tailored Plan</h4>
+          <p data-en="One or both tracks — sessions adapt to your pace, schedule, and real data challenges." data-fr="Un ou deux parcours — les sessions s'adaptent à votre rythme, à votre emploi du temps et à vos vrais défis de données." data-es="Uno o ambos itinerarios — las sesiones se adaptan a su ritmo, horario y desafíos reales de datos.">One or both tracks — sessions adapt to your pace, schedule, and real data challenges.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">III</div>
+        <div class="step-body">
+          <h4 data-en="Hands-On Practice" data-fr="Pratique Immersive" data-es="Práctica Inmersiva">Hands-On Practice</h4>
+          <p data-en="Every module is project-based — real datasets, deliverables you can use immediately." data-fr="Chaque module est basé sur des projets — de vrais ensembles de données, des livrables que vous pouvez utiliser immédiatement." data-es="Cada módulo está basado en proyectos — conjuntos de datos reales, entregables que puede usar inmediatamente.">Every module is project-based — real datasets, deliverables you can use immediately.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">IV</div>
+        <div class="step-body">
+          <h4 data-en="Ongoing Support" data-fr="Accompagnement Continu" data-es="Soporte Continuo">Ongoing Support</h4>
+          <p data-en="Post-training expert guidance, file reviews, and Q&A — all within 24 hours." data-fr="Accompagnement expert post-formation, révisions de fichiers et Q&amp;R — tout en moins de 24 heures." data-es="Orientación experta post-formación, revisión de archivos y Q&amp;A — todo en menos de 24 horas.">Post-training expert guidance, file reviews, and Q&amp;A — all within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TOOLS ═══════════════════════════════════════════════════ -->
+<section class="section" id="tools" aria-labelledby="tools-heading">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag" data-en="The Stack" data-fr="Les Outils" data-es="Las Herramientas">The Stack</div>
+      <h2 class="section-title" id="tools-heading" data-en="Tools you'll master" data-fr="Les outils que vous maîtriserez" data-es="Herramientas que dominará">Tools you'll master</h2>
+      <p class="section-sub" data-en="Industry-standard technologies used by analysts at leading organizations worldwide." data-fr="Technologies standards de l'industrie utilisées par des analystes dans les meilleures organisations mondiales." data-es="Tecnologías estándar de la industria utilizadas por analistas en las principales organizaciones mundiales.">Industry-standard technologies used by analysts at leading organizations worldwide.</p>
+    </div>
+    <div class="tools-grid reveal" role="list" aria-label="Tools covered">
+      <div class="tool-card" role="listitem"><div class="tool-icon" aria-hidden="true">📗</div><div class="tool-name">Excel 365</div></div>
+      <div class="tool-card" role="listitem"><div class="tool-icon" aria-hidden="true">⚡</div><div class="tool-name">Power Query</div></div>
+      <div class="tool-card" role="listitem"><div class="tool-icon" aria-hidden="true">🔁</div><div class="tool-name">Power Pivot</div></div>
+      <div class="tool-card" role="listitem"><div class="tool-icon" aria-hidden="true">🗄️</div><div class="tool-name">SQL / MySQL</div></div>
+      <div class="tool-card" role="listitem"><div class="tool-icon" aria-hidden="true">🌐</div><div class="tool-name">Web Connectors</div></div>
+      <div class="tool-card" role="listitem"><div class="tool-icon" aria-hidden="true">λ</div><div class="tool-name">LAMBDA · LET</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="faq" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="reveal" style="text-align:center;max-width:520px;margin:0 auto">
+      <div class="section-tag" data-en="Questions" data-fr="Questions" data-es="Preguntas">Questions</div>
+      <h2 class="section-title" id="faq-heading" data-en="Frequently asked" data-fr="Questions Fréquentes" data-es="Preguntas Frecuentes">Frequently asked</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq1">
+          <span data-en="Do I need prior experience to enroll?" data-fr="Faut-il une expérience préalable pour s'inscrire ?" data-es="¿Se necesita experiencia previa para inscribirse?">Do I need prior experience to enroll?</span>
+          <span class="faq-ic" aria-hidden="true"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-body" id="faq1" role="region">
+          <p data-en="Basic Excel familiarity is helpful, but no advanced skills are required for Track 01. During your discovery call we'll assess your level and find the right entry point. Track 02 pairs best with some formula experience." data-fr="Une familiarité de base avec Excel est utile, mais aucune compétence avancée n'est requise pour le Parcours 01. Lors de votre appel de découverte, nous évaluerons votre niveau et trouverons le bon point d'entrée. Le Parcours 02 fonctionne mieux avec une certaine expérience des formules." data-es="La familiaridad básica con Excel es útil, pero no se requieren habilidades avanzadas para el Itinerario 01. Durante su llamada de descubrimiento evaluaremos su nivel y encontraremos el punto de entrada correcto. El Itinerario 02 funciona mejor con algo de experiencia en fórmulas.">Basic Excel familiarity is helpful, but no advanced skills are required for Track 01. During your discovery call we'll assess your level and find the right entry point. Track 02 pairs best with some formula experience.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq2">
+          <span data-en="Can I take both tracks together?" data-fr="Puis-je suivre les deux parcours ensemble ?" data-es="¿Puedo tomar ambos itinerarios juntos?">Can I take both tracks together?</span>
+          <span class="faq-ic" aria-hidden="true"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-body" id="faq2" role="region">
+          <p data-en="Yes — and we encourage it. Track 01 teaches you to architect reliable data; Track 02 teaches you to model and visualize it. Together they cover the entire professional analytics workflow." data-fr="Oui — et nous l'encourageons. Le Parcours 01 vous apprend à architecturer des données fiables ; le Parcours 02 vous apprend à les modéliser et à les visualiser. Ensemble, ils couvrent tout le flux de travail analytique professionnel." data-es="Sí — y lo recomendamos. El Itinerario 01 le enseña a arquitecturar datos fiables; el Itinerario 02 le enseña a modelarlos y visualizarlos. Juntos cubren todo el flujo de trabajo de analítica profesional.">Yes — and we encourage it. Track 01 teaches you to architect reliable data; Track 02 teaches you to model and visualize it. Together they cover the entire professional analytics workflow.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq3">
+          <span data-en="Are sessions live or self-paced?" data-fr="Les sessions sont-elles en direct ou à votre rythme ?" data-es="¿Las sesiones son en vivo o a su propio ritmo?">Are sessions live or self-paced?</span>
+          <span class="faq-ic" aria-hidden="true"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-body" id="faq3" role="region">
+          <p data-en="All training is delivered in live, personalized sessions tailored to your schedule. You get direct expert feedback and real-time Q&A — far more effective than pre-recorded courses." data-fr="Toute la formation est dispensée en sessions en direct et personnalisées adaptées à votre emploi du temps. Vous bénéficiez de retours directs d'experts et de Q&amp;R en temps réel — bien plus efficace que les cours pré-enregistrés." data-es="Toda la formación se imparte en sesiones en vivo y personalizadas adaptadas a su horario. Obtiene retroalimentación directa de expertos y Q&amp;A en tiempo real — mucho más efectivo que los cursos pregrabados.">All training is delivered in live, personalized sessions tailored to your schedule. You get direct expert feedback and real-time Q&amp;A — far more effective than pre-recorded courses.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq4">
+          <span data-en="How is pricing determined?" data-fr="Comment les tarifs sont-ils déterminés ?" data-es="¿Cómo se determinan los precios?">How is pricing determined?</span>
+          <span class="faq-ic" aria-hidden="true"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-body" id="faq4" role="region">
+          <p data-en="Every engagement is quoted individually based on your goals, session count, and chosen tracks. Contact us for a free, no-obligation quote. Payment is 50% upfront and 50% upon completion." data-fr="Chaque engagement est devisé individuellement en fonction de vos objectifs, du nombre de sessions et des parcours choisis. Contactez-nous pour un devis gratuit sans engagement. Le paiement est de 50% à l'avance et 50% à la fin." data-es="Cada compromiso se cotiza individualmente según sus objetivos, número de sesiones y itinerarios elegidos. Contáctenos para una cotización gratuita sin compromiso. El pago es 50% por adelantado y 50% al finalizar.">Every engagement is quoted individually based on your goals, session count, and chosen tracks. Contact us for a free, no-obligation quote. Payment is 50% upfront and 50% upon completion.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" aria-controls="faq5">
+          <span data-en="What support is available after training?" data-fr="Quel support est disponible après la formation ?" data-es="¿Qué soporte está disponible después de la formación?">What support is available after training?</span>
+          <span class="faq-ic" aria-hidden="true"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-body" id="faq5" role="region">
+          <p data-en="All Academy students receive post-training support: file reviews, formula checks, and expert Q&A responded to within 24 hours. We remain invested in your success after the last session." data-fr="Tous les étudiants de l'Académie bénéficient d'un support post-formation : révisions de fichiers, vérification de formules et Q&amp;R expert avec réponse dans les 24 heures. Nous restons investis dans votre succès après la dernière session." data-es="Todos los estudiantes de la Academia reciben soporte post-formación: revisiones de archivos, verificación de fórmulas y Q&amp;A experto con respuesta en 24 horas. Permanecemos comprometidos con su éxito después de la última sesión.">All Academy students receive post-training support: file reviews, formula checks, and expert Q&amp;A responded to within 24 hours. We remain invested in your success after the last session.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ═════════════════════════════════════════════════ -->
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal-left">
+        <div class="section-tag" data-en="Enroll Today" data-fr="Inscrivez-vous Aujourd'hui" data-es="Inscríbase Hoy">Enroll Today</div>
+        <h2 id="contact-heading" data-en="Ready to take your data skills further?" data-fr="Prêt à aller plus loin avec vos compétences data ?" data-es="¿Listo para llevar sus habilidades de datos más lejos?">Ready to take your data skills further?</h2>
+        <p data-en="Book a free discovery call. We'll design a personalised training plan and have you on track within days." data-fr="Réservez un appel de découverte gratuit. Nous concevrons un plan de formation personnalisé et vous mettrons sur la bonne voie en quelques jours." data-es="Reserve una llamada de descubrimiento gratuita. Diseñaremos un plan de formación personalizado y le pondremos en marcha en cuestión de días.">Book a free discovery call. We'll design a personalised training plan and have you on track within days.</p>
+        <div class="contact-detail">
+          <div class="cd-icon"><i class="fas fa-envelope"></i></div>
+          <div><div class="cd-lbl" data-en="Email" data-fr="Email" data-es="Correo">Email</div><div class="cd-val"><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon"><i class="fas fa-phone-alt"></i></div>
+          <div><div class="cd-lbl" data-en="Phone" data-fr="Téléphone" data-es="Teléfono">Phone</div><div class="cd-val"><a href="tel:+13094457438">+1 (309) 445-7438</a></div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="cd-icon"><i class="fas fa-clock"></i></div>
+          <div><div class="cd-lbl" data-en="Response Time" data-fr="Temps de réponse" data-es="Tiempo de respuesta">Response Time</div><div class="cd-val" data-en="Within 24 hours" data-fr="En 24 heures" data-es="En 24 horas">Within 24 hours</div></div>
+        </div>
+      </div>
+      <div class="form-card reveal">
+        <h3 data-en="Book a Free Discovery Call" data-fr="Réserver un Appel de Découverte Gratuit" data-es="Reservar una Llamada de Descubrimiento Gratuita">Book a Free Discovery Call</h3>
+        <div class="form-row2">
+          <div class="fg"><label for="af-first" data-en="First Name *" data-fr="Prénom *" data-es="Nombre *">First Name *</label><input id="af-first" type="text" placeholder="Jane" autocomplete="given-name" required></div>
+          <div class="fg"><label for="af-last" data-en="Last Name" data-fr="Nom" data-es="Apellido">Last Name</label><input id="af-last" type="text" placeholder="Doe" autocomplete="family-name"></div>
+        </div>
+        <div class="fg"><label for="af-email" data-en="Email *" data-fr="Email *" data-es="Correo *">Email *</label><input id="af-email" type="email" placeholder="jane@company.com" autocomplete="email" required></div>
+        <div class="fg"><label for="af-co" data-en="Company / Organization" data-fr="Entreprise / Organisation" data-es="Empresa / Organización">Company / Organization</label><input id="af-co" type="text" placeholder="Acme Corp" autocomplete="organization"></div>
+        <div class="fg">
+          <label for="af-track" data-en="Track of Interest" data-fr="Parcours Souhaité" data-es="Itinerario de Interés">Track of Interest</label>
+          <select id="af-track">
+            <option value="" data-en="Select..." data-fr="Sélectionner..." data-es="Seleccionar...">Select...</option>
+            <option data-en="Track 01 — Data Architecture" data-fr="Parcours 01 — Architecture des Données" data-es="Itinerario 01 — Arquitectura de Datos">Track 01 — Data Architecture</option>
+            <option data-en="Track 02 — Excel Analytics" data-fr="Parcours 02 — Analytique Excel" data-es="Itinerario 02 — Analítica Excel">Track 02 — Excel Analytics</option>
+            <option data-en="Both Tracks" data-fr="Les Deux Parcours" data-es="Ambos Itinerarios">Both Tracks</option>
+            <option data-en="Corporate Training" data-fr="Formation d'Entreprise" data-es="Formación Corporativa">Corporate Training</option>
+          </select>
+        </div>
+        <div class="fg"><label for="af-goals" data-en="Your Goals" data-fr="Vos Objectifs" data-es="Sus Objetivos">Your Goals</label><textarea id="af-goals" placeholder="Tell us about your current role, what you want to achieve, and any specific challenges..."></textarea></div>
+        <button class="btn-form btn-form-teal" onclick="submitForm()" data-en="Book My Free Call →" data-fr="Réserver mon Appel Gratuit →" data-es="Reservar mi Llamada Gratuita →">Book My Free Call →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<footer>
-    <div class="footer-inner">
-        <div><div class="footer-brand">VerseCraft <span>Academy</span></div><p class="footer-desc" data-en="Transforming ideas into impactful digital solutions through strategy, technology, and design." data-fr="Transformer des idées en solutions numériques percutantes." data-es="Transformando ideas en soluciones digitales de impacto.">Transforming ideas into impactful digital solutions through strategy, technology, and design.</p></div>
-        <div class="footer-col"><h4 data-en="Curriculum" data-fr="Programme" data-es="Plan de estudios">Curriculum</h4><ul><li><a href="#tracks" data-en="Data Architecture" data-fr="Architecture des données" data-es="Arquitectura de datos">Data Architecture</a></li><li><a href="#tracks" data-en="Excel Analytics" data-fr="Analyse Excel" data-es="Análisis de Excel">Excel Analytics</a></li></ul></div>
-        <div class="footer-col"><h4 data-en="Company" data-fr="Société" data-es="Empresa">Company</h4><ul><li><a href="https://www.graphiverse.net/">VerseCraft Digital Co</a></li><li><a href="https://www.graphiverse.net/#portfolio">Portfolio</a></li><li><a href="https://www.graphiverse.net/#contact">Contact</a></li></ul></div>
-        <div class="footer-col"><h4 data-en="Contact" data-fr="Contact" data-es="Contacto">Contact</h4><ul><li><a href="tel:+13094457438">+1 (309) 445-7438</a></li><li><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></li><li><span data-en="Bloomington, IL 61701" data-fr="Bloomington, IL 61701" data-es="Bloomington, IL 61701">Bloomington, IL 61701</span></li></ul></div>
+<!-- ══════════ FOOTER ══════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Graphiverse<em> Academy</em></div>
+        <p class="footer-desc" data-en="Expert-led data training that builds real skills — from architecture to analytics. A service of VerseCraft Digital Co, Bloomington IL." data-fr="Formation en données animée par des experts qui développe de vraies compétences — de l'architecture à l'analytique. Un service de VerseCraft Digital Co, Bloomington IL." data-es="Formación en datos dirigida por expertos que construye habilidades reales — desde la arquitectura hasta la analítica. Un servicio de VerseCraft Digital Co, Bloomington IL.">Expert-led data training that builds real skills — from architecture to analytics. A service of VerseCraft Digital Co, Bloomington IL.</p>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Curriculum" data-fr="Programme" data-es="Programa">Curriculum</h4>
+        <ul>
+          <li><a href="#curriculum" data-en="Track 01 — Data Architecture" data-fr="Parcours 01" data-es="Itinerario 01">Track 01 — Data Architecture</a></li>
+          <li><a href="#curriculum" data-en="Track 02 — Excel Analytics" data-fr="Parcours 02" data-es="Itinerario 02">Track 02 — Excel Analytics</a></li>
+          <li><a href="#tools" data-en="Tools Covered" data-fr="Outils Couverts" data-es="Herramientas">Tools Covered</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Company" data-fr="Entreprise" data-es="Empresa">Company</h4>
+        <ul>
+          <li><a href="https://www.graphiverse.net/" data-en="Main Site" data-fr="Site Principal" data-es="Sitio Principal">Main Site</a></li>
+          <li><a href="https://www.graphiverse.net/#services" data-en="All Services" data-fr="Tous les Services" data-es="Todos los Servicios">All Services</a></li>
+          <li><a href="https://www.graphiverse.net/#about" data-en="About" data-fr="À propos" data-es="Acerca de">About</a></li>
+          <li><a href="https://www.graphiverse.net/#faq" data-en="FAQ" data-fr="FAQ" data-es="FAQ">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 data-en="Contact" data-fr="Contact" data-es="Contacto">Contact</h4>
+        <ul>
+          <li><a href="tel:+13094457438">+1 (309) 445-7438</a></li>
+          <li><a href="tel:+243894235656">+243 894 235 656</a></li>
+          <li><a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></li>
+          <li><a href="#">Bloomington, IL 61701</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 VerseCraft Digital Co. <span data-en="All Rights Reserved." data-fr="Tous droits réservés." data-es="Todos los derechos reservados.">All Rights Reserved.</span></span></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span data-en="© 2026 VerseCraft Digital Co LLC. All Rights Reserved." data-fr="© 2026 VerseCraft Digital Co LLC. Tous droits réservés." data-es="© 2026 VerseCraft Digital Co LLC. Todos los derechos reservados.">© 2026 VerseCraft Digital Co LLC. All Rights Reserved.</span>
+      <span data-en="Crafted with passion ✦ Designed for impact" data-fr="Conçu avec passion ✦ Designé pour l'impact" data-es="Hecho con pasión ✦ Diseñado para el impacto">Crafted with passion ✦ Designed for impact</span>
+    </div>
+  </div>
 </footer>
 
+<!-- SUCCESS OVERLAY -->
+<div id="success-overlay" class="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title">
+  <div class="success-box">
+    <div class="success-icon" aria-hidden="true">🎓</div>
+    <h3 id="success-title" data-en="Request Received!" data-fr="Demande Reçue !" data-es="¡Solicitud Recibida!">Request Received!</h3>
+    <p data-en="We'll review your information and reach out within 24 hours to schedule your free discovery call." data-fr="Nous examinerons vos informations et vous contacterons dans les 24 heures pour planifier votre appel de découverte gratuit." data-es="Revisaremos su información y nos pondremos en contacto en 24 horas para programar su llamada de descubrimiento gratuita.">We'll review your information and reach out within 24 hours to schedule your free discovery call.</p>
+    <button class="success-close" onclick="closeOverlay()" data-en="Close" data-fr="Fermer" data-es="Cerrar">Close</button>
+  </div>
+</div>
+
 <script>
-    // Language system
-    let currentLang = 'en';
-    function switchLanguage(lang) {
-        currentLang = lang;
-        document.querySelectorAll('[data-en]').forEach(el => {
-            const val = el.dataset[lang] || el.dataset.en;
-            if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
-            else if (el.tagName !== 'IMG') el.innerHTML = val;
-            else el.alt = val;
-        });
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(lang+'Btn').classList.add('active');
-    }
-    document.getElementById('enBtn').addEventListener('click', () => switchLanguage('en'));
-    document.getElementById('frBtn').addEventListener('click', () => switchLanguage('fr'));
-    document.getElementById('esBtn').addEventListener('click', () => switchLanguage('es'));
-    switchLanguage('en');
+/* ── LANGUAGE ── */
+let currentLang = 'en';
+const allLangBtns = document.querySelectorAll('.lang-btn[data-lang]');
+function switchLang(lang) {
+  currentLang = lang;
+  allLangBtns.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const val = el.dataset[lang] || el.dataset.en;
+    if (!val) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = val;
+    else if (el.tagName !== 'IMG') el.textContent = val;
+    else el.alt = val;
+  });
+}
+allLangBtns.forEach(btn => btn.addEventListener('click', () => switchLang(btn.dataset.lang)));
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(q => {
-        q.addEventListener('click', () => {
-            const item = q.parentElement;
-            const isOpen = item.classList.contains('open');
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-            if (!isOpen) item.classList.add('open');
-        });
-    });
+/* ── MOBILE MENU ── */
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const mainNav = document.getElementById('mainNav');
+function closeNav() { mainNav.classList.remove('open'); mobileMenuBtn.classList.remove('active'); mobileMenuBtn.setAttribute('aria-expanded','false'); document.body.style.overflow = ''; }
+function openNav()  { mainNav.classList.add('open');    mobileMenuBtn.classList.add('active');    mobileMenuBtn.setAttribute('aria-expanded','true');  document.body.style.overflow = 'hidden'; }
+mobileMenuBtn.addEventListener('click', e => { e.stopPropagation(); mainNav.classList.contains('open') ? closeNav() : openNav(); });
+document.addEventListener('click', e => { if (mainNav.classList.contains('open') && !mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) closeNav(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 1024) closeNav(); });
+document.querySelectorAll('#mainNav a[href^="#"]').forEach(a => a.addEventListener('click', () => closeNav()));
 
-    // Reveal on scroll
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+/* ── HEADER SCROLL ── */
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+
+/* ── BACK TO TOP ── */
+const btt = document.getElementById('backToTop');
+window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ── REVEAL ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); }});
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal, .reveal-left').forEach(el => revealObs.observe(el));
+
+/* ── FAQ ── */
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-btn').setAttribute('aria-expanded','false'); });
+    if (!open) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  });
+});
+
+/* ── FORM ── */
+function submitForm() {
+  const first = document.getElementById('af-first')?.value?.trim()||'';
+  const email = document.getElementById('af-email')?.value?.trim()||'';
+  const msgs = {en:'Please fill in your name and email.',fr:'Veuillez renseigner votre nom et email.',es:'Por favor complete su nombre y correo.'};
+  if (!first || !email) { alert(msgs[currentLang]); return; }
+  const ov = document.getElementById('success-overlay');
+  ov.style.display = 'flex';
+  setTimeout(() => ov.querySelector('.success-close')?.focus(), 100);
+  const sub = encodeURIComponent('Academy Enrollment Inquiry — '+first);
+  const body = encodeURIComponent('Name: '+first+'\nEmail: '+email+'\nService: Graphiverse Academy');
+  window.location.href = 'mailto:contact@graphiverse.net?subject='+sub+'&body='+body;
+}
+function closeOverlay() { document.getElementById('success-overlay').style.display = 'none'; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 90, behavior: 'smooth' }); }
+  });
+});
 </script>
 </body>
 </html>
