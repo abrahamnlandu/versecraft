@@ -12,6 +12,527 @@
 </head>
 <body>
 
+<!-- ============================================================
+  VerseCraft Chatbot Widget — chatbot-widget.html
+  ──────────────────────────────────────────────────────────────
+  EMBED INSTRUCTIONS:
+  Copy everything between COPY FROM HERE and COPY TO HERE,
+  paste it just before </body> on every page of your site
+  (or once in a shared footer/layout template file).
+
+  Only one thing to change:
+  Replace YOUR_WORKER_URL_HERE with your Cloudflare Worker URL.
+  e.g. "https://versecraft-chatbot.andy.workers.dev"
+  ============================================================ -->
+
+<!-- ===== COPY FROM HERE ===== -->
+<style>
+#vc-root *{box-sizing:border-box;margin:0;padding:0;font-family:'Manrope','Segoe UI',sans-serif}
+
+/* ── Floating bubble ─────────────────────────────────── */
+#vc-bubble{
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  width:64px;height:64px;border-radius:50%;
+  border:3px solid #2DD4BF;background:#0F1E40;
+  cursor:pointer;overflow:hidden;padding:0;
+  box-shadow:0 4px 22px rgba(45,212,191,.5);
+  transition:transform .2s,box-shadow .2s;
+}
+#vc-bubble:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(45,212,191,.65)}
+#vc-bubble img{
+  width:100%;height:100%;object-fit:cover;
+  object-position:center top;display:block;
+  border-radius:50%;transition:opacity .2s;
+}
+#vc-close-overlay{
+  display:none;position:absolute;inset:0;
+  align-items:center;justify-content:center;
+  background:rgba(8,18,42,.75);border-radius:50%;
+}
+#vc-close-overlay svg{width:22px;height:22px}
+#vc-badge{
+  position:absolute;top:-3px;right:-3px;
+  background:#ef4444;color:#fff;font-size:11px;font-weight:700;
+  width:20px;height:20px;border-radius:50%;border:2px solid #fff;
+  display:none;align-items:center;justify-content:center;pointer-events:none;
+}
+
+/* ── Proactive speech-bubble nudge ───────────────────── */
+#vc-nudge{
+  position:fixed;bottom:106px;right:26px;z-index:9998;
+  background:#08122A;border:1px solid rgba(45,212,191,.4);
+  border-radius:16px 16px 4px 16px;
+  padding:14px 16px 12px;max-width:275px;
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;
+  transform:translateY(10px) scale(.96);
+  transition:opacity .3s ease,transform .3s ease;
+}
+#vc-nudge.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+#vc-nudge p{font-size:13px;color:#E8EEF8;line-height:1.6;margin-bottom:11px}
+#vc-nudge-x{
+  position:absolute;top:8px;right:10px;
+  background:none;border:none;cursor:pointer;
+  color:#7A8AAA;font-size:15px;line-height:1;padding:2px 4px;
+}
+#vc-nudge-x:hover{color:#fff}
+.vc-nudge-btns{display:flex;gap:6px;flex-wrap:wrap}
+.vc-nb{
+  background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);
+  color:#2DD4BF;font-size:11.5px;padding:5px 11px;border-radius:18px;
+  cursor:pointer;white-space:nowrap;font-family:inherit;
+  transition:background .18s,border-color .18s;
+}
+.vc-nb:hover{background:rgba(45,212,191,.24);border-color:#2DD4BF}
+
+/* ── Chat window ─────────────────────────────────────── */
+#vc-win{
+  position:fixed;bottom:106px;right:28px;z-index:9997;
+  width:375px;max-width:calc(100vw - 32px);
+  background:#08122A;border-radius:18px;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 16px 56px rgba(0,0,0,.6);
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:scale(.9) translateY(18px);opacity:0;pointer-events:none;
+  transition:transform .28s cubic-bezier(.34,1.4,.64,1),opacity .22s ease;
+}
+#vc-win.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+
+/* Header */
+#vc-header{
+  background:#0F1E40;padding:12px 14px;
+  display:flex;align-items:center;gap:11px;
+  border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;
+}
+.vc-hav{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  overflow:hidden;border:2px solid #2DD4BF;
+}
+.vc-hav img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.vc-hinfo{flex:1;min-width:0}
+.vc-hinfo strong{display:block;font-size:14px;color:#fff;font-weight:600}
+.vc-hinfo span{font-size:11px;color:#2DD4BF;display:flex;align-items:center;gap:4px}
+.vc-dot{
+  width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;
+  animation:vc-pulse 2s infinite;
+}
+@keyframes vc-pulse{0%,100%{opacity:1}50%{opacity:.4}}
+#vc-xbtn{
+  background:none;border:none;cursor:pointer;color:#7A8AAA;
+  padding:4px;border-radius:5px;line-height:0;transition:color .15s;flex-shrink:0;
+}
+#vc-xbtn:hover{color:#fff}
+
+/* Messages */
+#vc-msgs{
+  flex:1;overflow-y:auto;padding:14px;
+  display:flex;flex-direction:column;gap:10px;
+  max-height:340px;min-height:180px;
+  scrollbar-width:thin;scrollbar-color:#1A2E55 transparent;
+}
+#vc-msgs::-webkit-scrollbar{width:4px}
+#vc-msgs::-webkit-scrollbar-thumb{background:#1A2E55;border-radius:4px}
+
+.vc-m{
+  max-width:84%;padding:10px 14px;line-height:1.55;
+  font-size:13.5px;word-wrap:break-word;border-radius:14px;
+}
+.vc-m.bot{
+  background:#0F1E40;color:#E8EEF8;
+  border-bottom-left-radius:3px;align-self:flex-start;
+}
+.vc-m.usr{
+  background:#2DD4BF;color:#08122A;font-weight:600;
+  border-bottom-right-radius:3px;align-self:flex-end;
+}
+.vc-m a{color:#5EEAD4;text-decoration:underline}
+.vc-m.usr a{color:#08122A}
+
+/* Typing dots */
+.vc-typing{
+  display:flex;gap:5px;align-items:center;padding:12px 16px;
+  background:#0F1E40;border-radius:14px;border-bottom-left-radius:3px;
+  align-self:flex-start;
+}
+.vc-d{width:7px;height:7px;border-radius:50%;background:#2DD4BF;animation:vcd .9s infinite}
+.vc-d:nth-child(2){animation-delay:.15s}
+.vc-d:nth-child(3){animation-delay:.3s}
+@keyframes vcd{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+/* Quick replies */
+#vc-qr{padding:0 13px 10px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0}
+.vc-qrb{
+  background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);
+  color:#2DD4BF;font-size:12px;padding:5px 12px;border-radius:20px;
+  cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .18s;
+}
+.vc-qrb:hover{background:rgba(45,212,191,.22);border-color:#2DD4BF}
+
+/* Input */
+#vc-irow{
+  padding:11px 12px;border-top:1px solid rgba(255,255,255,.07);
+  display:flex;gap:8px;align-items:flex-end;
+  background:#08122A;flex-shrink:0;
+}
+#vc-in{
+  flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);
+  border-radius:11px;padding:9px 13px;color:#fff;font-size:13.5px;
+  resize:none;outline:none;max-height:96px;min-height:40px;
+  line-height:1.45;transition:border-color .2s;font-family:inherit;
+}
+#vc-in::placeholder{color:#7A8AAA}
+#vc-in:focus{border-color:rgba(45,212,191,.55)}
+#vc-snd{
+  width:40px;height:40px;border-radius:11px;border:none;
+  background:#2DD4BF;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s,transform .12s;
+}
+#vc-snd:hover{background:#5EEAD4;transform:scale(1.07)}
+#vc-snd:disabled{background:#1A2E55;cursor:not-allowed;transform:none}
+
+#vc-foot{
+  text-align:center;padding:5px;font-size:10px;color:#2a3a5a;
+  border-top:1px solid rgba(255,255,255,.04);flex-shrink:0;
+}
+
+/* Mobile */
+@media(max-width:480px){
+  #vc-win{bottom:0;right:0;left:0;width:100%;max-width:100%;border-radius:20px 20px 0 0}
+  #vc-bubble{bottom:18px;right:18px}
+  #vc-nudge{right:16px;max-width:calc(100vw - 100px)}
+  #vc-msgs{max-height:42vh}
+}
+@media(prefers-reduced-motion:reduce){
+  #vc-bubble,#vc-win,#vc-nudge,.vc-d,.vc-dot{transition:none!important;animation:none!important}
+}
+</style>
+
+<div id="vc-root">
+
+  <!-- Proactive speech-bubble nudge -->
+  <div id="vc-nudge" role="status" aria-live="polite">
+    <button id="vc-nudge-x" aria-label="Dismiss" onclick="vcDismissNudge()">&#x2715;</button>
+    <p>👋 Hi! I'm <strong>Vera</strong>. I can tell you about our services — from acrostic art and data dashboards to mobile apps and custom chatbots. What can I help you with today?</p>
+    <div class="vc-nudge-btns">
+      <button class="vc-nb" onclick="vcNudgeOpen('What services do you offer?')">Our services</button>
+      <button class="vc-nb" onclick="vcNudgeOpen('How do I get a quote?')">Get a quote</button>
+      <button class="vc-nb" onclick="vcNudgeOpen('Tell me about acrostic art')">Acrostic art</button>
+    </div>
+  </div>
+
+  <!-- Floating bubble — chat icon by default, Vera's face when open -->
+  <button id="vc-bubble" onclick="vcToggle()" aria-label="Chat with Vera — VerseCraft assistant">
+    <!-- Chat icon: visible when closed -->
+    <span id="vc-chat-icon" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;position:absolute;inset:0;background:#2DD4BF;border-radius:50%;">
+      <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#08122A" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M8 10h.01M12 10h.01M16 10h.01M21 16a2 2 0 0 1-2 2H7l-4 4V6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/>
+      </svg>
+    </span>
+    <!-- Vera's face: hidden until chat opens or nudge shows -->
+    <img id="vc-face" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;" src="data:image/jpeg;base64,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" alt="Vera, VerseCraft virtual assistant">
+    <span id="vc-close-overlay" aria-hidden="true">
+      <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </span>
+    <span id="vc-badge" aria-hidden="true">1</span>
+  </button>
+
+  <!-- Chat window -->
+  <div id="vc-win" role="dialog" aria-modal="true" aria-label="Chat with Vera — VerseCraft Digital Co">
+
+    <div id="vc-header">
+      <div class="vc-hav">
+        <img src="data:image/jpeg;base64,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" alt="Vera">
+      </div>
+      <div class="vc-hinfo">
+        <strong>Vera</strong>
+        <span><span class="vc-dot"></span>VerseCraft Assistant &middot; Online 24/7</span>
+      </div>
+      <button id="vc-xbtn" onclick="vcClose()" aria-label="Close chat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="vc-msgs" role="log" aria-live="polite" aria-label="Chat messages"></div>
+    <div id="vc-qr"></div>
+
+    <div id="vc-irow">
+      <textarea id="vc-in" rows="1"
+        placeholder="Ask me anything about VerseCraft..."
+        aria-label="Type your message"
+        onkeydown="vcKey(event)"
+        oninput="vcResize(this)"></textarea>
+      <button id="vc-snd" onclick="vcSend()" aria-label="Send">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#08122A" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="vc-foot">Powered by VerseCraft AI &middot; graphiverse.net</div>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  // ── CONFIG — change this one line after deploying ────────────
+  var WORKER = "https://versecraft-chatbot.graphiverse.workers.dev";
+  // e.g.  "https://versecraft-chatbot.andy.workers.dev"
+
+  // Pages where the proactive nudge is allowed to appear.
+  // The nudge fires only if the current URL path STARTS WITH
+  // one of these strings. Add more paths as needed.
+  var PROACTIVE_PATHS = [
+    "/",                                          // home
+    "/services",                                  // all service pages
+    "/#services",                                 // home #services anchor
+    "/pricing",                                   // pricing page
+  ];
+
+  // Seconds before the nudge appears (10 – 15 recommended)
+  var NUDGE_DELAY_MS = 12000;
+
+  // Quick-reply chips shown after the opening greeting
+  var QUICK_REPLIES = [
+    "What services do you offer?",
+    "How do I get a quote?",
+    "Do you build mobile apps?",
+    "Tell me about acrostic art",
+  ];
+
+  // ── State ────────────────────────────────────────────────────
+  var isOpen      = false;   // is the chat window currently open?
+  var greeted     = false;   // has the greeting message been shown?
+  var waiting     = false;   // waiting for an API response?
+  var dismissed   = false;   // user explicitly closed — one-time rule
+  var nudgeShown  = false;   // nudge has already appeared this session
+  var history     = [];      // conversation history sent to the API
+
+  // ── DOM refs ─────────────────────────────────────────────────
+  var win     = document.getElementById("vc-win");
+  var msgs    = document.getElementById("vc-msgs");
+  var inp     = document.getElementById("vc-in");
+  var snd     = document.getElementById("vc-snd");
+  var badge   = document.getElementById("vc-badge");
+  var qrDiv   = document.getElementById("vc-qr");
+  var nudge   = document.getElementById("vc-nudge");
+  var bubble  = document.getElementById("vc-bubble");
+  var overlay  = document.getElementById("vc-close-overlay");
+  var faceImg  = document.getElementById("vc-face");
+  var chatIcon = document.getElementById("vc-chat-icon");
+
+  // ── Contextual page check ────────────────────────────────────
+  function isProactivePage() {
+    var path = window.location.pathname + window.location.hash;
+    return PROACTIVE_PATHS.some(function (p) {
+      return path === p || path.startsWith(p);
+    });
+  }
+
+  // ── Schedule the proactive nudge ─────────────────────────────
+  function scheduleNudge() {
+    if (!isProactivePage()) return;   // wrong page — stay silent
+    setTimeout(function () {
+      // Re-check: abort if user already opened/dismissed
+      if (dismissed || isOpen || nudgeShown) return;
+      nudgeShown = true;
+      nudge.classList.add("show");
+      badge.style.display = "flex";
+      // Reveal Vera's face on the bubble when nudge appears
+      chatIcon.style.display = "none";
+      faceImg.style.display  = "block";
+      faceImg.style.opacity  = "1";
+    }, NUDGE_DELAY_MS);
+  }
+
+  // Dismiss nudge tooltip only — does NOT set dismissed flag.
+  // User just closed the tooltip; they can still open chat freely.
+  window.vcDismissNudge = function () {
+    nudge.classList.remove("show");
+  };
+
+  // Nudge quick-action: close nudge + open chat + send pre-fill
+  window.vcNudgeOpen = function (text) {
+    nudge.classList.remove("show");
+    if (!isOpen) openChat();
+    setTimeout(function () { submit(text); }, 280);
+  };
+
+  // ── Open / Close / Toggle ────────────────────────────────────
+  window.vcToggle = function () {
+    if (isOpen) vcClose(); else openChat();
+  };
+
+  function openChat() {
+    nudge.classList.remove("show");
+    badge.style.display = "none";
+    isOpen = true;
+    win.classList.add("open");
+    // Swap: hide chat icon, show Vera's face + close overlay
+    chatIcon.style.display = "none";
+    faceImg.style.display  = "block";
+    overlay.style.display  = "flex";
+    faceImg.style.opacity  = "0.3";
+    bubble.setAttribute("aria-label", "Close chat");
+    if (!greeted) { greeted = true; greet(); }
+    setTimeout(function () { inp.focus(); }, 250);
+  }
+
+  // vcClose is called only from the ✕ inside the window header.
+  // This sets dismissed = true → the one-time rule is now active.
+  // The nudge will never auto-appear again this session.
+  // The bubble stays visible so the user can reopen at any time.
+  window.vcClose = function () {
+    isOpen = false;
+    dismissed = true;             // one-time rule: respect the "No"
+    win.classList.remove("open");
+    // Swap back: show chat icon, hide Vera's face + overlay
+    overlay.style.display  = "none";
+    faceImg.style.display  = "none";
+    faceImg.style.opacity  = "1";
+    chatIcon.style.display = "flex";
+    bubble.setAttribute("aria-label", "Chat with Vera — VerseCraft assistant");
+  };
+
+  // ── Greeting + quick replies ─────────────────────────────────
+  function greet() {
+    addMsg("bot",
+      "👋 Hi! I'm Vera, VerseCraft's virtual assistant. " +
+      "I can answer questions about all our services: acrostic art, data analytics, " +
+      "photography &amp; design, web &amp; mobile apps, chatbots, and Graphiverse Academy. " +
+      "What can I help you with today?"
+    );
+    showQR(QUICK_REPLIES);
+  }
+
+  function showQR(list) {
+    qrDiv.innerHTML = "";
+    list.forEach(function (t) {
+      var b = document.createElement("button");
+      b.className = "vc-qrb";
+      b.textContent = t;
+      b.onclick = function () { qrDiv.innerHTML = ""; submit(t); };
+      qrDiv.appendChild(b);
+    });
+  }
+
+  // ── Message bubble helper ────────────────────────────────────
+  function addMsg(role, html) {
+    var d = document.createElement("div");
+    d.className = "vc-m " + role;
+    d.innerHTML = html;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+    return d;
+  }
+
+  // ── Typing indicator ─────────────────────────────────────────
+  function showTyping() {
+    var el = document.createElement("div");
+    el.className = "vc-typing"; el.id = "vc-typ";
+    el.innerHTML = '<div class="vc-d"></div><div class="vc-d"></div><div class="vc-d"></div>';
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  function hideTyping() {
+    var e = document.getElementById("vc-typ");
+    if (e) e.remove();
+  }
+
+  // ── Textarea auto-resize ─────────────────────────────────────
+  window.vcResize = function (el) {
+    el.style.height = "auto";
+    el.style.height = Math.min(el.scrollHeight, 96) + "px";
+  };
+
+  // ── Keyboard: Enter sends, Shift+Enter adds newline ──────────
+  window.vcKey = function (e) {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); vcSend(); }
+  };
+
+  // ── Send button ──────────────────────────────────────────────
+  window.vcSend = function () {
+    var t = inp.value.trim();
+    if (!t || waiting) return;
+    submit(t);
+  };
+
+  // ── Core send / API call ─────────────────────────────────────
+  function submit(text) {
+    qrDiv.innerHTML = "";
+    addMsg("usr", esc(text));
+    inp.value = ""; inp.style.height = "auto";
+    history.push({ role: "user", content: text });
+    waiting = true; snd.disabled = true;
+    showTyping();
+
+    fetch(WORKER, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history })
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      hideTyping(); waiting = false; snd.disabled = false;
+      if (d.error) { addMsg("bot", "⚠️ " + esc(d.error)); return; }
+      var reply = d.reply || "Sorry, I couldn't respond right now.";
+      history.push({ role: "assistant", content: reply });
+      addMsg("bot", linkify(esc(reply)));
+      inp.focus();
+    })
+    .catch(function () {
+      hideTyping(); waiting = false; snd.disabled = false;
+      addMsg("bot",
+        "⚠️ Connection issue — please try again, or contact us directly:<br>" +
+        "<strong><a href='mailto:contact@graphiverse.net'>contact@graphiverse.net</a></strong>" +
+        "  &nbsp;|&nbsp;  " +
+        "<strong><a href='tel:+13094457438'>+1 (309) 445-7438</a></strong>"
+      );
+    });
+  }
+
+  // ── Escape HTML to prevent XSS ───────────────────────────────
+  function esc(s) {
+    return s
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+      .replace(/\n/g, "<br>");
+  }
+
+  // ── Make emails and phone numbers clickable ──────────────────
+  function linkify(s) {
+    // emails
+    s = s.replace(
+      /([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})/g,
+      '<a href="mailto:$1">$1</a>'
+    );
+    // US phone  +1 (309) 445-7438 style
+    s = s.replace(
+      /(\+?1[\s.\-]?\(?\d{3}\)?[\s.\-]?\d{3}[\s.\-]?\d{4})/g,
+      function (m) { return '<a href="tel:' + m.replace(/[^\d+]/g, '') + '">' + m + '</a>'; }
+    );
+    // International +243 style
+    s = s.replace(
+      /(\+243[\s\d]{9,})/g,
+      function (m) { return '<a href="tel:' + m.replace(/[^\d+]/g, '') + '">' + m + '</a>'; }
+    );
+    return s;
+  }
+
+  // ── Boot: schedule nudge on page load ────────────────────────
+  scheduleNudge();
+
+}());
+</script>
+<!-- ===== COPY TO HERE ===== -->
+
+
 <!-- Back to Top -->
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
@@ -485,7 +1006,7 @@
                         <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
                         <div>
                             <strong data-en="Phone" data-fr="Téléphone" data-es="Teléfono">Phone</strong>
-                            <span><a href="tel:+13094457438">+1 (309) 445-7438</a> &nbsp;|&nbsp; <a href="tel:+243894235656">+243 894 235 656</a></span>
+                            <span><a href="tel:+13094457438">+1 (309) 445-7438</a></span>
                         </div>
                     </div>
                     <div class="info-item">
