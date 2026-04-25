@@ -12,6 +12,7 @@
 </head>
 <body>
 
+
 <!-- ============================================================
   VerseCraft Chatbot Widget — chatbot-widget.html
   ──────────────────────────────────────────────────────────────
@@ -31,7 +32,7 @@
 
 /* ── Floating bubble ─────────────────────────────────── */
 #vc-bubble{
-  position:fixed;bottom:28px;right:28px;z-index:9999;
+  position:fixed;bottom:100px;right:28px;z-index:9999;
   width:64px;height:64px;border-radius:50%;
   border:none;background:transparent;
   cursor:pointer;overflow:hidden;padding:0;
@@ -58,7 +59,7 @@
 
 /* ── Proactive speech-bubble nudge ───────────────────── */
 #vc-nudge{
-  position:fixed;bottom:106px;right:26px;z-index:9998;
+  position:fixed;bottom:178px;right:26px;z-index:9998;
   background:#08122A;border:1px solid rgba(45,212,191,.4);
   border-radius:16px 16px 4px 16px;
   padding:14px 16px 12px;max-width:275px;
@@ -86,7 +87,7 @@
 
 /* ── Chat window ─────────────────────────────────────── */
 #vc-win{
-  position:fixed;bottom:106px;right:28px;z-index:9997;
+  position:fixed;bottom:178px;right:28px;z-index:9997;
   width:375px;max-width:calc(100vw - 32px);
   background:#08122A;border-radius:18px;
   border:1px solid rgba(255,255,255,.09);
@@ -222,7 +223,7 @@
   #vc-irow{position:sticky;bottom:0;z-index:2}
   #vc-in{font-size:16px}
   /* Bubble stays bottom-right, slightly smaller */
-  #vc-bubble{bottom:18px;right:18px}
+  #vc-bubble{bottom:90px;right:18px}
   /* Nudge constrained to viewport */
   #vc-nudge{right:16px;max-width:calc(100vw - 100px)}
   /* Touch-friendly tap targets */
@@ -308,7 +309,7 @@
 (function () {
 
   // ── CONFIG — change this one line after deploying ────────────
-  var WORKER = "https://versecraft-chatbot.graphiverse.workers.dev";
+  var WORKER = "https://versecraft-chatbot.graphiverse.workers.dev"; 
 
   // Pages where the proactive nudge is allowed to appear.
   // The nudge fires only if the current URL path STARTS WITH
@@ -569,6 +570,7 @@
 }());
 </script>
 <!-- ===== COPY TO HERE ===== -->
+
 
 
 <!-- Back to Top -->
