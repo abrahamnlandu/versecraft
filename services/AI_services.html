@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerseCraft | Precision Digital Intelligence</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+:root {
+  --navy-deep: #02040a;
+  --navy-glow: #050a18;
+  --electric: #2dd4bf;
+  --text: #e8eef8;
+  --text-dim: #6b7a9a;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Sora', sans-serif;
+  --glass: rgba(11, 15, 28, 0.85);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  background-color: var(--navy-deep); 
+  color: var(--text); 
+  font-family: var(--font-body); 
+  overflow-x: hidden;
+  height: 1250vh; 
+}
+
+/* Background Layers */
+.bg-gradient {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(circle at center, var(--navy-glow) 0%, var(--navy-deep) 100%);
+  z-index: -2;
+}
+.grid-system {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background-image: linear-gradient(rgba(45, 212, 191, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(45, 212, 191, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#canvas-container {
+  position: fixed; top:0; left:0; width:100%; height:100vh;
+  z-index: 1; pointer-events: none;
+}
+
+/* Navigation */
+nav {
+  position: fixed; top:0; width:100%; padding:30px 60px;
+  display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+}
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; color: inherit; }
+.logo span { color: var(--electric); text-shadow: 0 0 15px var(--electric); }
+.back-link { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); text-decoration: none; border-bottom: 1px solid transparent; transition: 0.3s; }
+.back-link:hover { color: var(--electric); border-color: var(--electric); }
+
+/* Scene Layouts */
+.scene {
+  position: fixed; top:0; left:0; width:100%; height:100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 0 10%; z-index: 2; opacity: 0; visibility: hidden;
+}
+
+h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 6vw, 5rem); line-height: 1; margin-bottom: 20px; }
+h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 20px; }
+.highlight { color: var(--electric); text-shadow: 0 0 30px rgba(45, 212, 191, 0.3); }
+
+/* Chatbot Image Styling */
+.assistant-visual {
+  position: absolute; left: 10%; top: 50%; transform: translateY(-50%);
+  width: 350px; height: auto;
+  filter: drop-shadow(0 0 30px rgba(45, 212, 191, 0.4));
+  opacity: 0; pointer-events: none;
+}
+
+.legibility-layer { text-shadow: 0 4px 30px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.5); }
+.sub { font-size: 17px; color: var(--text-dim); max-width: 700px; line-height: 1.7; }
+
+/* Service Detail Cards */
+.service-detail {
+  background: var(--glass);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(45, 212, 191, 0.15);
+  padding: 50px; border-radius: 4px; text-align: left;
+  max-width: 900px; width: 100%;
+}
+
+/* Offset cards when the image is present */
+.offset-right { margin-left: 300px; }
+
+.service-num { font-family: var(--font-display); color: var(--electric); font-size: 12px; letter-spacing: 4px; margin-bottom: 10px; display: block;}
+.feature-list { list-style: none; margin-top: 25px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.feature-list li { font-size: 13px; color: var(--text-dim); position: relative; padding-left: 20px; }
+.feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--electric); }
+
+.btn {
+  margin-top: 30px; padding: 14px 30px; background: transparent; color: var(--text);
+  border: 1px solid var(--electric); font-family: var(--font-display); text-transform: uppercase;
+  letter-spacing: 2px; cursor: pointer; transition: 0.4s; text-decoration: none; font-size: 11px; display: inline-block;
+}
+.btn:hover { background: var(--electric); color: var(--navy-deep); box-shadow: 0 0 30px var(--electric); }
+
+.footer-info { margin-top: 50px; display: flex; gap: 40px; color: var(--text-dim); font-size: 12px; font-weight: 500; }
+.footer-info a { color: var(--electric); text-decoration: none; }
+
+.progress-line { position: fixed; top: 0; left: 0; height: 3px; background: var(--electric); z-index: 1001; width: 0%; }
+</style>
+</head>
+<body>
+
+<div class="progress-line" id="bar"></div>
+<div class="bg-gradient"></div>
+<div class="grid-system"></div>
+<div id="canvas-container"></div>
+
+<nav>
+  <a href="https://graphiverse.net" class="logo">Verse<span>Craft</span></a>
+  <a href="https://graphiverse.net" class="back-link">Return to Main Website</a>
+</nav>
+
+<section class="scene" id="intro">
+  <h1>Precision Crafted<br><span class="highlight">Impact.</span></h1>
+  <p class="sub">Where advanced engineering meets refined digital strategy.</p>
+</section>
+
+<section class="scene" id="hook">
+  <h2>Three services,<br><span class="highlight">one trusted studio</span></h2>
+</section>
+
+<section class="scene" id="service1">
+  <div class="service-detail">
+    <span class="service-num">Service 01</span>
+    <h2>AI Agent</h2>
+    <p class="sub" style="font-size: 15px; margin-bottom: 20px;">Autonomous systems that think, plan, and act on your behalf.</p>
+    <ul class="feature-list">
+      <li>Multi-step task execution</li>
+      <li>Tool & API integrations</li>
+      <li>Memory and context retention</li>
+      <li>Custom brand guardrails</li>
+    </ul>
+    <a href="mailto:contact@graphiverse.net" class="btn">Request a demo</a>
+  </div>
+</section>
+
+<section class="scene" id="service2">
+  <img src="chatt.png" alt="Virtual Assistant UI" class="assistant-visual" id="bot-img">
+  
+  <div class="service-detail offset-right">
+    <span class="service-num">Service 02</span>
+    <h2>Virtual Assistant</h2>
+    <p class="sub" style="font-size: 15px; margin-bottom: 20px;">A 24/7 customer-facing chatbot that qualifies and books — live in 5–7 days.</p>
+    <ul class="feature-list">
+      <li>Live in 5–7 business days</li>
+      <li>Automatic lead qualification</li>
+      <li>Real-time appointment booking</li>
+      <li>GDPR & CCPA compliant</li>
+    </ul>
+    <a href="mailto:contact@graphiverse.net" class="btn">Request a demo</a>
+  </div>
+</section>
+
+<section class="scene" id="service3">
+  <div class="service-detail">
+    <span class="service-num">Service 03</span>
+    <h2>SaaS Development</h2>
+    <p class="sub" style="font-size: 15px; margin-bottom: 20px;">From validated MVP to scalable platform — built to grow.</p>
+    <ul class="feature-list">
+      <li>MVP in weeks</li>
+      <li>Stripe subscription billing</li>
+      <li>Scalable cloud architecture</li>
+      <li>Post-launch support</li>
+    </ul>
+    <a href="mailto:contact@graphiverse.net" class="btn">Start a project</a>
+  </div>
+</section>
+
+<section class="scene" id="contact">
+  <div class="legibility-layer">
+    <h1>Initiate <span class="highlight">Solution</span></h1>
+    <p class="sub" style="color: #ffffff; font-weight: 500;">Supporting English, French, and Spanish clients globally.</p>
+  </div>
+  <a href="mailto:contact@graphiverse.net" class="btn">contact us</a>
+  <div class="footer-info legibility-layer">
+    <div>EMAIL: contact@graphiverse.net</div>
+    <div>PHONE: +1 (309) 445-7438</div>
+  </div>
+</section>
+
+<script>
+// --- THREE.JS SETUP ---
+const container = document.getElementById('canvas-container');
+const scene3d = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+container.appendChild(renderer.domElement);
+
+const geometry = new THREE.IcosahedronGeometry(2, 2);
+const material = new THREE.MeshBasicMaterial({ color: 0x2dd4bf, wireframe: true, transparent: true, opacity: 0.15 });
+const mesh = new THREE.Mesh(geometry, material);
+scene3d.add(mesh);
+
+const coreGeo = new THREE.SphereGeometry(0.4, 32, 32);
+const coreMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6 });
+const core = new THREE.Mesh(coreGeo, coreMat);
+scene3d.add(core);
+
+camera.position.z = 5;
+
+function animate() {
+  requestAnimationFrame(animate);
+  mesh.rotation.y += 0.001;
+  const pulse = 1 + Math.sin(Date.now() * 0.0015) * 0.1;
+  core.scale.set(pulse, pulse, pulse);
+  renderer.render(scene3d, camera);
+}
+animate();
+
+// --- GSAP SCROLL ANIMATION ---
+gsap.registerPlugin(ScrollTrigger);
+const scenes = gsap.utils.toArray('.scene');
+gsap.set(scenes[0], { opacity: 1, visibility: 'visible' });
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: "body", start: "top top", end: "bottom bottom", scrub: 1.5,
+    onUpdate: (self) => { document.getElementById('bar').style.width = (self.progress * 100) + "%"; }
+  }
+});
+
+// Intro -> Hook -> Service 1
+tl.to(scenes[0], { opacity: 0, duration: 1 })
+  .to(scenes[1], { opacity: 1, visibility: 'visible', duration: 1 })
+  .to(scenes[1], { opacity: 0, duration: 1 })
+  .to(mesh.position, { x: 4, duration: 1 }, "<")
+  .to(scenes[2], { opacity: 1, visibility: 'visible', duration: 1 })
+
+// Service 1 -> Service 2 (SHOW IMAGE)
+tl.to(scenes[2], { opacity: 0, duration: 1 })
+  .to("#bot-img", { opacity: 1, x: 20, duration: 1 }, "<") // Fades in and slides slightly
+  .to(scenes[3], { opacity: 1, visibility: 'visible', duration: 1 })
+
+// Service 2 -> Service 3 (HIDE IMAGE)
+tl.to(scenes[3], { opacity: 0, duration: 1 })
+  .to("#bot-img", { opacity: 0, x: -20, duration: 0.5 }, "<")
+  .to(mesh.position, { x: -4, duration: 1 }, "<")
+  .to(scenes[4], { opacity: 1, visibility: 'visible', duration: 1 })
+
+// Service 3 -> Contact
+tl.to(scenes[4], { opacity: 0, duration: 1 })
+  .to(mesh.position, { y: -4, duration: 1 }, "<")
+  .to(core.scale, { x: 35, y: 35, z: 35, duration: 1 }, "<")
+  .to(core.position, { y: -5, duration: 1 }, "<")
+  .to(scenes[5], { opacity: 1, visibility: 'visible', duration: 1 })
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+</html>
