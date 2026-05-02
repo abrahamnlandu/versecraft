@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VerseCraft | Precision Digital Intelligence</title>
+<meta name="description" content="VerseCraft builds autonomous AI agents, virtual assistants, and scalable SaaS platforms for businesses worldwide.">
+<meta property="og:title" content="VerseCraft | Precision Digital Intelligence">
+<meta property="og:description" content="Three AI-powered services. One trusted studio.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy-deep: #02040a;
+  --navy-glow: #050a18;
+  --electric: #2dd4bf;
+  --electric-dim: rgba(45,212,191,0.15);
+  --electric-glow: rgba(45,212,191,0.25);
+  --text: #e8eef8;
+  --text-dim: #6b7a9a;
+  --text-mid: #9aaac8;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Sora', sans-serif;
+  --glass: rgba(8,12,24,0.88);
+  --card-border: rgba(45,212,191,0.12);
+  --card-hover: rgba(45,212,191,0.2);
+  --scene-count: 6;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: auto; }
+
+body {
+  background-color: var(--navy-deep);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  /* Dynamic height: computed in JS */
+  height: calc(var(--scene-count) * 120vh);
+}
+
+/* ─── Background ─── */
+.bg-gradient {
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, #071528 0%, var(--navy-deep) 70%);
+  z-index: -2;
+}
+.grid-system {
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(45,212,191,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,212,191,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 100% 100% at center, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 100% at center, black 40%, transparent 100%);
+}
+
+/* Floating orbs */
+.orb {
+  position: fixed; border-radius: 50%; pointer-events: none; z-index: -1;
+  filter: blur(80px); opacity: 0.12;
+}
+.orb-1 { width: 600px; height: 600px; background: #2dd4bf; top: -200px; left: -100px; animation: drift 18s ease-in-out infinite alternate; }
+.orb-2 { width: 400px; height: 400px; background: #3b82f6; bottom: -100px; right: -100px; animation: drift 22s ease-in-out infinite alternate-reverse; }
+@keyframes drift { from { transform: translate(0,0); } to { transform: translate(60px, 40px); } }
+
+/* ─── Three.js canvas ─── */
+#canvas-container {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+}
+#canvas-container canvas { display: block; }
+
+/* ─── Progress bar ─── */
+.progress-line {
+  position: fixed; top: 0; left: 0; height: 2px;
+  background: linear-gradient(90deg, var(--electric), #3b82f6);
+  z-index: 1001; width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--electric);
+}
+
+/* ─── Navigation ─── */
+nav {
+  position: fixed; top: 0; width: 100%; padding: 24px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(2,4,10,0.7) 0%, transparent 100%);
+  backdrop-filter: blur(0px);
+}
+.logo {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 15px; letter-spacing: 3px; text-transform: uppercase;
+  text-decoration: none; color: inherit;
+}
+.logo span { color: var(--electric); }
+
+.nav-right { display: flex; align-items: center; gap: 32px; }
+
+.nav-dots { display: flex; gap: 8px; align-items: center; }
+.nav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--text-dim); opacity: 0.4;
+  cursor: pointer; transition: all 0.3s; border: none;
+  padding: 0;
+}
+.nav-dot.active { background: var(--electric); opacity: 1; width: 18px; border-radius: 3px; }
+
+.back-link {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none;
+  border-bottom: 1px solid transparent; transition: 0.3s;
+}
+.back-link:hover { color: var(--electric); border-color: var(--electric); }
+.back-link:focus-visible { outline: 2px solid var(--electric); outline-offset: 4px; border-radius: 2px; }
+
+/* ─── Scenes ─── */
+.scene {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 80px 10% 0;
+  z-index: 2; opacity: 0; visibility: hidden;
+  will-change: opacity;
+}
+
+/* ─── Typography ─── */
+h1 {
+  font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 5.5rem);
+  line-height: 0.95; margin-bottom: 24px; letter-spacing: -0.02em;
+}
+h2 {
+  font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 3.2rem);
+  margin-bottom: 20px; letter-spacing: -0.01em;
+}
+.highlight { color: var(--electric); }
+
+.sub {
+  font-size: 17px; color: var(--text-mid);
+  max-width: 620px; line-height: 1.75;
+}
+
+/* ─── Scroll indicator ─── */
+.scroll-hint {
+  position: absolute; bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0; animation: fadeInUp 1s 2s ease forwards;
+}
+.scroll-hint span { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.scroll-arrow {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--electric), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(0.6);transform-origin:top;} 50%{opacity:1;transform:scaleY(1);transform-origin:top;} }
+@keyframes fadeInUp { from{opacity:0;transform:translateX(-50%) translateY(10px);} to{opacity:1;transform:translateX(-50%) translateY(0);} }
+
+/* ─── Hook scene ─── */
+#hook .hook-services {
+  display: flex; gap: 40px; margin-top: 30px;
+  flex-wrap: wrap; justify-content: center;
+}
+#hook .hook-tag {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-dim); border: 1px solid var(--card-border);
+  padding: 10px 20px; border-radius: 2px;
+}
+
+/* ─── Service cards ─── */
+.service-detail {
+  background: var(--glass);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid var(--card-border);
+  padding: 48px 52px;
+  border-radius: 2px;
+  text-align: left;
+  max-width: 860px; width: 100%;
+  position: relative;
+  transition: border-color 0.4s;
+}
+.service-detail::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--electric), transparent);
+  opacity: 0.5;
+}
+
+.service-num {
+  font-family: var(--font-display);
+  color: var(--electric); font-size: 10px;
+  letter-spacing: 4px; margin-bottom: 14px;
+  display: block; opacity: 0.8;
+}
+
+.service-detail h2 { margin-bottom: 12px; }
+
+.feature-list {
+  list-style: none; margin-top: 28px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.feature-list li {
+  font-size: 13px; color: var(--text-dim);
+  position: relative; padding-left: 18px;
+  line-height: 1.5;
+}
+.feature-list li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--electric); font-size: 12px;
+}
+
+/* ─── Button ─── */
+.btn {
+  display: inline-block; margin-top: 32px;
+  padding: 13px 28px; background: transparent; color: var(--text);
+  border: 1px solid var(--electric);
+  font-family: var(--font-display); text-transform: uppercase;
+  letter-spacing: 2px; cursor: pointer; transition: all 0.35s;
+  text-decoration: none; font-size: 10px;
+}
+.btn:hover {
+  background: var(--electric); color: var(--navy-deep);
+  box-shadow: 0 0 24px var(--electric-glow), 0 0 48px rgba(45,212,191,0.1);
+  transform: translateY(-1px);
+}
+.btn:focus-visible { outline: 2px solid var(--electric); outline-offset: 4px; }
+.btn:active { transform: translateY(0); }
+
+/* ─── Contact scene ─── */
+#contact .contact-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 24px;
+}
+.footer-info {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  justify-content: center;
+  color: var(--text-dim); font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.footer-info a { color: var(--electric); text-decoration: none; }
+
+/* ─── Virtual assistant SVG ─── */
+.assistant-visual {
+  position: absolute; left: 7%; top: 50%;
+  transform: translateY(-50%);
+  width: 300px; opacity: 0; pointer-events: none;
+  transition: opacity 0.6s;
+}
+
+/* Offset card when image shown */
+.offset-right { margin-left: 280px; }
+
+/* ─── Mobile ─── */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  .nav-dots { display: none; }
+  .scene { padding: 72px 6% 0; text-align: center; }
+  .service-detail { padding: 32px 28px; }
+  .offset-right { margin-left: 0; }
+  .assistant-visual { display: none; }
+  .feature-list { grid-template-columns: 1fr; }
+  .footer-info { flex-direction: column; align-items: center; gap: 12px; }
+  .hook-services { gap: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.7rem; }
+  .service-detail { padding: 24px 20px; }
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .orb { animation: none !important; }
+  .scroll-arrow { animation: none !important; }
+  * { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-line" id="bar" role="progressbar" aria-label="Page progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="bg-gradient" aria-hidden="true"></div>
+<div class="grid-system" aria-hidden="true"></div>
+<div class="orb orb-1" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+<div id="canvas-container" aria-hidden="true"></div>
+
+<!-- Navigation -->
+<nav role="navigation" aria-label="Main navigation">
+  <a href="https://graphiverse.net" class="logo">Verse<span>Craft</span></a>
+  <div class="nav-right">
+    <div class="nav-dots" role="tablist" aria-label="Page sections">
+      <button class="nav-dot active" data-scene="0" role="tab" aria-label="Intro" aria-selected="true"></button>
+      <button class="nav-dot" data-scene="1" role="tab" aria-label="Services overview" aria-selected="false"></button>
+      <button class="nav-dot" data-scene="2" role="tab" aria-label="AI Agent" aria-selected="false"></button>
+      <button class="nav-dot" data-scene="3" role="tab" aria-label="Virtual Assistant" aria-selected="false"></button>
+      <button class="nav-dot" data-scene="4" role="tab" aria-label="SaaS Development" aria-selected="false"></button>
+      <button class="nav-dot" data-scene="5" role="tab" aria-label="Contact" aria-selected="false"></button>
+    </div>
+    <a href="https://graphiverse.net" class="back-link">← Main Site</a>
+  </div>
+</nav>
+
+<!-- Scene 0: Intro -->
+<section class="scene" id="intro" aria-label="Introduction">
+  <h1>Precision Crafted<br><span class="highlight">Impact.</span></h1>
+  <p class="sub">Where advanced engineering meets refined digital strategy — built for businesses that don't settle.</p>
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- Scene 1: Hook -->
+<section class="scene" id="hook" aria-label="Services overview">
+  <h2>Three services,<br><span class="highlight">one trusted studio</span></h2>
+  <div class="hook-services">
+    <span class="hook-tag">01 — AI Agent</span>
+    <span class="hook-tag">02 — Virtual Assistant</span>
+    <span class="hook-tag">03 — SaaS Development</span>
+  </div>
+</section>
+
+<!-- Scene 2: Service 1 -->
+<section class="scene" id="service1" aria-label="AI Agent service">
+  <div class="service-detail">
+    <span class="service-num">Service 01</span>
+    <h2>AI <span class="highlight">Agent</span></h2>
+    <p class="sub" style="font-size: 15px; margin-bottom: 0;">Autonomous systems that think, plan, and act on your behalf — 24 hours a day, without supervision.</p>
+    <ul class="feature-list" aria-label="Features">
+      <li>Multi-step task execution</li>
+      <li>Tool &amp; API integrations</li>
+      <li>Memory and context retention</li>
+      <li>Custom brand guardrails</li>
+      <li>Human-in-the-loop controls</li>
+      <li>Full audit trail &amp; logging</li>
+    </ul>
+    <a href="mailto:contact@graphiverse.net" class="btn" aria-label="Request a demo for AI Agent">Request a demo</a>
+  </div>
+</section>
+
+<!-- Scene 3: Service 2 -->
+<section class="scene" id="service2" aria-label="Virtual Assistant service">
+  <!-- Inline SVG bot illustration — no broken image dependency -->
+  <svg class="assistant-visual" id="bot-img" viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0d1f3c"/>
+        <stop offset="100%" stop-color="#050d1e"/>
+      </linearGradient>
+      <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0c2a3a"/>
+        <stop offset="100%" stop-color="#071520"/>
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Body -->
+    <rect x="40" y="100" width="200" height="220" rx="20" fill="url(#bodyGrad)" stroke="rgba(45,212,191,0.3)" stroke-width="1"/>
+
+    <!-- Head -->
+    <rect x="65" y="30" width="150" height="90" rx="15" fill="url(#bodyGrad)" stroke="rgba(45,212,191,0.3)" stroke-width="1"/>
+    <rect x="120" y="20" width="40" height="16" rx="4" fill="#0d1f3c" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+
+    <!-- Eyes -->
+    <circle cx="105" cy="75" r="14" fill="url(#screenGrad)" stroke="rgba(45,212,191,0.4)" stroke-width="1"/>
+    <circle cx="175" cy="75" r="14" fill="url(#screenGrad)" stroke="rgba(45,212,191,0.4)" stroke-width="1"/>
+    <circle cx="105" cy="75" r="7" fill="#2dd4bf" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.9;0.5;0.9" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="175" cy="75" r="7" fill="#2dd4bf" opacity="0.9" filter="url(#glow)">
+      <animate attributeName="opacity" values="0.9;0.5;0.9" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Screen on body -->
+    <rect x="58" y="128" width="164" height="100" rx="8" fill="url(#screenGrad)" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+
+    <!-- Chat lines on screen -->
+    <rect x="72" y="146" width="70" height="8" rx="4" fill="rgba(45,212,191,0.5)">
+      <animate attributeName="width" values="70;50;70" dur="4s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="72" y="162" width="100" height="8" rx="4" fill="rgba(45,212,191,0.3)">
+      <animate attributeName="width" values="100;80;100" dur="4s" begin="0.5s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="120" y="178" width="88" height="8" rx="4" fill="rgba(45,212,191,0.5)">
+      <animate attributeName="width" values="88;60;88" dur="3.5s" begin="1s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="72" y="194" width="60" height="8" rx="4" fill="rgba(45,212,191,0.2)">
+      <animate attributeName="width" values="60;90;60" dur="5s" begin="0.2s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Arms -->
+    <rect x="8" y="130" width="32" height="90" rx="12" fill="url(#bodyGrad)" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+    <rect x="240" y="130" width="32" height="90" rx="12" fill="url(#bodyGrad)" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+
+    <!-- Legs -->
+    <rect x="80" y="298" width="44" height="60" rx="10" fill="url(#bodyGrad)" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+    <rect x="156" y="298" width="44" height="60" rx="10" fill="url(#bodyGrad)" stroke="rgba(45,212,191,0.2)" stroke-width="1"/>
+
+    <!-- Status dot -->
+    <circle cx="194" cy="248" r="6" fill="#2dd4bf">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <text x="184" y="270" font-family="'Sora', sans-serif" font-size="9" fill="rgba(45,212,191,0.5)" text-anchor="middle">ONLINE</text>
+
+    <!-- Decorative rings -->
+    <circle cx="140" cy="190" r="130" fill="none" stroke="rgba(45,212,191,0.04)" stroke-width="1"/>
+    <circle cx="140" cy="190" r="150" fill="none" stroke="rgba(45,212,191,0.03)" stroke-width="1"/>
+  </svg>
+
+  <div class="service-detail offset-right">
+    <span class="service-num">Service 02</span>
+    <h2>Virtual <span class="highlight">Assistant</span></h2>
+    <p class="sub" style="font-size: 15px; margin-bottom: 0;">A 24/7 customer-facing chatbot that qualifies leads and books appointments — live within 5–7 business days.</p>
+    <ul class="feature-list" aria-label="Features">
+      <li>Live in 5–7 business days</li>
+      <li>Automatic lead qualification</li>
+      <li>Real-time appointment booking</li>
+      <li>GDPR &amp; CCPA compliant</li>
+      <li>Multi-language support</li>
+      <li>CRM &amp; calendar sync</li>
+    </ul>
+    <a href="mailto:contact@graphiverse.net" class="btn" aria-label="Request a demo for Virtual Assistant">Request a demo</a>
+  </div>
+</section>
+
+<!-- Scene 4: Service 3 -->
+<section class="scene" id="service3" aria-label="SaaS Development service">
+  <div class="service-detail">
+    <span class="service-num">Service 03</span>
+    <h2>SaaS <span class="highlight">Development</span></h2>
+    <p class="sub" style="font-size: 15px; margin-bottom: 0;">From validated MVP to scalable platform — we architect products that grow with your business.</p>
+    <ul class="feature-list" aria-label="Features">
+      <li>MVP in weeks, not months</li>
+      <li>Stripe subscription billing</li>
+      <li>Scalable cloud architecture</li>
+      <li>Post-launch support</li>
+      <li>Auth, roles &amp; permissions</li>
+      <li>Analytics &amp; monitoring</li>
+    </ul>
+    <a href="mailto:contact@graphiverse.net" class="btn" aria-label="Start a SaaS project">Start a project</a>
+  </div>
+</section>
+
+<!-- Scene 5: Contact -->
+<section class="scene" id="contact" aria-label="Contact">
+  <div class="contact-inner">
+    <h1>Let's Build<br><span class="highlight">Together.</span></h1>
+    <p class="sub">Supporting English, French, and Spanish clients globally.</p>
+    <a href="mailto:contact@graphiverse.net" class="btn" aria-label="Send us an email">Contact us</a>
+    <div class="footer-info">
+      <div>Email: <a href="mailto:contact@graphiverse.net">contact@graphiverse.net</a></div>
+      <div>Phone: <a href="tel:+13094457438">+1 (309) 445-7438</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Load Three.js deferred -->
+<script>
+(function() {
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.defer = true;
+  s.onload = initThree;
+  document.head.appendChild(s);
+})();
+
+function initThree() {
+  var container = document.getElementById('canvas-container');
+  var scene3d = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  // Icosahedron wireframe
+  var geo = new THREE.IcosahedronGeometry(2.2, 2);
+  var mat = new THREE.MeshBasicMaterial({ color: 0x2dd4bf, wireframe: true, transparent: true, opacity: 0.12 });
+  var mesh = new THREE.Mesh(geo, mat);
+  scene3d.add(mesh);
+
+  // Core sphere
+  var coreGeo = new THREE.SphereGeometry(0.35, 32, 32);
+  var coreMat = new THREE.MeshBasicMaterial({ color: 0x3b82f6, transparent: true, opacity: 0.9 });
+  var core = new THREE.Mesh(coreGeo, coreMat);
+  scene3d.add(core);
+
+  // Particle ring
+  var pGeo = new THREE.BufferGeometry();
+  var pCount = 120;
+  var pPos = new Float32Array(pCount * 3);
+  for (var i = 0; i < pCount; i++) {
+    var angle = (i / pCount) * Math.PI * 2;
+    var r = 3.5 + (Math.random() - 0.5) * 0.8;
+    pPos[i*3] = Math.cos(angle) * r;
+    pPos[i*3+1] = (Math.random() - 0.5) * 1.5;
+    pPos[i*3+2] = Math.sin(angle) * r;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+  var pMat = new THREE.PointsMaterial({ color: 0x2dd4bf, size: 0.04, transparent: true, opacity: 0.5 });
+  var particles = new THREE.Points(pGeo, pMat);
+  scene3d.add(particles);
+
+  camera.position.z = 5.5;
+
+  var t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.001;
+    mesh.rotation.y += 0.0008;
+    mesh.rotation.x += 0.0003;
+    particles.rotation.y -= 0.0005;
+    var pulse = 1 + Math.sin(t * 1.5) * 0.12;
+    core.scale.set(pulse, pulse, pulse);
+    renderer.render(scene3d, camera);
+  }
+  animate();
+
+  window._threeObjects = { mesh, core, particles };
+
+  window.addEventListener('resize', function() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
+</script>
+
+<script>
+// ─── Scroll-driven scene system ───
+(function() {
+  var scenes = Array.from(document.querySelectorAll('.scene'));
+  var dots = Array.from(document.querySelectorAll('.nav-dot'));
+  var bar = document.getElementById('bar');
+  var botImg = document.getElementById('bot-img');
+  var scrollHint = document.querySelector('.scroll-hint');
+
+  var totalScenes = scenes.length;
+
+  // Dynamic body height: each scene gets 120vh of scroll
+  document.body.style.height = (totalScenes * 120) + 'vh';
+
+  // Show first scene immediately
+  scenes[0].style.opacity = '1';
+  scenes[0].style.visibility = 'visible';
+
+  var lastScene = 0;
+  var ticking = false;
+
+  function getProgress() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.body.scrollHeight - window.innerHeight;
+    return docHeight > 0 ? scrollTop / docHeight : 0;
+  }
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function updateScenes() {
+    var progress = getProgress();
+    bar.style.width = (progress * 100) + '%';
+    bar.setAttribute('aria-valuenow', Math.round(progress * 100));
+
+    // Map progress [0..1] to scene index [0..totalScenes-1]
+    var exactScene = progress * (totalScenes - 1);
+    var currentScene = Math.round(exactScene);
+
+    // Blend between scenes
+    scenes.forEach(function(scene, i) {
+      var dist = Math.abs(exactScene - i);
+      var opacity = Math.max(0, 1 - dist * 2.5);
+      if (opacity > 0.01) {
+        scene.style.opacity = opacity;
+        scene.style.visibility = 'visible';
+      } else {
+        scene.style.opacity = '0';
+        scene.style.visibility = 'hidden';
+      }
+    });
+
+    // Nav dots
+    dots.forEach(function(dot, i) {
+      var active = i === currentScene;
+      dot.classList.toggle('active', active);
+      dot.setAttribute('aria-selected', active);
+    });
+
+    // Scroll hint fades after first scroll
+    if (progress > 0.01 && scrollHint) {
+      scrollHint.style.opacity = Math.max(0, 1 - progress * 30);
+    }
+
+    // Bot image: visible only for service2 scene (index 3)
+    if (botImg) {
+      var botOpacity = Math.max(0, 1 - Math.abs(exactScene - 3) * 3);
+      botImg.style.opacity = botOpacity;
+    }
+
+    // Three.js position updates
+    if (window._threeObjects) {
+      var obj = window._threeObjects;
+      var p = exactScene;
+      // Move mesh left/right/away based on scene
+      if (p < 2) {
+        obj.mesh.position.x = 0;
+        obj.mesh.position.y = 0;
+      } else if (p < 3) {
+        obj.mesh.position.x = lerp(0, 4, p - 2);
+      } else if (p < 4) {
+        obj.mesh.position.x = 4;
+      } else if (p < 5) {
+        obj.mesh.position.x = lerp(4, -4, p - 4);
+      } else {
+        obj.mesh.position.y = lerp(0, -5, p - 5);
+        obj.core.scale.setScalar(lerp(1, 35, p - 5));
+      }
+    }
+
+    lastScene = currentScene;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(updateScenes);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Nav dot click: scroll to that scene
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() {
+      var targetProgress = i / (totalScenes - 1);
+      var docHeight = document.body.scrollHeight - window.innerHeight;
+      window.scrollTo({ top: targetProgress * docHeight, behavior: 'smooth' });
+    });
+  });
+
+  updateScenes();
+})();
+</script>
+</body>
+</html>
